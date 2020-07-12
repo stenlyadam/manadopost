@@ -1,4 +1,8 @@
 import Splash from './Splash';
-import Latest from './Latest';
+import News from './News';
+import Article from './Article';
+import Digital from './Digital';
+import Kawanua360 from './Kawanua360';
+import Video from './Video';
 
-export {Splash, Latest};
+export {Splash, News, Article, Digital, Kawanua360, Video};

@@ -4,7 +4,7 @@ import {DummyHeadline, DummyNews1, DummyNews2, DummyNews3} from '../../assets';
 import {Ads, Header, Headline, NewsItem} from '../../components';
 import {colors} from '../../utils';
 
-const Latest = ({navigation}) => {
+const News = ({navigation}) => {
   return (
     <View style={styles.screens}>
       <View style={styles.headerWrapper}>
@@ -36,6 +36,11 @@ const Latest = ({navigation}) => {
             date="30 Juni 2020 09:15 am"
           />
           <Ads type="medium-banner" />
+          <NewsItem
+            image={DummyNews3}
+            title="Penghargaan dianugerahkan pada Media Online terbaik Indonesia"
+            date="30 Juni 2020 09:15 am"
+          />
           <Ads type="full-banner" />
         </View>
       </ScrollView>
@@ -43,7 +48,7 @@ const Latest = ({navigation}) => {
   );
 };
 
-export default Latest;
+export default News;
 
 const styles = StyleSheet.create({
   screens: {

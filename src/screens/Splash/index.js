@@ -6,7 +6,7 @@ import {colors} from '../../utils';
 const Splash = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('Latest');
+      navigation.replace('MainApp');
     }, 3000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

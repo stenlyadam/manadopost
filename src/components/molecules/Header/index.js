@@ -23,7 +23,7 @@ const Header = ({
         <ILLogo />
         <Button type="icon-only" icon="search" onPress={onPressSearch} />
       </View>
-      <Gap height={3} />
+      <Gap height={2} />
       <View style={styles.menu}>
         <Text style={styles.menuText}>Berita Terbaru</Text>
         <Text style={styles.menuText}>Berita Utama</Text>

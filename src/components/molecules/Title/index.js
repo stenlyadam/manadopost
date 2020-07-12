@@ -14,7 +14,7 @@ export default Title;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.greyBackground1,
+    backgroundColor: colors.tertiary,
     paddingLeft: 12,
     paddingVertical: 7,
   },

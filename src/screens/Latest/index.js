@@ -1,26 +1,15 @@
 import React from 'react';
-import {StyleSheet, View, ScrollView} from 'react-native';
-import {
-  Gap,
-  Header,
-  Headline,
-  MenuHeader,
-  Title,
-  NewsItem,
-  Ads,
-} from '../../components';
-import {colors} from '../../utils';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {DummyHeadline, DummyNews1, DummyNews2, DummyNews3} from '../../assets';
+import {Ads, Header, Headline, NewsItem} from '../../components';
+import {colors} from '../../utils';
 
 const Latest = ({navigation}) => {
   return (
     <View style={styles.screens}>
       <View style={styles.headerWrapper}>
-        <Header />
-        <Gap height={2} />
-        <MenuHeader />
+        <Header title="Berita Terbaru" />
       </View>
-      <Title title="Berita Terbaru" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <Headline
@@ -28,6 +17,7 @@ const Latest = ({navigation}) => {
             title="Jokowi Perlu Komandan untuk Percepat 'Belanja' Corona"
             date="30 Juni 2020 09:15 am"
             desc="MANADOPOST.ID—Kurang lebih sepuluh hari pasca banjir dan tanah longsor yang terjadi di Kabupaten Bolmong Selatan (Bolsel)."
+            onPress={() => navigation.navigate('Article')}
           />
           <NewsItem
             image={DummyNews1}

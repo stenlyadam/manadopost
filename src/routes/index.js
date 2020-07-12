@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Latest, Splash} from '../screens';
+import Article from '../screens/Article';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,11 @@ const Routes = () => {
       <Stack.Screen
         name="Latest"
         component={Latest}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Article"
+        component={Article}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

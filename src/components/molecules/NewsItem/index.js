@@ -1,6 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {colors} from '../../../utils';
+import {colors, fonts} from '../../../utils';
 
 const NewsItem = ({image, title, date}) => {
   return (
@@ -34,12 +34,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: fonts.primary[600],
     color: colors.text.primary,
   },
   date: {
-    fontSize: 12,
-    fontWeight: 'normal',
+    fontSize: 14,
+    fontFamily: fonts.primary.normal,
     color: colors.text.secondary,
     paddingVertical: 6,
   },

@@ -1,15 +1,16 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {colors} from '../../../utils';
+import {Image, StyleSheet, Text} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {colors, fonts} from '../../../utils';
 
-const Headline = ({image, title, date, desc}) => {
+const Headline = ({image, title, date, desc, onPress}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={image} style={styles.image} />
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.date}>{date}</Text>
       <Text style={styles.desc}>{desc}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -29,18 +30,20 @@ const styles = StyleSheet.create({
   },
   title: {
     paddingTop: 12,
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 22,
+    fontFamily: fonts.primary[600],
     color: colors.text.primary,
   },
   date: {
-    fontSize: 12,
-    fontWeight: 'normal',
+    fontSize: 14,
+    fontFamily: fonts.primary.normal,
     color: colors.text.secondary,
     paddingVertical: 6,
   },
   desc: {
     paddingBottom: 6,
+    fontFamily: fonts.primary.normal,
+    fontSize: 14,
     color: colors.text.primary,
   },
 });

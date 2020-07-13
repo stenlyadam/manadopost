@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View, Text} from 'react-native';
 import {ILLogo} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 import {Button, Gap} from '../../atoms';
 
 const Header = ({
+  navigation,
   title,
   backButton,
   onPressBack,
@@ -24,12 +25,31 @@ const Header = ({
         <Button type="icon-only" icon="search" onPress={onPressSearch} />
       </View>
       <Gap height={2} />
-      <View style={styles.menu}>
-        <Text style={styles.menuText}>Berita Terbaru</Text>
-        <Text style={styles.menuText}>Berita Utama</Text>
-        <Text style={styles.menuText}>Eksbis</Text>
-        <Text style={styles.menuText}>Polbup</Text>
-      </View>
+      {!backButton && (
+        <View style={styles.menu}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <Button
+              title="Berita Terbaru"
+              onPress={() => navigation.navigate('MainApp')}
+            />
+            <Button
+              title="Berita Utama"
+              onPress={() => navigation.navigate('BeritaUtama')}
+            />
+            <Button title="Eksibs" />
+            <Button
+              title="Berita Utama"
+              onPress={() => navigation.navigate('BeritaUtama')}
+            />
+            <Button title="Eksibs" />
+            <Button title="Eksibs" />
+            <Button
+              title="Berita Utama"
+              onPress={() => navigation.navigate('BeritaUtama')}
+            />
+          </ScrollView>
+        </View>
+      )}
       <View style={styles.title}>
         <Text style={styles.titleText}>{title}</Text>
       </View>

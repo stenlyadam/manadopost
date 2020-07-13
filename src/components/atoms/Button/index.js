@@ -1,7 +1,8 @@
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet} from 'react-native';
 import ButtonIcon from './ButtonIcon';
 import IconOnly from './IconOnly';
+import {fonts, colors} from '../../../utils';
 
 const Button = ({title, type, icon, onPress}) => {
   if (type === 'button-icon') {
@@ -13,9 +14,18 @@ const Button = ({title, type, icon, onPress}) => {
 
   return (
     <TouchableOpacity onPress={onPress}>
-      <Text>{title}</Text>
+      <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
 };
 
 export default Button;
+
+const styles = StyleSheet.create({
+  text: {
+    fontFamily: fonts.primary[600],
+    fontSize: 16,
+    color: colors.white,
+    paddingHorizontal: 10,
+  },
+});

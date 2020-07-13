@@ -1,8 +1,9 @@
-import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {News, Splash, Article, Digital, Kawanua360, Video} from '../screens';
+import {createStackNavigator} from '@react-navigation/stack';
+import React from 'react';
 import BottomNavigator from '../components/molecules/BottomNavigator';
+import {Article, Digital, Kawanua360, News, Splash, Video} from '../screens';
+import BeritaUtama from '../screens/BeritaUtama';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,6 +35,11 @@ const Routes = () => {
       <Stack.Screen
         name="Article"
         component={Article}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="BeritaUtama"
+        component={BeritaUtama}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

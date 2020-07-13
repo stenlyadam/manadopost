@@ -1,24 +1,17 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {DummyHeadline, DummyNews1, DummyNews2, DummyNews3} from '../../assets';
-import {Ads, Header, Headline, NewsItem} from '../../components';
+import {DummyNews1, DummyNews2, DummyNews3} from '../../assets';
+import {Ads, Header, NewsItem} from '../../components';
 import {colors} from '../../utils';
 
-const News = ({navigation}) => {
+const BeritaUtama = ({navigation}) => {
   return (
     <View style={styles.screens}>
       <View style={styles.headerWrapper}>
-        <Header title="Berita Terbaru" navigation={navigation} />
+        <Header title="Berita Utama" navigation={navigation} />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <Headline
-            image={DummyHeadline}
-            title="Jokowi Perlu Komandan untuk Percepat 'Belanja' Corona"
-            date="30 Juni 2020 09:15 am"
-            desc="MANADOPOST.ID—Kurang lebih sepuluh hari pasca banjir dan tanah longsor yang terjadi di Kabupaten Bolmong Selatan (Bolsel)."
-            onPress={() => navigation.navigate('Article')}
-          />
           <NewsItem
             image={DummyNews1}
             title="Sudah 10 Hari Pasca Bencana, Warga Korban Banjir dan Longsor Tak Dapat Bantuan"
@@ -48,7 +41,7 @@ const News = ({navigation}) => {
   );
 };
 
-export default News;
+export default BeritaUtama;
 
 const styles = StyleSheet.create({
   screens: {

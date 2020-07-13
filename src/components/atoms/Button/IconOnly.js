@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 import {IconMenu, IconSearch, IconArrowBack} from '../../../assets';
 
 const IconOnly = ({icon, onPress}) => {
@@ -17,10 +17,16 @@ const IconOnly = ({icon, onPress}) => {
   };
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={styles.container}>
       <Icon />
     </TouchableOpacity>
   );
 };
 
 export default IconOnly;
+
+const styles = StyleSheet.create({
+  container: {
+    margin: 10,
+  },
+});

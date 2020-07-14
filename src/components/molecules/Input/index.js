@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View, TextInput} from 'react-native';
-import {colors} from '../../../utils';
+import {StyleSheet, TextInput, View} from 'react-native';
 import {
   IconAccountCircle,
-  IconPassword,
   IconEmail,
   IconHandphone,
+  IconPassword,
 } from '../../../assets';
+import {colors} from '../../../utils';
 
 const Input = ({placeholder, icon, secureTextEntry}) => {
   const Icon = () => {

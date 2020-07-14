@@ -13,7 +13,6 @@ import {
   Login,
   Register,
 } from '../screens';
-import BeritaUtama from '../screens/BeritaUtama';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,7 +31,7 @@ const MainApp = () => {
 
 const Routes = () => {
   return (
-    <Stack.Navigator initialRouteName="Register">
+    <Stack.Navigator initialRouteName="MainApp">
       <Stack.Screen
         name="Splash"
         component={Splash}
@@ -56,11 +55,6 @@ const Routes = () => {
       <Stack.Screen
         name="Article"
         component={Article}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="BeritaUtama"
-        component={BeritaUtama}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

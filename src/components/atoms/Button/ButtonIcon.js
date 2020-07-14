@@ -13,6 +13,7 @@ const ButtonIcon = ({icon, onPress}) => {
     if (icon === 'whatsapp') {
       return <IconWhatsapp />;
     }
+
     return <IconFacebook />;
   };
   return (

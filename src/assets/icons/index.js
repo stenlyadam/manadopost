@@ -14,6 +14,11 @@ import IconKawanuaActive from './ic-mp-kawanua-active.svg';
 import IconVideoActive from './ic-mp-video-active.svg';
 import IconKoran from './ic-mp-koran.svg';
 import IconKoranActive from './ic-mp-koran-active.svg';
+import IconAccountCircle from './ic-account-circle.svg';
+import IconPassword from './ic-password.svg';
+import IconHandphone from './ic-handphone.svg';
+import IconEmail from './ic-email.svg';
+import IconGoogle from './ic-google.svg';
 
 export {
   IconMenu,
@@ -32,4 +37,9 @@ export {
   IconVideoActive,
   IconKoran,
   IconKoranActive,
+  IconAccountCircle,
+  IconPassword,
+  IconHandphone,
+  IconEmail,
+  IconGoogle,
 };

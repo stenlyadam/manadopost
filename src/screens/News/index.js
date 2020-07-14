@@ -1,10 +1,9 @@
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, Text, View, Dimensions} from 'react-native';
-import {Button, Header, Headline, NewsItem} from '../../components';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Button, Header, Headline, NewsItem, Ads} from '../../components';
 import Loading from '../../components/molecules/Loading';
 import {colors, fonts, formatDate} from '../../utils';
-import AutoHeightWebView from 'react-native-autoheight-webview';
 
 const News = ({navigation}) => {
   const [news, setNews] = useState([]);
@@ -46,14 +45,6 @@ const News = ({navigation}) => {
     setRefreshing(true);
     getDataJSONFromAPI(category);
   };
-
-  const webView = (content) => (
-    <AutoHeightWebView
-      style={styles.webView}
-      source={{html: content}}
-      scrollEnabled={false}
-    />
-  );
 
   return (
     <View style={styles.screens}>
@@ -100,38 +91,18 @@ const News = ({navigation}) => {
               );
             }
             return (
-              <NewsItem
-                key={item.id}
-                image={{uri: item.jetpack_featured_media_url}}
-                title={item.title.rendered}
-                date={formatDate(item.date)}
-                onPress={() => navigation.navigate('Article', data)}
-              />
+              <>
+                <NewsItem
+                  key={item.id}
+                  image={{uri: item.jetpack_featured_media_url}}
+                  title={item.title.rendered}
+                  date={formatDate(item.date)}
+                  onPress={() => navigation.navigate('Article', data)}
+                />
+                {count % 5 === 0 && <Ads type="small-banner" />}
+              </>
             );
           })}
-          {/* <NewsItem
-            image={DummyNews1}
-            title="Sudah 10 Hari Pasca Bencana, Warga Korban Banjir dan Longsor Tak Dapat Bantuan"
-            date="30 Juni 2020 09:15 am"
-          />
-          <NewsItem
-            image={DummyNews2}
-            title="Virtual Reality menjadi masa depan Industri Indonesia"
-            date="30 Juni 2020 09:15 am"
-          />
-          <Ads type="small-banner" />
-          <NewsItem
-            image={DummyNews3}
-            title="Penghargaan dianugerahkan pada Media Online terbaik Indonesia"
-            date="30 Juni 2020 09:15 am"
-          />
-          <Ads type="medium-banner" />
-          <NewsItem
-            image={DummyNews3}
-            title="Penghargaan dianugerahkan pada Media Online terbaik Indonesia"
-            date="30 Juni 2020 09:15 am"
-          />
-          <Ads type="full-banner" /> */}
         </View>
       </ScrollView>
       {refreshing && <Loading />}

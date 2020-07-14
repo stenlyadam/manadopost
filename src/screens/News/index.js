@@ -1,9 +1,10 @@
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, Dimensions} from 'react-native';
 import {Button, Header, Headline, NewsItem} from '../../components';
 import Loading from '../../components/molecules/Loading';
 import {colors, fonts, formatDate} from '../../utils';
+import AutoHeightWebView from 'react-native-autoheight-webview';
 
 const News = ({navigation}) => {
   const [news, setNews] = useState([]);
@@ -46,6 +47,14 @@ const News = ({navigation}) => {
     getDataJSONFromAPI(category);
   };
 
+  const webView = (content) => (
+    <AutoHeightWebView
+      style={styles.webView}
+      source={{html: content}}
+      scrollEnabled={false}
+    />
+  );
+
   return (
     <View style={styles.screens}>
       <View style={styles.headerWrapper}>
@@ -68,6 +77,13 @@ const News = ({navigation}) => {
         <View style={styles.content}>
           {news.map((item) => {
             count++;
+            const data = {
+              image: item.jetpack_featured_media_url,
+              title: item.title.rendered,
+              date: item.date,
+              desc: item.excerpt.rendered,
+              content: item.content.rendered,
+            };
             if (
               (title === 'Berita Terbaru' || title === 'Berita Utama') &&
               count === 1
@@ -75,10 +91,11 @@ const News = ({navigation}) => {
               return (
                 <Headline
                   key={item.id}
-                  image={{uri: item.jetpack_featured_media_url}}
-                  title={item.title.rendered}
-                  date={formatDate(item.date)}
-                  desc={item.excerpt.rendered}
+                  image={{uri: data.image}}
+                  title={data.title}
+                  date={formatDate(data.date)}
+                  desc={data.desc}
+                  onPress={() => navigation.navigate('Article', data)}
                 />
               );
             }
@@ -88,6 +105,7 @@ const News = ({navigation}) => {
                 image={{uri: item.jetpack_featured_media_url}}
                 title={item.title.rendered}
                 date={formatDate(item.date)}
+                onPress={() => navigation.navigate('Article', data)}
               />
             );
           })}

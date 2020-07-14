@@ -1,16 +1,16 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {colors, fonts} from '../../../utils';
 
-const NewsItem = ({image, title, date}) => {
+const NewsItem = ({image, title, date, onPress}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={image} style={styles.image} />
       <View style={styles.content}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.date}>{date}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

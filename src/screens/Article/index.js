@@ -1,10 +1,13 @@
+import Moment from 'moment';
 import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {DummyArticle, DummyNews1, DummyNews2} from '../../assets';
-import {Ads, Button, Header, NewsItem, Gap} from '../../components';
+import AutoHeightWebView from 'react-native-autoheight-webview';
+import {DummyNews1, DummyNews2} from '../../assets';
+import {Ads, Button, Gap, Header, NewsItem} from '../../components';
 import {colors, fonts} from '../../utils';
 
-const Article = ({navigation}) => {
+const Article = ({navigation, route}) => {
+  const {image, title, date, content} = route.params;
   return (
     <View style={styles.screen}>
       <Header
@@ -14,10 +17,8 @@ const Article = ({navigation}) => {
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <Text style={styles.title}>
-            Resmi Diumumkan Sony, Ini Dia Penampakan PlayStation 5
-          </Text>
-          <Text style={styles.date}>30 Juni 2020 09:15 am</Text>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.date}>{Moment(date).format('LLLL')}</Text>
           <View style={styles.shareButton}>
             <Button type="button-icon" icon="facebook" onPress={() => {}} />
             <Gap width={10} />
@@ -25,32 +26,19 @@ const Article = ({navigation}) => {
             <Gap width={10} />
             <Button type="button-icon" icon="whatsapp" onPress={() => {}} />
           </View>
-          <Image source={DummyArticle} style={styles.image} />
-          <Text style={styles.desc}>
-            MANADOPOST.ID – Nama Andi Amran Sulaiman masuk dalam survei tokoh
-            nasional yang berpotensi kuat dalam kontestasi politik Indonesia ke
-            depan. Mantan Menteri Pertanian era Kabinet Kerja Pertama ini bahkan
-            merupakan satu-satunya tokoh politik asal Indonesia Timur yang masuk
-            dalam daftar survei tersebut. Dalam survei ini, Andi Amran Sulaiman
-            cukup menonjol dalam kategori sosok yang jujur, bersih, tegas, anti
-            mafia serta memiliki kinerja yang baik di mata publik. Diketahui
-            Survei Tokoh Alternatif Nasional ini menempatkan tokoh-tokoh
-            politisi nasional yang memiliki persepsi baik di hadapan publik
-            Indonesia serta mempunyai potensi untuk berkontestasi dalam
-            pertarungan politik Indonesia ke depan. Survei yang diselenggarakan
-            oleh Lembaga Survei KedaiKOPI (Kelompok Diskusi Kajian Opini Publik)
-            menemukan faktor yang disukai masyarakat pada sosok Susi
-            Pudjiastusti, Anies Baswedan, Ridwan Kamil, Tri Risma, Sri Mulyani,
-            Andi Amran Sulaiman, Khofifah, Amran Sulaiman, dan Rizal Ramli. “Hal
-            yang menarik dari hasil survei tokoh ini adalah tingginya tingkat
-            kesukaan terhadap Susi Pudjiastuti yang merupakan Mantan Menteri
-            Kelautan dan Perikanan pada periode pemerintahan Jokowi sebelumnya.
-            Susi Pudjiastuti dipersepsikan n Menteri Pertanian sebagai
-            satu-satunya tokoh yang berasal dari Indonesia Timur dan menjadi
-            tokoh yang mewakili Indonesia Timur. Andi dipersepsikan publik
-            memiliki kinerja baik (4,6%), walaupun dirinya kurang dikenal
-            (2,4%),” tambah Kunto.
-          </Text>
+          <Image source={{uri: image}} style={styles.image} />
+          <AutoHeightWebView
+            style={styles.webView}
+            source={{html: content}}
+            scrollEnabled={false}
+            scalesPageToFit={true}
+            viewportContent={'width=device-width, user-scalable=no'}
+            customStyle={`
+              p {
+                font-size: 14px;
+              }
+            `}
+          />
           <Text style={styles.subTitle}>Bagikan artikel ini</Text>
           <View style={styles.shareButton}>
             <Button type="button-icon" icon="facebook" onPress={() => {}} />
@@ -120,5 +108,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.text.primary,
     marginVertical: 5,
+  },
+  webView: {
+    width: '100%',
+    marginTop: 5,
   },
 });

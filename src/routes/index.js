@@ -2,7 +2,15 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import BottomNavigator from '../components/molecules/BottomNavigator';
-import {Article, Digital, Kawanua360, News, Splash, Video} from '../screens';
+import {
+  Article,
+  Digital,
+  Kawanua360,
+  News,
+  Splash,
+  Video,
+  EPaper,
+} from '../screens';
 import BeritaUtama from '../screens/BeritaUtama';
 
 const Stack = createStackNavigator();
@@ -11,10 +19,11 @@ const Tab = createBottomTabNavigator();
 const MainApp = () => {
   return (
     <Tab.Navigator tabBar={(props) => <BottomNavigator {...props} />}>
-      <Tab.Screen name="News" component={News} />
-      <Tab.Screen name="Digital" component={Digital} />
-      <Tab.Screen name="Kawanua360" component={Kawanua360} />
-      <Tab.Screen name="Video" component={Video} />
+      <Tab.Screen name="MP News" component={News} />
+      <Tab.Screen name="MP Digital" component={Digital} />
+      <Tab.Screen name="MP Koran" component={EPaper} />
+      <Tab.Screen name="MP 360" component={Kawanua360} />
+      <Tab.Screen name="MP Video" component={Video} />
     </Tab.Navigator>
   );
 };

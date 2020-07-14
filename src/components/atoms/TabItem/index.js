@@ -9,22 +9,27 @@ import {
   IconDigitalActive,
   IconKawanuaActive,
   IconVideoActive,
+  IconKoranActive,
+  IconKoran,
 } from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
 const TabItem = ({label, active, onPress, onLongPress}) => {
   const Icon = () => {
-    if (label === 'News') {
+    if (label === 'MP News') {
       return active ? <IconNewsActive /> : <IconNews />;
     }
-    if (label === 'Digital') {
+    if (label === 'MP Digital') {
       return active ? <IconDigitalActive /> : <IconDigital />;
     }
-    if (label === 'Kawanua360') {
+    if (label === 'MP 360') {
       return active ? <IconKawanuaActive /> : <IconKawanua />;
     }
-    if (label === 'Video') {
+    if (label === 'MP Video') {
       return active ? <IconVideoActive /> : <IconVideo />;
+    }
+    if (label === 'MP Koran') {
+      return active ? <IconKoranActive /> : <IconKoran />;
     }
     return <IconNews />;
   };
@@ -44,10 +49,11 @@ export default TabItem;
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    justifyContent: 'center',
   },
   text: (active) => ({
     fontFamily: fonts.primary[600],
-    fontSize: 14,
-    color: active ? colors.text.secondary : colors.white,
+    fontSize: 12,
+    color: active ? colors.white : colors.text.tertiary,
   }),
 });

@@ -25,7 +25,7 @@ const Header = ({
         <Button type="icon-only" icon="search" onPress={onPressSearch} />
       </View>
       <Gap height={2} />
-      {!backButton && (
+      {/* {!backButton && (
         <View style={styles.menu}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <Button
@@ -49,10 +49,10 @@ const Header = ({
             />
           </ScrollView>
         </View>
-      )}
-      <View style={styles.title}>
+      )} */}
+      {/* <View style={styles.title}>
         <Text style={styles.titleText}>{title}</Text>
-      </View>
+      </View> */}
     </View>
   );
 };

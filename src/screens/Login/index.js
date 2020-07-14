@@ -25,7 +25,7 @@ const Login = () => {
         <Button title="Google" type="button-icon-text" />
       </View>
       <Gap height={120} />
-      <View style={styles.createAccount}>
+      <View style={styles.register}>
         <Text style={styles.text}>Buat Akun Gratis? </Text>
         <Link title="Klik disini" />
       </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
-  createAccount: {
+  register: {
     flexDirection: 'row',
     justifyContent: 'center',
   },

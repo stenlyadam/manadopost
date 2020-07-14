@@ -1,17 +1,27 @@
 import React from 'react';
 import {StyleSheet, Text, View, TextInput} from 'react-native';
 import {colors} from '../../../utils';
-import {IconAccountCircle, IconPassword} from '../../../assets';
+import {
+  IconAccountCircle,
+  IconPassword,
+  IconEmail,
+  IconHandphone,
+} from '../../../assets';
 
 const Input = ({placeholder, icon, secureTextEntry}) => {
   const Icon = () => {
-    if (icon === 'account') {
-      return <IconAccountCircle style={styles.icon} />;
+    switch (icon) {
+      case 'account':
+        return <IconAccountCircle style={styles.icon} />;
+      case 'password':
+        return <IconPassword style={styles.icon} />;
+      case 'email':
+        return <IconEmail style={styles.icon} />;
+      case 'handphone':
+        return <IconHandphone style={styles.icon} />;
+      case 'password':
+        return <IconPassword style={styles.icon} />;
     }
-    if (icon === 'password') {
-      return <IconPassword style={styles.icon} />;
-    }
-    return <IconAccountCircle style={styles.icon} />;
   };
 
   return (
@@ -41,7 +51,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     position: 'absolute',
-    right: 12,
+    right: 15,
     bottom: 12,
   },
 });

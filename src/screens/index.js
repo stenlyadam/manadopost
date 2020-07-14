@@ -6,5 +6,16 @@ import Kawanua360 from './Kawanua360';
 import Video from './Video';
 import EPaper from './EPaper';
 import Login from './Login';
+import Register from './Register';
 
-export {Splash, News, Article, Digital, Kawanua360, Video, EPaper, Login};
+export {
+  Splash,
+  News,
+  Article,
+  Digital,
+  Kawanua360,
+  Video,
+  EPaper,
+  Login,
+  Register,
+};

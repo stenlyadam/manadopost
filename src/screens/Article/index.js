@@ -7,14 +7,11 @@ import {Ads, Button, Gap, Header, NewsItem} from '../../components';
 import {colors, fonts} from '../../utils';
 
 const Article = ({navigation, route}) => {
-  const {image, title, date, content} = route.params;
+  const {image, title, date, content, related} = route.params;
+  console.log(related);
   return (
     <View style={styles.screen}>
-      <Header
-        title="Berita Terbaru"
-        backButton
-        onPressBack={() => navigation.goBack()}
-      />
+      <Header backButton onPressBack={() => navigation.goBack()} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <Text style={styles.title}>{title}</Text>
@@ -48,17 +45,21 @@ const Article = ({navigation, route}) => {
             <Button type="button-icon" icon="whatsapp" onPress={() => {}} />
           </View>
           <Ads type="small-banner" />
-          <Text style={styles.subTitle}>Artikel Terkait</Text>
-          <NewsItem
-            image={DummyNews1}
-            title="Sudah 10 Hari Pasca Bencana, Warga Korban Banjir dan Longsor Tak Dapat Bantuan"
-            date="30 Juni 2020 09:15 am"
-          />
-          <NewsItem
-            image={DummyNews2}
-            title="Virtual Reality menjadi masa depan Industri Indonesia"
-            date="30 Juni 2020 09:15 am"
-          />
+          {related && (
+            <>
+              <Text style={styles.subTitle}>Artikel Terkait</Text>
+              <NewsItem
+                image={DummyNews1}
+                title="Sudah 10 Hari Pasca Bencana, Warga Korban Banjir dan Longsor Tak Dapat Bantuan"
+                date="30 Juni 2020 09:15 am"
+              />
+              <NewsItem
+                image={DummyNews2}
+                title="Virtual Reality menjadi masa depan Industri Indonesia"
+                date="30 Juni 2020 09:15 am"
+              />
+            </>
+          )}
         </View>
       </ScrollView>
     </View>

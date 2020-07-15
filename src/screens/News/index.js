@@ -74,6 +74,7 @@ const News = ({navigation}) => {
               date: item.date,
               desc: item.excerpt.rendered,
               content: item.content.rendered,
+              related: item['jetpack-related-posts'],
             };
             if (
               (title === 'Berita Terbaru' || title === 'Berita Utama') &&
@@ -99,7 +100,9 @@ const News = ({navigation}) => {
                   date={formatDate(item.date)}
                   onPress={() => navigation.navigate('Article', data)}
                 />
-                {count % 5 === 0 && <Ads type="small-banner" />}
+                {count % 5 === 0 && <Ads title={title} type="small-banner" />}
+                {count % 8 === 0 && <Ads title={title} type="medium-banner" />}
+                {count % 11 === 0 && <Ads title={title} type="full-banner" />}
               </>
             );
           })}

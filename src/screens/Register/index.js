@@ -4,7 +4,7 @@ import {ILLogoBlue} from '../../assets';
 import {Input, Button, Link, Gap} from '../../components';
 import {colors, fonts} from '../../utils';
 
-const Register = () => {
+const Register = ({navigation}) => {
   return (
     <View style={styles.screen}>
       <View style={styles.logo}>
@@ -21,7 +21,10 @@ const Register = () => {
         <Input placeholder="Ulangi Sandi" icon="password" />
       </View>
       <Gap height={17} />
-      <Button title="Buat Akun" />
+      <Button
+        title="Buat Akun"
+        onPress={() => navigation.navigate('MainApp')}
+      />
       <Gap height={20} />
       <View style={styles.login}>
         <Text style={styles.text}>Sudah memiliki akun? </Text>

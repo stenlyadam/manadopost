@@ -5,7 +5,7 @@ import IconOnly from './IconOnly';
 import {fonts, colors} from '../../../utils';
 import ButtonIconText from './ButtonIconText';
 
-const Button = ({title, type, icon, onPress}) => {
+const Button = ({title, type, icon, onPress, price}) => {
   if (type === 'button-icon') {
     return <ButtonIcon icon={icon} onPress={onPress} />;
   }
@@ -14,6 +14,15 @@ const Button = ({title, type, icon, onPress}) => {
   }
   if (type === 'button-icon-text') {
     return <ButtonIconText onPress={onPress} title={title} />;
+  }
+
+  if (type === 'button-subscribe') {
+    return (
+      <TouchableOpacity onPress={onPress} style={styles.subscribe}>
+        <Text style={styles.textSubcribe}>{title}</Text>
+        <Text style={styles.textSubcribe}>{price}</Text>
+      </TouchableOpacity>
+    );
   }
 
   return (
@@ -41,5 +50,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     height: 40,
     justifyContent: 'center',
+  },
+  subscribe: {
+    backgroundColor: colors.button.tertiary.background,
+    width: 98,
+    height: 85,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+  textSubcribe: {
+    fontFamily: fonts.primary.normal,
+    fontSize: 14,
+    color: colors.button.tertiary.text,
   },
 });

@@ -4,7 +4,7 @@ import {ILLogoBlue} from '../../assets';
 import {Button, Gap, Input, Link} from '../../components';
 import {colors, fonts} from '../../utils';
 
-const Login = () => {
+const Login = ({navigation}) => {
   return (
     <View style={styles.screen}>
       <Gap height={96} />
@@ -16,7 +16,7 @@ const Login = () => {
       <Input placeholder="Username" icon="account" />
       <Input placeholder="Password" icon="password" secureTextEntry />
       <Gap height={30} />
-      <Button title="Masuk" />
+      <Button title="Masuk" onPress={() => navigation.navigate('Register')} />
       <Gap height={24} />
       <Text style={styles.text}>Atau masuk dengan</Text>
       <Gap height={22} />

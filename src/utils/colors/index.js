@@ -1,6 +1,6 @@
 const mainColors = {
-  blue2: '#0058A9',
   blue1: '#024D91',
+  blue2: '#0058A9',
   dark1: '#112340',
   dark2: '#7D8797',
   dark3: '#012445',
@@ -11,6 +11,7 @@ const mainColors = {
   grey5: '#BABABA',
   white: '#FFFFFF',
   red1: '#C02F01',
+  green1: '#3EED00',
 };
 
 export const colors = {
@@ -33,6 +34,10 @@ export const colors = {
     secondary: {
       background: mainColors.red1,
       text: mainColors.white,
+    },
+    tertiary: {
+      background: mainColors.green1,
+      text: mainColors.blue1,
     },
   },
 };

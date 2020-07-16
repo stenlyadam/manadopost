@@ -7,6 +7,8 @@ import Video from './Video';
 import EPaper from './EPaper';
 import Login from './Login';
 import Register from './Register';
+import UserProfile from './UserProfile';
+import EditProfile from './EditProfile';
 
 export {
   Splash,
@@ -18,4 +20,6 @@ export {
   EPaper,
   Login,
   Register,
+  UserProfile,
+  EditProfile,
 };

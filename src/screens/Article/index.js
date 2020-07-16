@@ -3,7 +3,7 @@ import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import AutoHeightWebView from 'react-native-autoheight-webview';
 import {DummyNews1, DummyNews2} from '../../assets';
-import {Ads, Button, Gap, Header, NewsItem} from '../../components';
+import {Ads, Button, Gap, NewsItem} from '../../components';
 import {colors, fonts} from '../../utils';
 
 const Article = ({navigation, route}) => {
@@ -11,7 +11,7 @@ const Article = ({navigation, route}) => {
   console.log(related);
   return (
     <View style={styles.screen}>
-      <Header backButton onPressBack={() => navigation.goBack()} />
+      {/* <Header backButton onPressBack={() => navigation.goBack()} /> */}
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <Text style={styles.title}>{title}</Text>

@@ -5,16 +5,17 @@ import {Button, Header, Headline, NewsItem, Ads} from '../../components';
 import Loading from '../../components/molecules/Loading';
 import {colors, fonts, formatDate} from '../../utils';
 
-const News = ({navigation}) => {
+const News = ({navigation, route}) => {
   const [news, setNews] = useState([]);
   const [title, setTitle] = useState('Berita Terbaru');
   const [refreshing, setRefreshing] = useState(false);
   let count = 0;
+  const {category} = route.params;
 
   useEffect(() => {
     setRefreshing(true);
-    getDataJSONFromAPI(70);
-  }, []);
+    getDataJSONFromAPI(category);
+  }, [category]);
 
   const getDataJSONFromAPI = async (category) => {
     let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=50&categories=${category}`;
@@ -49,7 +50,11 @@ const News = ({navigation}) => {
   return (
     <View style={styles.screens}>
       <View style={styles.headerWrapper}>
-        <Header title="Berita Terbaru" navigation={navigation} />
+        <Header
+          title="Berita Terbaru"
+          navigation={navigation}
+          onPressMenu={() => navigation.openDrawer()}
+        />
         <View style={styles.menu}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <Button title="Berita Terbaru" onPress={() => onPressButton(70)} />
@@ -100,9 +105,15 @@ const News = ({navigation}) => {
                   date={formatDate(item.date)}
                   onPress={() => navigation.navigate('Article', data)}
                 />
-                {count % 5 === 0 && <Ads title={title} type="small-banner" />}
-                {count % 8 === 0 && <Ads title={title} type="medium-banner" />}
-                {count % 11 === 0 && <Ads title={title} type="full-banner" />}
+                {count % 5 === 0 && (
+                  <Ads key={Math.random()} title={title} type="small-banner" />
+                )}
+                {count % 8 === 0 && (
+                  <Ads key={Math.random()} title={title} type="medium-banner" />
+                )}
+                {count % 13 === 0 && (
+                  <Ads key={Math.random()} title={title} type="full-banner" />
+                )}
               </>
             );
           })}

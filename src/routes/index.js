@@ -18,7 +18,7 @@ import {
 } from '../screens';
 import {ILLogo} from '../assets';
 import {colors} from '../utils';
-import {Button} from '../components';
+import {Button, DrawerNavigator} from '../components';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -43,8 +43,32 @@ const headerArtikelConf = ({navigation}) => {
 
 const DrawerRoutes = () => {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Home" component={MainApp} />
+    <Drawer.Navigator drawerContent={(props) => <DrawerNavigator {...props} />}>
+      <Drawer.Screen
+        name="BeritaTerbaru"
+        component={News}
+        initialParams={{category: 70}}
+      />
+      <Drawer.Screen
+        name="BeritaUtama"
+        component={News}
+        initialParams={{category: 129}}
+      />
+      <Drawer.Screen
+        name="Ekbis"
+        component={News}
+        initialParams={{category: 46}}
+      />
+      <Drawer.Screen
+        name="Polbub"
+        component={News}
+        initialParams={{category: 47}}
+      />
+      <Drawer.Screen
+        name="Nasional"
+        component={News}
+        initialParams={{category: 130}}
+      />
     </Drawer.Navigator>
   );
 };
@@ -52,7 +76,7 @@ const DrawerRoutes = () => {
 const MainApp = () => {
   return (
     <Tab.Navigator tabBar={(props) => <BottomNavigator {...props} />}>
-      <Tab.Screen name="MP News" component={News} />
+      <Tab.Screen name="MP News" component={DrawerRoutes} />
       <Tab.Screen name="MP Digital" component={Digital} />
       <Tab.Screen name="MP Koran" component={EPaper} />
       <Tab.Screen name="MP 360" component={Kawanua360} />
@@ -63,7 +87,7 @@ const MainApp = () => {
 
 const Routes = () => {
   return (
-    <Stack.Navigator initialRouteName="UserProfile">
+    <Stack.Navigator initialRouteName="MainApp">
       <Stack.Screen
         name="Splash"
         component={Splash}

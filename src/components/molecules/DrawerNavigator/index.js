@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
-import {StyleSheet, View, Text} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import {ILNullPhoto} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 import {Button} from '../../atoms';
 
 const index = (props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [signIn] = useState(true);
+  const [signIn] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -45,13 +45,13 @@ const index = (props) => {
             }}
           />
           <DrawerItem
-            label="Ekbis"
+            label="Ekonomi & Bisnis"
             onPress={() => {
               props.navigation.navigate('Ekbis');
             }}
           />
           <DrawerItem
-            label="Polbub"
+            label="Politik & Publika"
             onPress={() => {
               props.navigation.navigate('Polbub');
             }}
@@ -60,6 +60,24 @@ const index = (props) => {
             label="Nasional"
             onPress={() => {
               props.navigation.navigate('Nasional');
+            }}
+          />
+          <DrawerItem
+            label="Internasional"
+            onPress={() => {
+              props.navigation.navigate('Internasional');
+            }}
+          />
+          <DrawerItem
+            label="Hukum & Kriminal"
+            onPress={() => {
+              props.navigation.navigate('HukumKriminal');
+            }}
+          />
+          <DrawerItem
+            label="Teropong"
+            onPress={() => {
+              props.navigation.navigate('Teropong');
             }}
           />
         </View>

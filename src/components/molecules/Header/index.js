@@ -4,7 +4,22 @@ import {ILLogo} from '../../../assets';
 import {colors} from '../../../utils';
 import {Button, Gap} from '../../atoms';
 
-const Header = ({backButton, onPressBack, onPressMenu, onPressSearch}) => {
+const Header = ({
+  backButton,
+  onPressBack,
+  onPressMenu,
+  onPressSearch,
+  type,
+}) => {
+  if (type === 'logo-only') {
+    return (
+      <View style={styles.container}>
+        <View style={styles.logoOnly}>
+          <ILLogo />
+        </View>
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <View style={styles.logo}>
@@ -33,6 +48,14 @@ const styles = StyleSheet.create({
     height: 60,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+  },
+  logoOnly: {
+    backgroundColor: colors.primary,
+    height: 60,
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 10,
   },

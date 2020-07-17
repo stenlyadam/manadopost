@@ -1,50 +1,27 @@
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {Button, Header, Headline, NewsItem, Ads} from '../../components';
+import {Ads, Button, Header, Headline, NewsItem} from '../../components';
 import Loading from '../../components/molecules/Loading';
 import {colors, fonts, formatDate} from '../../utils';
 
 const News = ({navigation, route}) => {
   const [news, setNews] = useState([]);
-  const [title, setTitle] = useState('Berita Terbaru');
   const [refreshing, setRefreshing] = useState(false);
   let count = 0;
-  const {category} = route.params;
+  const {category, title = 'Berita Terbaru'} = route.params;
 
   useEffect(() => {
     setRefreshing(true);
     getDataJSONFromAPI(category);
-  }, [category]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const getDataJSONFromAPI = async (category) => {
-    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=50&categories=${category}`;
+  const getDataJSONFromAPI = async (newsCategory) => {
+    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=50&categories=${newsCategory}`;
     const response = await Axios.get(url);
     setNews(response.data);
-
-    switch (category) {
-      case 70:
-        setTitle('Berita Terbaru');
-        break;
-      case 129:
-        setTitle('Berita Utama');
-        break;
-      case 46:
-        setTitle('Ekonomi & Bisnis');
-        break;
-      case 47:
-        setTitle('Politik & Publika');
-        break;
-      case 130:
-        setTitle('Nasional');
-        break;
-    }
     setRefreshing(false);
-  };
-
-  const onPressButton = (category) => {
-    setRefreshing(true);
-    getDataJSONFromAPI(category);
   };
 
   return (
@@ -57,11 +34,26 @@ const News = ({navigation, route}) => {
         />
         <View style={styles.menu}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <Button title="Berita Terbaru" onPress={() => onPressButton(70)} />
-            <Button title="Berita Utama" onPress={() => onPressButton(129)} />
-            <Button title="Ekbis" onPress={() => onPressButton(46)} />
-            <Button title="Polbub" onPress={() => onPressButton(47)} />
-            <Button title="Nasional" onPress={() => onPressButton(130)} />
+            <Button
+              title="Berita Terbaru"
+              onPress={() => navigation.navigate('BeritaTerbaru')}
+            />
+            <Button
+              title="Berita Utama"
+              onPress={() => navigation.navigate('BeritaUtama')}
+            />
+            <Button
+              title="Ekbis"
+              onPress={() => navigation.navigate('Ekbis')}
+            />
+            <Button
+              title="Polbub"
+              onPress={() => navigation.navigate('Polbub')}
+            />
+            <Button
+              title="Nasional"
+              onPress={() => navigation.navigate('Nasional')}
+            />
           </ScrollView>
         </View>
         <View style={styles.title}>
@@ -97,9 +89,8 @@ const News = ({navigation, route}) => {
               );
             }
             return (
-              <>
+              <View key={item.id}>
                 <NewsItem
-                  key={item.id}
                   image={{uri: item.jetpack_featured_media_url}}
                   title={item.title.rendered}
                   date={formatDate(item.date)}
@@ -114,7 +105,7 @@ const News = ({navigation, route}) => {
                 {count % 13 === 0 && (
                   <Ads key={Math.random()} title={title} type="full-banner" />
                 )}
-              </>
+              </View>
             );
           })}
         </View>

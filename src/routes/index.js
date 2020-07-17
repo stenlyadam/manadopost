@@ -52,22 +52,42 @@ const DrawerRoutes = () => {
       <Drawer.Screen
         name="BeritaUtama"
         component={News}
-        initialParams={{category: 129}}
+        initialParams={{category: 129, title: 'Berita Utama'}}
       />
       <Drawer.Screen
         name="Ekbis"
         component={News}
-        initialParams={{category: 46}}
+        initialParams={{category: 46, title: 'Ekonomi & Bisnis'}}
       />
       <Drawer.Screen
         name="Polbub"
         component={News}
-        initialParams={{category: 47}}
+        initialParams={{category: 47, title: 'Politik & Publika'}}
       />
       <Drawer.Screen
         name="Nasional"
         component={News}
-        initialParams={{category: 130}}
+        initialParams={{category: 130, title: 'Nasional'}}
+      />
+      <Drawer.Screen
+        name="Internasional"
+        component={News}
+        initialParams={{category: 133, title: 'Internasional'}}
+      />
+      <Drawer.Screen
+        name="HukumKriminal"
+        component={News}
+        initialParams={{category: 48, title: 'Hukum & Kriminal'}}
+      />
+      <Drawer.Screen
+        name="Teropong"
+        component={News}
+        initialParams={{category: 119, title: 'Teropong'}}
+      />
+      <Drawer.Screen
+        name="Olahraga"
+        component={News}
+        initialParams={{category: 65, title: 'Olahraga'}}
       />
     </Drawer.Navigator>
   );
@@ -96,7 +116,7 @@ const Routes = () => {
       <Stack.Screen
         name="Login"
         component={Login}
-        options={{headerShown: false}}
+        options={headerArtikelConf}
       />
       <Stack.Screen
         name="Register"

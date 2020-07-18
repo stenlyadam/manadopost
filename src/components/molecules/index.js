@@ -5,6 +5,7 @@ import NewsItem from './NewsItem';
 import Input from './Input';
 import BottomNavigator from './BottomNavigator';
 import DrawerNavigator from './DrawerNavigator';
+import Profile from './Profile';
 
 export {
   Header,
@@ -14,4 +15,5 @@ export {
   Input,
   BottomNavigator,
   DrawerNavigator,
+  Profile,
 };

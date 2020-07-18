@@ -1,21 +1,13 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
-import {ILNullPhoto, ILPaper} from '../../assets';
+import {Image, StyleSheet, Text, View} from 'react-native';
+import {ILPaper} from '../../assets';
+import {Button, Gap, Profile} from '../../components';
 import {colors, fonts} from '../../utils';
-import {Button, Gap} from '../../components';
 
 const UserProfile = ({navigation}) => {
   return (
     <View style={styles.screen}>
-      <View style={styles.wrapperProfile}>
-        <ILNullPhoto style={styles.avatar} />
-        <View style={styles.profile}>
-          <Text style={styles.name}>Betran</Text>
-          <Text style={styles.email}>BetranManado@gmail.com</Text>
-          <Text style={styles.desc}>Paket berlangganan AKTIF</Text>
-          <Text style={styles.desc}>Aktif Hingga 12 September 2020</Text>
-        </View>
-      </View>
+      <Profile viewOnly />
       <Button
         title="Edit akun"
         onPress={() => navigation.navigate('EditProfile')}

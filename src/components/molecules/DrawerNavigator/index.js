@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {ILNullPhoto} from '../../../assets';
-import {colors, fonts} from '../../../utils';
-import {Button} from '../../atoms';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import React, {useState} from 'react';
+import {StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {Profile} from '..';
+import {colors} from '../../../utils';
+import {Button} from '../../atoms';
 
 const index = (props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -14,13 +14,7 @@ const index = (props) => {
     <View style={styles.container}>
       <View style={styles.drawerSection}>
         {signIn && (
-          <View style={styles.profileWrapper}>
-            <ILNullPhoto style={styles.avatar} />
-            <View style={styles.profile}>
-              <Text style={styles.name}>Bertran</Text>
-              <Text style={styles.email}>Bertran@gmail.com</Text>
-            </View>
-          </View>
+          <Profile onPress={() => props.navigation.navigate('UserProfile')} />
         )}
         {!signIn && (
           <View style={styles.signIn}>
@@ -176,31 +170,6 @@ const styles = StyleSheet.create({
   drawerSection: {
     borderBottomColor: colors.border,
     borderBottomWidth: 1,
-  },
-  profileWrapper: {
-    alignItems: 'center',
-    marginBottom: 20,
-    marginTop: 10,
-    flexDirection: 'row',
-    marginLeft: 10,
-  },
-  avatar: {
-    height: 72,
-    width: 72,
-    borderRadius: 72 / 2,
-  },
-  profile: {
-    paddingLeft: 10,
-  },
-  name: {
-    fontFamily: fonts.primary[700],
-    fontSize: 18,
-    color: colors.primary,
-  },
-  email: {
-    fontFamily: fonts.primary.normal,
-    fontSize: 14,
-    color: colors.text.secondary,
   },
   signIn: {
     paddingHorizontal: 10,

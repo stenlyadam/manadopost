@@ -89,6 +89,31 @@ const DrawerRoutes = () => {
         component={News}
         initialParams={{category: 65, title: 'Olahraga'}}
       />
+      <Drawer.Screen
+        name="Kawanuapolis"
+        component={News}
+        initialParams={{category: 132, title: 'Kawanuapolis'}}
+      />
+      <Drawer.Screen
+        name="Lifestyle"
+        component={News}
+        initialParams={{category: 66, title: 'Lifestyle'}}
+      />
+      <Drawer.Screen
+        name="LiputanKhusus"
+        component={News}
+        initialParams={{category: 67, title: 'Liputan Khusus'}}
+      />
+      <Drawer.Screen
+        name="Opini"
+        component={News}
+        initialParams={{category: 68, title: 'Opini'}}
+      />
+      <Drawer.Screen
+        name="Selebriti"
+        component={News}
+        initialParams={{category: 69, title: 'Selebriti'}}
+      />
     </Drawer.Navigator>
   );
 };

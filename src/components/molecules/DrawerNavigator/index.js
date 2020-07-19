@@ -8,7 +8,7 @@ import {Button} from '../../atoms';
 
 const index = (props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [signIn] = useState(true);
+  const [signIn] = useState(false);
 
   return (
     <View style={styles.container}>

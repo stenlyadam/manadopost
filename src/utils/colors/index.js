@@ -11,6 +11,7 @@ const mainColors = {
   grey5: '#BABABA',
   white: '#FFFFFF',
   red1: '#C02F01',
+  red2: '#E06379',
   green1: '#3EED00',
 };
 
@@ -41,4 +42,5 @@ export const colors = {
     },
   },
   cardBackground: mainColors.grey3,
+  error: mainColors.red2,
 };

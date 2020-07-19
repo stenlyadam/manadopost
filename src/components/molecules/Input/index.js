@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';
 import {
   IconAccountCircle,
@@ -8,7 +8,24 @@ import {
 } from '../../../assets';
 import {colors} from '../../../utils';
 
-const Input = ({placeholder, icon, secureTextEntry}) => {
+const Input = ({
+  placeholder,
+  icon,
+  secureTextEntry,
+  keyboardType,
+  value,
+  onChangeText,
+}) => {
+  const [border, setBorder] = useState(colors.border2);
+
+  const onFocusForm = () => {
+    setBorder(colors.primary);
+  };
+
+  const onBlurForm = () => {
+    setBorder(colors.border2);
+  };
+
   const Icon = () => {
     switch (icon) {
       case 'account':
@@ -27,9 +44,14 @@ const Input = ({placeholder, icon, secureTextEntry}) => {
   return (
     <View style={styles.container}>
       <TextInput
-        style={styles.input}
+        onFocus={onFocusForm}
+        onBlur={onBlurForm}
+        style={styles.input(border)}
         placeholder={placeholder}
         secureTextEntry={secureTextEntry}
+        keyboardType={keyboardType}
+        value={value}
+        onChangeText={onChangeText}
       />
       <Icon />
     </View>
@@ -43,12 +65,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     marginBottom: 20,
   },
-  input: {
+  input: (border) => ({
     backgroundColor: colors.white,
-    borderBottomColor: colors.border2,
+    borderBottomColor: border,
     borderBottomWidth: 1,
     padding: 12,
-  },
+  }),
   icon: {
     position: 'absolute',
     right: 15,

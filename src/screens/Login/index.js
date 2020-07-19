@@ -27,7 +27,10 @@ const Login = ({navigation}) => {
       <Gap height={120} />
       <View style={styles.register}>
         <Text style={styles.text}>Buat Akun Gratis? </Text>
-        <Link title="Klik disini" />
+        <Link
+          title="Klik disini"
+          onPress={() => navigation.navigate('Register')}
+        />
       </View>
     </View>
   );

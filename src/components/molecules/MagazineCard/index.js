@@ -1,16 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
-import {DummyMagazine} from '../../../assets';
-import {colors} from '../../../utils';
-import {Gap} from '../../atoms';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {colors, fonts} from '../../../utils';
 
-const MagazineCard = () => {
+const MagazineCard = ({image}) => {
   return (
-    <View style={styles.card}>
-      <Text style={styles.date}>Senin, 27 Juni 2020</Text>
-      <Gap height={4} />
-      <Image source={DummyMagazine} />
-      <Gap height={5} />
+    <View style={styles.container}>
+      <Text style={styles.dateText}>Senin, 27 Juni 2020</Text>
+      <View style={styles.imageWrapper}>
+        <Image source={image} style={styles.image} />
+      </View>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.textButton}>Download</Text>
       </TouchableOpacity>
@@ -21,21 +19,38 @@ const MagazineCard = () => {
 export default MagazineCard;
 
 const styles = StyleSheet.create({
-  card: {
+  container: {
     width: 167,
     height: 222,
+    borderColor: colors.border,
+    borderWidth: 1,
+    backgroundColor: colors.cardBackground,
+    shadowColor: 'black',
+    shadowOpacity: 0.26,
+    shadowRadius: 10,
+    elevation: 3,
+    shadowOffset: {width: 0, height: 2},
+    marginTop: 15,
+  },
+
+  dateText: {
+    fontSize: 12,
+    fontFamily: fonts.primary[600],
+    color: colors.text.primary,
+    textAlign: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: colors.tertiary,
+  },
+  imageWrapper: {
     alignItems: 'center',
   },
-  date: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: colors.greyText,
-  },
   image: {
-    width: '100%',
+    width: 114,
+    height: 164,
+    marginVertical: 5,
   },
   button: {
-    backgroundColor: colors.greyBackground1,
+    backgroundColor: colors.tertiary,
     width: '100%',
     flex: 1,
     justifyContent: 'center',

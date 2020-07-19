@@ -40,4 +40,5 @@ export const colors = {
       text: mainColors.blue1,
     },
   },
+  cardBackground: mainColors.grey3,
 };

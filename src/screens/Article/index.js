@@ -14,6 +14,7 @@ const Article = ({navigation, route}) => {
       {/* <Header backButton onPressBack={() => navigation.goBack()} /> */}
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
+          <Ads type="small-banner" />
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.date}>{Moment(date).format('LLLL')}</Text>
           <View style={styles.shareButton}>
@@ -44,7 +45,7 @@ const Article = ({navigation, route}) => {
             <Gap width={10} />
             <Button type="button-icon" icon="whatsapp" onPress={() => {}} />
           </View>
-          <Ads type="small-banner" />
+          <Ads type="medium-banner" />
           {related && (
             <>
               <Text style={styles.subTitle}>Artikel Terkait</Text>

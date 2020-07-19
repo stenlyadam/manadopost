@@ -127,7 +127,11 @@ const MainApp = () => {
         component={Digital}
         initialParams={{title: 'MP Digital'}}
       />
-      <Tab.Screen name="MP Koran" component={EPaper} />
+      <Tab.Screen
+        name="MP Koran"
+        component={EPaper}
+        initialParams={{title: 'MP Koran'}}
+      />
       <Tab.Screen name="MP 360" component={Kawanua360} />
       <Tab.Screen name="MP Video" component={Video} />
     </Tab.Navigator>

@@ -11,6 +11,10 @@ import DummyMagazine1 from './DummyMagazine1.png';
 import DummyMagazine2 from './DummyMagazine2.png';
 import DummyMagazine3 from './DummyMagazine3.png';
 import DummyMagazine4 from './DummyMagazine4.png';
+import DummyKoran1 from './DummyKoran1.png';
+import DummyKoran2 from './DummyKoran2.png';
+import DummyKoran3 from './DummyKoran3.png';
+import DummyKoran4 from './DummyKoran4.png';
 
 export {
   DummyMagazine,
@@ -26,4 +30,8 @@ export {
   DummyMagazine2,
   DummyMagazine3,
   DummyMagazine4,
+  DummyKoran1,
+  DummyKoran2,
+  DummyKoran3,
+  DummyKoran4,
 };

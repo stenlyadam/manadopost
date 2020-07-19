@@ -13,7 +13,7 @@ const Digital = ({route}) => {
   const {title} = route.params;
   return (
     <View style={styles.screen}>
-      <Header title="Berita Terbaru" type="logo-only" />
+      <Header type="logo-only" />
       <Title title={title} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>

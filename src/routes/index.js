@@ -1,7 +1,7 @@
+import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import React from 'react';
 import BottomNavigator from '../components/molecules/BottomNavigator';
 import {
   Article,

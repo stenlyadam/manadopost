@@ -1,14 +1,12 @@
 import Moment from 'moment';
 import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
-import AutoHeightWebView from 'react-native-autoheight-webview';
 import {DummyNews1, DummyNews2} from '../../assets';
-import {Ads, Button, Gap, NewsItem} from '../../components';
+import {Ads, Button, Gap, NewsItem, WebView} from '../../components';
 import {colors, fonts} from '../../utils';
 
-const Article = ({navigation, route}) => {
+const Article = ({route}) => {
   const {image, title, date, content, related} = route.params;
-  console.log(related);
   return (
     <View style={styles.screen}>
       {/* <Header backButton onPressBack={() => navigation.goBack()} /> */}
@@ -25,18 +23,7 @@ const Article = ({navigation, route}) => {
             <Button type="button-icon" icon="whatsapp" onPress={() => {}} />
           </View>
           <Image source={{uri: image}} style={styles.image} />
-          <AutoHeightWebView
-            style={styles.webView}
-            source={{html: content}}
-            scrollEnabled={false}
-            scalesPageToFit={true}
-            viewportContent={'width=device-width, user-scalable=no'}
-            customStyle={`
-              p {
-                font-size: 14px;
-              }
-            `}
-          />
+          <WebView content={content} />
           <Text style={styles.subTitle}>Bagikan artikel ini</Text>
           <View style={styles.shareButton}>
             <Button type="button-icon" icon="facebook" onPress={() => {}} />
@@ -110,9 +97,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.text.primary,
     marginVertical: 5,
-  },
-  webView: {
-    width: '100%',
-    marginTop: 5,
   },
 });

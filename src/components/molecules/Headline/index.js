@@ -1,8 +1,8 @@
 import React from 'react';
 import {Image, StyleSheet, Text} from 'react-native';
-import AutoHeightWebView from 'react-native-autoheight-webview';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {colors, fonts} from '../../../utils';
+import {WebView} from '../../atoms';
 
 const Headline = ({image, title, date, desc, onPress}) => {
   return (
@@ -10,16 +10,7 @@ const Headline = ({image, title, date, desc, onPress}) => {
       <Image source={image} style={styles.image} />
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.date}>{date}</Text>
-      <AutoHeightWebView
-        style={styles.webView}
-        source={{html: desc}}
-        scrollEnabled={false}
-        customStyle={`
-        p {
-          font-size: 14px;
-        }
-      `}
-      />
+      <WebView content={desc} />
     </TouchableOpacity>
   );
 };
@@ -55,9 +46,5 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary.normal,
     fontSize: 14,
     color: colors.text.primary,
-  },
-  webView: {
-    width: '100%',
-    marginTop: 5,
   },
 });

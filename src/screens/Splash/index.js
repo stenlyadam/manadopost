@@ -4,10 +4,7 @@ import {ILLogo} from '../../assets';
 import {colors} from '../../utils';
 
 const Splash = ({navigation}) => {
-  // const [news, setNews] = useState({});
-
   useEffect(() => {
-    // setNews(JSONLatestNews.data);
     setTimeout(() => {
       navigation.replace('Login');
     }, 3000);

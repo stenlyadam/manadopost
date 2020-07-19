@@ -1,7 +1,6 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {ILButtonFacebook, ILButtonGoogle} from '../../../assets';
-import {colors} from '../../../utils';
 
 const ButtonIconText = ({title, onPress}) => {
   const Icon = () => {

@@ -1,8 +1,15 @@
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {Ads, Button, Header, Headline, NewsItem, Title} from '../../components';
-import Loading from '../../components/molecules/Loading';
+import {
+  Ads,
+  Button,
+  Header,
+  Headline,
+  NewsItem,
+  Title,
+  Loading,
+} from '../../components';
 import {colors, fonts, formatDate} from '../../utils';
 
 const News = ({navigation, route}) => {
@@ -123,7 +130,6 @@ const styles = StyleSheet.create({
   headerWrapper: {
     backgroundColor: colors.secondary,
   },
-  content: {},
   menu: {
     backgroundColor: colors.primary,
     flexDirection: 'row',

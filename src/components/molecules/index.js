@@ -7,6 +7,7 @@ import BottomNavigator from './BottomNavigator';
 import DrawerNavigator from './DrawerNavigator';
 import Profile from './Profile';
 import Title from './Title';
+import Loading from './Loading';
 
 export {
   Header,
@@ -18,4 +19,5 @@ export {
   DrawerNavigator,
   Profile,
   Title,
+  Loading,
 };

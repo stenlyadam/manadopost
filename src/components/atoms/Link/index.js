@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {fonts, colors} from '../../../utils';
+import {StyleSheet, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {colors, fonts} from '../../../utils';
 
 const Link = ({title, onPress}) => {
   return (

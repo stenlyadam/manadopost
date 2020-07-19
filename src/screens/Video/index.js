@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import {Header, Title} from '../../components';
 
 const Video = ({route, navigation}) => {
@@ -16,5 +16,3 @@ const Video = ({route, navigation}) => {
 };
 
 export default Video;
-
-const styles = StyleSheet.create({});

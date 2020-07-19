@@ -3,12 +3,14 @@ import {StyleSheet, View, Image} from 'react-native';
 import {ILLogo, ILNullPhotoGrey} from '../../../assets';
 import {colors} from '../../../utils';
 import {Button, Gap} from '../../atoms';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Header = ({
   backButton,
   onPressBack,
   onPressMenu,
   onPressSearch,
+  onPressUserProfile,
   type,
 }) => {
   if (type === 'logo-only') {
@@ -18,7 +20,9 @@ const Header = ({
           <View style={styles.logoWrapper}>
             <ILLogo />
           </View>
-          <Image source={ILNullPhotoGrey} style={styles.nullPhoto} />
+          <TouchableOpacity onPress={onPressUserProfile}>
+            <Image source={ILNullPhotoGrey} style={styles.nullPhoto} />
+          </TouchableOpacity>
         </View>
       </View>
     );

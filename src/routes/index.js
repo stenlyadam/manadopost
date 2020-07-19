@@ -132,8 +132,16 @@ const MainApp = () => {
         component={EPaper}
         initialParams={{title: 'MP Koran'}}
       />
-      <Tab.Screen name="MP 360" component={Kawanua360} />
-      <Tab.Screen name="MP Video" component={Video} />
+      <Tab.Screen
+        name="MP 360"
+        component={Kawanua360}
+        initialParams={{title: 'Kawanua 360'}}
+      />
+      <Tab.Screen
+        name="MP Video"
+        component={Video}
+        initialParams={{title: 'MP Video'}}
+      />
     </Tab.Navigator>
   );
 };

@@ -9,11 +9,14 @@ import {
 import {Header, MagazineCard, Title} from '../../components';
 import {colors} from '../../utils';
 
-const Digital = ({route}) => {
+const Digital = ({route, navigation}) => {
   const {title} = route.params;
   return (
     <View style={styles.screen}>
-      <Header type="logo-only" />
+      <Header
+        type="logo-only"
+        onPressUserProfile={() => navigation.navigate('UserProfile')}
+      />
       <Title title={title} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>

@@ -1,10 +1,16 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {Header, Title} from '../../components';
 
-const Kawanua360 = () => {
+const Kawanua360 = ({navigation, route}) => {
+  const {title} = route.params;
   return (
     <View>
-      <Text>MP Kawanua 360</Text>
+      <Header
+        type="logo-only"
+        onPressUserProfile={() => navigation.navigate('UserProfile')}
+      />
+      <Title title={title} />
     </View>
   );
 };

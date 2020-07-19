@@ -6,6 +6,7 @@ import Input from './Input';
 import BottomNavigator from './BottomNavigator';
 import DrawerNavigator from './DrawerNavigator';
 import Profile from './Profile';
+import Title from './Title';
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   BottomNavigator,
   DrawerNavigator,
   Profile,
+  Title,
 };

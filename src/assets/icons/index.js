@@ -19,6 +19,7 @@ import IconPassword from './ic-password.svg';
 import IconHandphone from './ic-handphone.svg';
 import IconEmail from './ic-email.svg';
 import IconGoogle from './ic-google.svg';
+import IconCalenderGrey from './ic-calender-grey.svg';
 
 export {
   IconMenu,
@@ -42,4 +43,5 @@ export {
   IconHandphone,
   IconEmail,
   IconGoogle,
+  IconCalenderGrey,
 };

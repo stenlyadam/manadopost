@@ -12,7 +12,7 @@ const EPaper = ({route, navigation}) => {
         type="logo-only"
         onPressUserProfile={() => navigation.navigate('UserProfile')}
       />
-      <Title title={title} />
+      <Title title={title} search />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <MagazineCard image={DummyKoran1} />

@@ -5,6 +5,7 @@ import ILButtonFacebook from './ILButtonFacebook.svg';
 import ILButtonGoogle from './ILButtonGoogle.svg';
 import ILNullPhoto from './ILNullPhoto.svg';
 import ILPaper from './ILPaper.png';
+import ILNullPhotoGrey from './ILNullPhotoGrey.png';
 
 export {
   Logo,
@@ -14,4 +15,5 @@ export {
   ILButtonGoogle,
   ILNullPhoto,
   ILPaper,
+  ILNullPhotoGrey,
 };

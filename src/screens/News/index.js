@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {Ads, Button, Header, Headline, NewsItem} from '../../components';
+import {ScrollView, StyleSheet, View} from 'react-native';
+import {Ads, Button, Header, Headline, NewsItem, Title} from '../../components';
 import Loading from '../../components/molecules/Loading';
 import {colors, fonts, formatDate} from '../../utils';
 
@@ -56,9 +56,7 @@ const News = ({navigation, route}) => {
             />
           </ScrollView>
         </View>
-        <View style={styles.title}>
-          <Text style={styles.titleText}>{title}</Text>
-        </View>
+        <Title title={title} />
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>

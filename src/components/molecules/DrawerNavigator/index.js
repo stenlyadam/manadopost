@@ -141,9 +141,9 @@ const index = (props) => {
             icon={({color, size}) => (
               <Icon name="human-male-female" color={color} size={size} />
             )}
-            label="Selebriti"
+            label="Show & Selebriti"
             onPress={() => {
-              props.navigation.navigate('Show & Selebriti');
+              props.navigation.navigate('Selebriti');
             }}
           />
           <DrawerItem
@@ -170,6 +170,7 @@ const styles = StyleSheet.create({
   drawerSection: {
     borderBottomColor: colors.border,
     borderBottomWidth: 1,
+    marginBottom: 10,
   },
   signIn: {
     paddingHorizontal: 10,

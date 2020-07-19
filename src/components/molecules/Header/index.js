@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {ILLogo} from '../../../assets';
+import {StyleSheet, View, Image} from 'react-native';
+import {ILLogo, ILNullPhotoGrey} from '../../../assets';
 import {colors} from '../../../utils';
 import {Button, Gap} from '../../atoms';
 
@@ -15,7 +15,10 @@ const Header = ({
     return (
       <View style={styles.container}>
         <View style={styles.logoOnly}>
-          <ILLogo />
+          <View style={styles.logoWrapper}>
+            <ILLogo />
+          </View>
+          <Image source={ILNullPhotoGrey} style={styles.nullPhoto} />
         </View>
       </View>
     );
@@ -55,8 +58,18 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     height: 60,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 10,
+  },
+  nullPhoto: {
+    height: 32,
+    width: 32,
+    borderRadius: 42 / 2,
+  },
+  logoWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    marginRight: -22,
   },
 });

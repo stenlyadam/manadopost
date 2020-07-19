@@ -97,7 +97,7 @@ const DrawerRoutes = () => {
       <Drawer.Screen
         name="Lifestyle"
         component={News}
-        initialParams={{category: 66, title: 'Lifestyle'}}
+        initialParams={{category: 66, title: 'Lifestyle & Teknologi'}}
       />
       <Drawer.Screen
         name="LiputanKhusus"
@@ -112,7 +112,7 @@ const DrawerRoutes = () => {
       <Drawer.Screen
         name="Selebriti"
         component={News}
-        initialParams={{category: 69, title: 'Selebriti'}}
+        initialParams={{category: 69, title: 'Show & Selebriti'}}
       />
     </Drawer.Navigator>
   );
@@ -122,7 +122,11 @@ const MainApp = () => {
   return (
     <Tab.Navigator tabBar={(props) => <BottomNavigator {...props} />}>
       <Tab.Screen name="MP News" component={DrawerRoutes} />
-      <Tab.Screen name="MP Digital" component={Digital} />
+      <Tab.Screen
+        name="MP Digital"
+        component={Digital}
+        initialParams={{title: 'MP Digital'}}
+      />
       <Tab.Screen name="MP Koran" component={EPaper} />
       <Tab.Screen name="MP 360" component={Kawanua360} />
       <Tab.Screen name="MP Video" component={Video} />

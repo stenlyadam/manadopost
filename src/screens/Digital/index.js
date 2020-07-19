@@ -1,13 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {Header} from '../../components';
+import {StyleSheet, View} from 'react-native';
+import {Header, Title} from '../../components';
 import {colors} from '../../utils';
 
-const Digital = ({navigation}) => {
+const Digital = ({route}) => {
+  const {title} = route.params;
   return (
     <View style={styles.screen}>
       <Header title="Berita Terbaru" type="logo-only" />
-      <Text>MP Digital Screen</Text>
+      <Title title={title} />
     </View>
   );
 };

@@ -2,8 +2,10 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import Routes from './routes';
 import FlashMessage from 'react-native-flash-message';
+import {Provider} from 'react-redux';
+import store from './redux/store';
 
-const App = () => {
+const MainApp = () => {
   return (
     <>
       <NavigationContainer>
@@ -11,6 +13,14 @@ const App = () => {
       </NavigationContainer>
       <FlashMessage position="top" />
     </>
+  );
+};
+
+const App = () => {
+  return (
+    <Provider store={store}>
+      <MainApp />
+    </Provider>
   );
 };
 

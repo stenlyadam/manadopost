@@ -1,22 +1,23 @@
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useSelector} from 'react-redux';
 import {Profile} from '..';
 import {colors} from '../../../utils';
 import {Button} from '../../atoms';
 
 const index = (props) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [signIn] = useState(false);
+  const login = useSelector((state) => state.login);
 
   return (
     <View style={styles.container}>
       <View style={styles.drawerSection}>
-        {signIn && (
+        {login && (
           <Profile onPress={() => props.navigation.navigate('UserProfile')} />
         )}
-        {!signIn && (
+        {!login && (
           <View style={styles.signIn}>
             <Button
               title="Sign In"

@@ -5,8 +5,10 @@ import {Input, Button, Link, Gap, Loading} from '../../components';
 import {colors, fonts, useForm, storeData} from '../../utils';
 import {Fire} from '../../config';
 import {showMessage} from 'react-native-flash-message';
+import {useDispatch} from 'react-redux';
 
 const Register = ({navigation}) => {
+  const dispatch = useDispatch();
   const [form, setForm] = useForm({
     fullName: '',
     email: '',
@@ -33,6 +35,7 @@ const Register = ({navigation}) => {
 
         setForm('reset');
         setLoading(false);
+        dispatch({type: 'SET_LOGIN', value: true});
         navigation.replace('MainApp');
       })
       .catch((error) => {

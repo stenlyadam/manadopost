@@ -9,6 +9,7 @@ import Login from './Login';
 import Register from './Register';
 import UserProfile from './UserProfile';
 import EditProfile from './EditProfile';
+import ReadMagazine from './ReadMagazine';
 
 export {
   Splash,
@@ -22,4 +23,5 @@ export {
   Register,
   UserProfile,
   EditProfile,
+  ReadMagazine,
 };

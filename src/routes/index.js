@@ -15,6 +15,7 @@ import {
   Register,
   UserProfile,
   EditProfile,
+  ReadMagazine,
 } from '../screens';
 import {ILLogo} from '../assets';
 import {colors} from '../utils';
@@ -182,6 +183,11 @@ const Routes = () => {
       <Stack.Screen
         name="EditProfile"
         component={EditProfile}
+        options={headerArtikelConf}
+      />
+      <Stack.Screen
+        name="ReadMagazine"
+        component={ReadMagazine}
         options={headerArtikelConf}
       />
     </Stack.Navigator>

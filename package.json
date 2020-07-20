@@ -31,7 +31,7 @@
     "react-native-share": "^3.5.0",
     "react-native-svg": "^12.1.0",
     "react-native-vector-icons": "^7.0.0",
-    "react-native-webview": "^9.3.0",
+    "react-native-webview": "^10.3.2",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5"
   },

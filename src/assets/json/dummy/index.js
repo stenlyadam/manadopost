@@ -1,4 +1,3 @@
-import JSONLatestNews from './latest-news.json';
-import JSONBeritaUtama from './berita-utama.json';
+import JSONDigital from './mp-digital.json';
 
-export {JSONLatestNews, JSONBeritaUtama};
+export {JSONDigital};

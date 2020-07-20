@@ -1,8 +1,18 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import AutoHeightWebView from 'react-native-autoheight-webview';
+import WebViewURI from 'react-native-webview';
 
-const WebView = ({content}) => {
+const WebView = ({content, type, uri}) => {
+  if (type === 'uri') {
+    return (
+      <WebViewURI
+        source={{
+          uri: uri,
+        }}
+      />
+    );
+  }
   return (
     <AutoHeightWebView
       style={styles.webView}

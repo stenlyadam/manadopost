@@ -5,6 +5,7 @@ import {
   DummyMagazine2,
   DummyMagazine3,
   DummyMagazine4,
+  JSONDigital,
 } from '../../assets';
 import {Header, MagazineCard, Title} from '../../components';
 import {colors} from '../../utils';
@@ -20,14 +21,18 @@ const Digital = ({route, navigation}) => {
       <Title title={title} search />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <MagazineCard image={DummyMagazine1} />
-          <MagazineCard image={DummyMagazine2} />
-          <MagazineCard image={DummyMagazine3} />
-          <MagazineCard image={DummyMagazine4} />
-          <MagazineCard image={DummyMagazine1} />
-          <MagazineCard image={DummyMagazine2} />
-          <MagazineCard image={DummyMagazine3} />
-          <MagazineCard image={DummyMagazine4} />
+          {JSONDigital.data.map((item) => (
+            <MagazineCard
+              key={item.id}
+              image={DummyMagazine1}
+              onPress={() =>
+                navigation.navigate('ReadMagazine', {
+                  uri: item.uri,
+                  title: title,
+                })
+              }
+            />
+          ))}
         </View>
       </ScrollView>
     </View>

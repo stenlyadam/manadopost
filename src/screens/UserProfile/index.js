@@ -3,8 +3,29 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import {ILPaper} from '../../assets';
 import {Button, Gap, Profile} from '../../components';
 import {colors, fonts} from '../../utils';
+import {Fire} from '../../config';
+import {showMessage} from 'react-native-flash-message';
+import {useDispatch} from 'react-redux';
 
 const UserProfile = ({navigation}) => {
+  const dispatch = useDispatch();
+
+  const signOut = () => {
+    Fire.auth()
+      .signOut()
+      .then(() => {
+        dispatch({type: 'SET_LOGIN', value: false});
+        navigation.replace('MainApp');
+      })
+      .catch((err) => {
+        showMessage({
+          message: err.message,
+          type: 'default',
+          backgroundColor: colors.error,
+          color: colors.white,
+        });
+      });
+  };
   return (
     <View style={styles.screen}>
       <Profile viewOnly />
@@ -12,6 +33,7 @@ const UserProfile = ({navigation}) => {
         title="Edit akun"
         onPress={() => navigation.navigate('EditProfile')}
       />
+
       <Gap height={12} />
       <View style={styles.content}>
         <View>
@@ -37,6 +59,7 @@ const UserProfile = ({navigation}) => {
           <Button type="button-subscribe" title="2 Bulan" price="Rp. 25.000" />
           <Button type="button-subscribe" title="3 Bulan" price="Rp. 30.000" />
         </View>
+        <Button title="Logout" onPress={signOut} />
       </View>
     </View>
   );

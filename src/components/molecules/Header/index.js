@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
-import {ILLogo, ILNullPhotoGrey} from '../../../assets';
+import {ILLogo, ILNullPhotoGrey, ILLogoPNG} from '../../../assets';
 import {colors} from '../../../utils';
 import {Button, Gap} from '../../atoms';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -18,7 +18,8 @@ const Header = ({
       <View style={styles.container}>
         <View style={styles.logoOnly}>
           <View style={styles.logoWrapper}>
-            <ILLogo />
+            {/* <ILLogo /> */}
+            <Image source={ILLogoPNG} />
           </View>
           <TouchableOpacity onPress={onPressUserProfile}>
             <Image source={ILNullPhotoGrey} style={styles.nullPhoto} />

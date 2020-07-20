@@ -48,7 +48,7 @@ const Login = ({navigation}) => {
   return (
     <>
       <View style={styles.screen}>
-        <Gap height={96} />
+        <Gap height={30} />
         <View style={styles.logoWrapper}>
           <ILLogoBlue style={styles.logo} />
         </View>
@@ -76,7 +76,7 @@ const Login = ({navigation}) => {
           <Button title="Facebook" type="button-icon-text" />
           <Button title="Google" type="button-icon-text" />
         </View>
-        <Gap height={120} />
+        <Gap height={70} />
         <View style={styles.register}>
           <Text style={styles.text}>Buat Akun Gratis? </Text>
           <Link

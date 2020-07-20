@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {ILLogoBlue} from '../../assets';
 import {Input, Button, Link, Gap, Loading} from '../../components';
 import {colors, fonts, useForm, storeData} from '../../utils';
@@ -59,45 +59,47 @@ const Register = ({navigation}) => {
         <Text style={styles.title}>
           Dapatkan berita gratis terupdate setiap hari di tab MP News
         </Text>
-        <View>
-          <Input
-            placeholder="Nama lengkap"
-            icon="account"
-            value={form.fullName}
-            onChangeText={(value) => setForm('fullName', value)}
-          />
-          <Input
-            placeholder="Email"
-            icon="email"
-            value={form.email}
-            onChangeText={(value) => setForm('email', value)}
-          />
-          <Input
-            placeholder="Handphone"
-            icon="handphone"
-            keyboardType="number-pad"
-            value={form.phoneNumber}
-            onChangeText={(value) => setForm('phoneNumber', value)}
-          />
-          <Input
-            placeholder="Sandi"
-            icon="password"
-            secureTextEntry
-            value={form.password}
-            onChangeText={(value) => setForm('password', value)}
-          />
-          {/* <Input placeholder="Ulangi Sandi" icon="password" /> */}
-        </View>
-        <Gap height={17} />
-        <Button title="Buat Akun" onPress={onRegister} />
-        <Gap height={20} />
-        <View style={styles.login}>
-          <Text style={styles.text}>Sudah memiliki akun? </Text>
-          <Link
-            title="Klik disini"
-            onPress={() => navigation.navigate('Login')}
-          />
-        </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View>
+            <Input
+              placeholder="Nama lengkap"
+              icon="account"
+              value={form.fullName}
+              onChangeText={(value) => setForm('fullName', value)}
+            />
+            <Input
+              placeholder="Email"
+              icon="email"
+              value={form.email}
+              onChangeText={(value) => setForm('email', value)}
+            />
+            <Input
+              placeholder="Handphone"
+              icon="handphone"
+              keyboardType="number-pad"
+              value={form.phoneNumber}
+              onChangeText={(value) => setForm('phoneNumber', value)}
+            />
+            <Input
+              placeholder="Sandi"
+              icon="password"
+              secureTextEntry
+              value={form.password}
+              onChangeText={(value) => setForm('password', value)}
+            />
+            {/* <Input placeholder="Ulangi Sandi" icon="password" /> */}
+          </View>
+          <Gap height={17} />
+          <Button title="Buat Akun" onPress={onRegister} />
+          <Gap height={20} />
+          <View style={styles.login}>
+            <Text style={styles.text}>Sudah memiliki akun? </Text>
+            <Link
+              title="Klik disini"
+              onPress={() => navigation.navigate('Login')}
+            />
+          </View>
+        </ScrollView>
       </View>
       {loading && <Loading />}
     </>

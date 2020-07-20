@@ -17,9 +17,10 @@ import {
   EditProfile,
   ReadMagazine,
 } from '../screens';
-import {ILLogo} from '../assets';
+import {ILLogo, ILLogoPNG} from '../assets';
 import {colors} from '../utils';
 import {Button, DrawerNavigator} from '../components';
+import {Image, StyleSheet} from 'react-native';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -31,7 +32,7 @@ const headerArtikelConf = ({navigation}) => {
     headerStyle: {
       backgroundColor: colors.primary,
     },
-    headerTitle: () => <ILLogo />,
+    headerTitle: () => <Image source={ILLogoPNG} style={styles.logo} />,
     headerLeft: () => (
       <Button
         type="icon-only"
@@ -41,6 +42,12 @@ const headerArtikelConf = ({navigation}) => {
     ),
   };
 };
+const styles = StyleSheet.create({
+  logo: {
+    height: 27,
+    width: 200,
+  },
+});
 
 const DrawerRoutes = () => {
   return (

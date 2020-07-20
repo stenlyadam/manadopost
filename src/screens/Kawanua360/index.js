@@ -1,6 +1,6 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Header, Title} from '../../components';
+import {View, Text} from 'react-native';
+import {Header, Title, WebView} from '../../components';
 
 const Kawanua360 = ({navigation, route}) => {
   const {title} = route.params;
@@ -11,6 +11,7 @@ const Kawanua360 = ({navigation, route}) => {
         onPressUserProfile={() => navigation.navigate('UserProfile')}
       />
       <Title title={title} />
+      <WebView type="uri" uri="https://reactnative.dev/" />
     </View>
   );
 };

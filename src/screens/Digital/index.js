@@ -9,6 +9,7 @@ import {
 } from '../../assets';
 import {Header, MagazineCard, Title} from '../../components';
 import {colors} from '../../utils';
+import WebView from 'react-native-webview';
 
 const Digital = ({route, navigation}) => {
   const {title} = route.params;
@@ -27,7 +28,7 @@ const Digital = ({route, navigation}) => {
               image={DummyMagazine1}
               onPress={() =>
                 navigation.navigate('ReadMagazine', {
-                  uri: item.uri,
+                  uri: 'http://kawanua360.com/location/manado/telukmanado/',
                   title: title,
                 })
               }

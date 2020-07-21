@@ -1,15 +1,15 @@
 import React from 'react';
-import {StyleSheet, View, Image} from 'react-native';
-import {ILLogo, ILNullPhotoGrey, ILLogoPNG} from '../../../assets';
+import {Image, StyleSheet, View} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {ILLogoPNG, ILNullPhotoGrey} from '../../../assets';
 import {colors} from '../../../utils';
 import {Button, Gap} from '../../atoms';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Header = ({
-  backButton,
   onPressBack,
   onPressMenu,
   onPressSearch,
+  onPressShare,
   onPressUserProfile,
   type,
 }) => {
@@ -18,7 +18,6 @@ const Header = ({
       <View style={styles.container}>
         <View style={styles.logoOnly}>
           <View style={styles.logoWrapper}>
-            {/* <ILLogo /> */}
             <Image source={ILLogoPNG} />
           </View>
           <TouchableOpacity onPress={onPressUserProfile}>
@@ -28,16 +27,27 @@ const Header = ({
       </View>
     );
   }
+  if (type === 'article') {
+    return (
+      <View style={styles.container}>
+        <View style={styles.logo}>
+          <Button type="icon-only" icon="arrow-back" onPress={onPressBack} />
+          <View style={styles.logoWrapper}>
+            <Image source={ILLogoPNG} />
+          </View>
+          <Button type="icon-only" icon="share" onPress={onPressShare} />
+        </View>
+        <Gap height={2} />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <View style={styles.logo}>
-        {!backButton && (
-          <Button type="icon-only" icon="menu" onPress={onPressMenu} />
-        )}
-        {backButton && (
-          <Button type="icon-only" icon="arrow-back" onPress={onPressBack} />
-        )}
-        <ILLogo />
+        <Button type="icon-only" icon="menu" onPress={onPressMenu} />
+        <View style={styles.logoWrapper}>
+          <Image source={ILLogoPNG} />
+        </View>
         <Button type="icon-only" icon="search" onPress={onPressSearch} />
       </View>
       <Gap height={2} />
@@ -57,7 +67,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 5,
   },
   logoOnly: {
     backgroundColor: colors.primary,
@@ -73,8 +83,6 @@ const styles = StyleSheet.create({
     borderRadius: 42 / 2,
   },
   logoWrapper: {
-    flex: 1,
     alignItems: 'center',
-    marginRight: -22,
   },
 });

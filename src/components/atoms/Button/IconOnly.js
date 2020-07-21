@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, StyleSheet} from 'react-native';
-import {IconMenu, IconSearch, IconArrowBack} from '../../../assets';
+import {IconMenu, IconSearch, IconArrowBack, IconShare} from '../../../assets';
 
 const IconOnly = ({icon, onPress}) => {
   const Icon = () => {
@@ -13,7 +13,10 @@ const IconOnly = ({icon, onPress}) => {
     if (icon === 'arrow-back') {
       return <IconArrowBack />;
     }
-    return <IconSearch />;
+    if (icon === 'share') {
+      return <IconShare />;
+    }
+    return <IconMenu />;
   };
 
   return (

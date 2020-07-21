@@ -20,6 +20,7 @@ import IconHandphone from './ic-handphone.svg';
 import IconEmail from './ic-email.svg';
 import IconGoogle from './ic-google.svg';
 import IconCalenderGrey from './ic-calender-grey.svg';
+import IconShare from './ic-share-white.svg';
 
 export {
   IconMenu,
@@ -44,4 +45,5 @@ export {
   IconEmail,
   IconGoogle,
   IconCalenderGrey,
+  IconShare,
 };

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {ILPaper} from '../../assets';
-import {Button, Gap, Profile} from '../../components';
+import {Button, Gap, Profile, Loading} from '../../components';
 import {colors, fonts} from '../../utils';
 import {Fire} from '../../config';
 import {showMessage} from 'react-native-flash-message';
@@ -9,15 +9,19 @@ import {useDispatch} from 'react-redux';
 
 const UserProfile = ({navigation}) => {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const signOut = () => {
+    setLoading(true);
     Fire.auth()
       .signOut()
       .then(() => {
+        setLoading(false);
         dispatch({type: 'SET_LOGIN', value: false});
         navigation.replace('MainApp');
       })
       .catch((err) => {
+        setLoading(false);
         showMessage({
           message: err.message,
           type: 'default',
@@ -27,41 +31,55 @@ const UserProfile = ({navigation}) => {
       });
   };
   return (
-    <View style={styles.screen}>
-      <Profile viewOnly />
-      <Button
-        title="Edit akun"
-        onPress={() => navigation.navigate('EditProfile')}
-      />
+    <>
+      <View style={styles.screen}>
+        <Profile viewOnly />
+        <Button
+          title="Edit akun"
+          onPress={() => navigation.navigate('EditProfile')}
+        />
 
-      <Gap height={12} />
-      <View style={styles.content}>
-        <View>
-          <Text style={styles.contentText}>
-            Berlangganan Manado Post Digital Premium:
-          </Text>
-          <Text style={styles.contentText}>
-            {' '}
-            - Akses e-Koran terupdate setiap hari
-          </Text>
-          <Text style={styles.contentText}>
-            {' '}
-            - Berhak mendapatkan Undian yang di Undi setiap bulan{' '}
-          </Text>
-          <Text style={styles.contentText}> - Mendapatkan promo khusus </Text>
-        </View>
-        <View style={styles.image}>
-          <Image source={ILPaper} />
-        </View>
+        <View style={styles.content}>
+          <View>
+            <Text style={styles.contentText}>
+              Berlangganan Manado Post Digital Premium:
+            </Text>
+            <Text style={styles.contentText}>
+              {' '}
+              - Akses e-Koran terupdate setiap hari
+            </Text>
+            <Text style={styles.contentText}>
+              {' '}
+              - Berhak mendapatkan Undian yang di Undi setiap bulan{' '}
+            </Text>
+            <Text style={styles.contentText}> - Mendapatkan promo khusus </Text>
+          </View>
+          <View style={styles.image}>
+            <Image source={ILPaper} />
+          </View>
 
-        <View style={styles.subscribe}>
-          <Button type="button-subscribe" title="1 Bulan" price="Rp. 15.000" />
-          <Button type="button-subscribe" title="2 Bulan" price="Rp. 25.000" />
-          <Button type="button-subscribe" title="3 Bulan" price="Rp. 30.000" />
+          <View style={styles.subscribe}>
+            <Button
+              type="button-subscribe"
+              title="1 Bulan"
+              price="Rp. 15.000"
+            />
+            <Button
+              type="button-subscribe"
+              title="2 Bulan"
+              price="Rp. 25.000"
+            />
+            <Button
+              type="button-subscribe"
+              title="3 Bulan"
+              price="Rp. 30.000"
+            />
+          </View>
+          <Button title="Logout" onPress={signOut} />
         </View>
-        <Button title="Logout" onPress={signOut} />
       </View>
-    </View>
+      {loading && <Loading />}
+    </>
   );
 };
 
@@ -72,6 +90,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     flex: 1,
     paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   wrapperProfile: {
     flexDirection: 'row',
@@ -86,9 +105,9 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   subscribe: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginBottom: 40,
   },
   name: {
     fontFamily: fonts.primary[700],

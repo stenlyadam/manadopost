@@ -24,7 +24,6 @@ const Login = ({navigation}) => {
           .ref(`users/${success.user.uid}/`)
           .once('value')
           .then((res) => {
-            console.log(res.val());
             if (res.val()) {
               storeData('user', res.val());
               navigation.navigate('MainApp');

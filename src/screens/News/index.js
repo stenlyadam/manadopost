@@ -34,11 +34,7 @@ const News = ({navigation, route}) => {
   return (
     <View style={styles.screens}>
       <View style={styles.headerWrapper}>
-        <Header
-          title="Berita Terbaru"
-          navigation={navigation}
-          onPressMenu={() => navigation.openDrawer()}
-        />
+        <Header onPressMenu={() => navigation.openDrawer()} />
         <View style={styles.menu}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <Button
@@ -77,6 +73,7 @@ const News = ({navigation, route}) => {
               desc: item.excerpt.rendered,
               content: item.content.rendered,
               related: item['jetpack-related-posts'],
+              link: item.link,
             };
             if (
               (title === 'Berita Terbaru' || title === 'Berita Utama') &&

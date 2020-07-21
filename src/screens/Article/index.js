@@ -1,37 +1,49 @@
 import Moment from 'moment';
 import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import Share from 'react-native-share';
 import {DummyNews1, DummyNews2} from '../../assets';
-import {Ads, Button, Gap, NewsItem, WebView} from '../../components';
+import {Ads, Header, NewsItem, WebView} from '../../components';
 import {colors, fonts} from '../../utils';
+import {showMessage} from 'react-native-flash-message';
 
-const Article = ({route}) => {
-  const {image, title, date, content, related} = route.params;
+const Article = ({route, navigation}) => {
+  const {image, title, date, content, related, link} = route.params;
+
+  const shareArticle = () => {
+    const shareOptions = {
+      title: title,
+      message: title,
+      url: link,
+    };
+
+    Share.open(shareOptions).catch((error) =>
+      showMessage({
+        message: 'Oops, sepertinya anda tidak membagikan artikel ini',
+        type: 'default',
+        backgroundColor: colors.error,
+        color: colors.white,
+      }),
+    );
+  };
+
   return (
     <View style={styles.screen}>
-      {/* <Header backButton onPressBack={() => navigation.goBack()} /> */}
+      <Header
+        type="article"
+        onPressBack={() => navigation.goBack()}
+        onPressShare={shareArticle}
+      />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <Ads type="small-banner" />
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.date}>{Moment(date).format('LLLL')}</Text>
-          <View style={styles.shareButton}>
-            <Button type="button-icon" icon="facebook" onPress={() => {}} />
-            <Gap width={10} />
-            <Button type="button-icon" icon="twitter" onPress={() => {}} />
-            <Gap width={10} />
-            <Button type="button-icon" icon="whatsapp" onPress={() => {}} />
-          </View>
+
           <Image source={{uri: image}} style={styles.image} />
           <WebView content={content} />
           <Text style={styles.subTitle}>Bagikan artikel ini</Text>
-          <View style={styles.shareButton}>
-            <Button type="button-icon" icon="facebook" onPress={() => {}} />
-            <Gap width={10} />
-            <Button type="button-icon" icon="twitter" onPress={() => {}} />
-            <Gap width={10} />
-            <Button type="button-icon" icon="whatsapp" onPress={() => {}} />
-          </View>
+
           <Ads type="medium-banner" />
           {related && (
             <>
@@ -76,10 +88,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary.normal,
     fontSize: 14,
     color: colors.text.secondary,
-  },
-  shareButton: {
-    flexDirection: 'row',
-    marginVertical: 3,
   },
   image: {
     width: '100%',

@@ -1,15 +1,8 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {
-  DummyMagazine1,
-  DummyMagazine2,
-  DummyMagazine3,
-  DummyMagazine4,
-  JSONDigital,
-} from '../../assets';
+import {DummyMagazine1, JSONDigital} from '../../assets';
 import {Header, MagazineCard, Title} from '../../components';
 import {colors} from '../../utils';
-import WebView from 'react-native-webview';
 
 const Digital = ({route, navigation}) => {
   const {title} = route.params;
@@ -28,7 +21,7 @@ const Digital = ({route, navigation}) => {
               image={DummyMagazine1}
               onPress={() =>
                 navigation.navigate('ReadMagazine', {
-                  uri: 'http://kawanua360.com/location/manado/telukmanado/',
+                  uri: item.uri,
                   title: title,
                 })
               }

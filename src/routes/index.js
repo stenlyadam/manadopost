@@ -1,26 +1,26 @@
-import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createStackNavigator} from '@react-navigation/stack';
+import React from 'react';
+import {Image, StyleSheet} from 'react-native';
+import {ILLogoPNG} from '../assets';
+import {Button, DrawerNavigator} from '../components';
 import BottomNavigator from '../components/molecules/BottomNavigator';
 import {
   Article,
   Digital,
-  Kawanua360,
-  News,
-  Splash,
-  Video,
-  EPaper,
-  Login,
-  Register,
-  UserProfile,
   EditProfile,
+  EPaper,
+  Kawanua360,
+  Login,
+  News,
   ReadMagazine,
+  Register,
+  Splash,
+  UserProfile,
+  Video,
 } from '../screens';
-import {ILLogo, ILLogoPNG} from '../assets';
 import {colors} from '../utils';
-import {Button, DrawerNavigator} from '../components';
-import {Image, StyleSheet} from 'react-native';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -180,7 +180,7 @@ const Routes = () => {
       <Stack.Screen
         name="Article"
         component={Article}
-        options={headerArtikelConf}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="UserProfile"

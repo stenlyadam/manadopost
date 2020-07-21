@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 10,
+    paddingLeft: 22,
   },
   nullPhoto: {
     height: 32,
@@ -83,6 +84,8 @@ const styles = StyleSheet.create({
     borderRadius: 42 / 2,
   },
   logoWrapper: {
+    flex: 1,
     alignItems: 'center',
+    marginRight: -22,
   },
 });

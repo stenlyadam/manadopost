@@ -1,19 +1,28 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Header, Title, WebView} from '../../components';
 
 const Kawanua360 = ({navigation, route}) => {
   const {title} = route.params;
   return (
-    <View>
+    <View style={styles.screen}>
       <Header
         type="logo-only"
         onPressUserProfile={() => navigation.navigate('UserProfile')}
       />
       <Title title={title} />
-      <WebView type="uri" uri="https://reactnative.dev/" />
+      <WebView
+        type="uri"
+        uri="http://kawanua360.com/location/manado/telukmanado/"
+      />
     </View>
   );
 };
 
 export default Kawanua360;
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
+});

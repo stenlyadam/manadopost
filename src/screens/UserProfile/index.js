@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {ILPaper} from '../../assets';
-import {Button, Gap, Profile, Loading} from '../../components';
-import {colors, fonts} from '../../utils';
-import {Fire} from '../../config';
 import {showMessage} from 'react-native-flash-message';
 import {useDispatch} from 'react-redux';
+import {ILPaper} from '../../assets';
+import {Button, Loading, Profile} from '../../components';
+import {Fire} from '../../config';
+import {colors, fonts} from '../../utils';
 
 const UserProfile = ({navigation}) => {
   const dispatch = useDispatch();

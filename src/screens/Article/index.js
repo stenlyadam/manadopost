@@ -42,11 +42,11 @@ const Article = ({route, navigation}) => {
 
           <Image source={{uri: image}} style={styles.image} />
           <WebView content={content} />
-          <Text style={styles.subTitle}>Bagikan artikel ini</Text>
 
           <Ads type="medium-banner" />
           {related && (
             <>
+              <Text style={styles.subTitle}>Bagikan artikel ini</Text>
               <Text style={styles.subTitle}>Artikel Terkait</Text>
               <NewsItem
                 image={DummyNews1}

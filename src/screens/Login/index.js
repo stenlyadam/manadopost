@@ -1,11 +1,13 @@
+import auth from '@react-native-firebase/auth';
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {ILLogoBlue} from '../../assets';
-import {Button, Gap, Input, Link, Loading} from '../../components';
-import {colors, fonts, useForm, storeData} from '../../utils';
-import {Fire} from '../../config';
+import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import {showMessage} from 'react-native-flash-message';
 import {useDispatch} from 'react-redux';
+import {ILLogoBlue} from '../../assets';
+import {Button, Gap, Input, Link, Loading} from '../../components';
+import {Fire} from '../../config';
+import {colors, fonts, storeData, useForm} from '../../utils';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -44,6 +46,52 @@ const Login = ({navigation}) => {
       );
   };
 
+  const FacebookAuth = async () => {
+    const result = await LoginManager.logInWithPermissions([
+      'public_profile',
+      'email',
+    ]);
+
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
+    // Once signed in, get the users AccesToken
+    const data = await AccessToken.getCurrentAccessToken();
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken,
+    );
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(facebookCredential);
+  };
+
+  const signInFacebook = () => {
+    FacebookAuth()
+      .then((res) => {
+        const data = {
+          uid: res.user.uid,
+          fullName: res.user.displayName,
+          email: res.user.email,
+          photo: res.user.photoURL,
+        };
+        Fire.database().ref(`users/${data.uid}/`).set(data);
+        storeData('user', data);
+        dispatch({type: 'SET_LOGIN', value: true});
+        navigation.replace('MainApp');
+      })
+      .catch((error) => {
+        showMessage({
+          message: 'Login Facebook gagal',
+          type: 'default',
+          backgroundColor: colors.error,
+          color: colors.white,
+        });
+      });
+  };
+
   return (
     <>
       <View style={styles.screen}>
@@ -72,7 +120,11 @@ const Login = ({navigation}) => {
         <Text style={styles.text}>Atau masuk dengan</Text>
         <Gap height={22} />
         <View style={styles.socialLogin}>
-          <Button title="Facebook" type="button-icon-text" />
+          <Button
+            title="Facebook"
+            type="button-icon-text"
+            onPress={signInFacebook}
+          />
           <Button title="Google" type="button-icon-text" />
         </View>
         <Gap height={70} />

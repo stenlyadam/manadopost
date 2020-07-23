@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "451238088540",
+    "firebase_url": "https://manadopost-7bc5b.firebaseio.com",
+    "project_id": "manadopost-7bc5b",
+    "storage_bucket": "manadopost-7bc5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451238088540:android:a8aa5ebfd6d0dd26643b99",
+        "android_client_info": {
+          "package_name": "com.manadopost_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451238088540-06p3mn77g84bgv7nnq7bci1m0jk1dm5a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy3_UxbqX1bJt_NAcRc_02Wb0e8nLf7sw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451238088540-06p3mn77g84bgv7nnq7bci1m0jk1dm5a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

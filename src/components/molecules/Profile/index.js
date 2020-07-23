@@ -1,25 +1,28 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
-import {ILNullPhoto} from '../../../assets';
+import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import {ILNullPhotoPNG} from '../../../assets';
 import {fonts, colors, getData} from '../../../utils';
 
 const index = ({onPress, viewOnly}) => {
   const [profile, setProfile] = useState({
     fullName: '',
     email: '',
+    photo: ILNullPhotoPNG,
   });
 
   useEffect(() => {
-    getData('user').then((res) => setProfile(res));
-    console.log(profile.fullName);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getData('user').then((res) => {
+      const data = res;
+      data.photo = {uri: res.photo};
+      setProfile(data);
+    });
   }, []);
 
   if (viewOnly) {
     return (
       <View style={styles.profileWrapper}>
-        <ILNullPhoto style={styles.avatar} />
+        <Image source={profile.photo} style={styles.avatar} />
         <View style={styles.profile}>
           <Text style={styles.name}>{profile.fullName}</Text>
           <Text style={styles.email}>{profile.email}</Text>
@@ -31,7 +34,7 @@ const index = ({onPress, viewOnly}) => {
   }
   return (
     <TouchableOpacity onPress={onPress} style={styles.profileWrapper}>
-      <ILNullPhoto style={styles.avatar} />
+      <Image source={profile.photo} style={styles.avatar} />
       <View style={styles.profile}>
         <Text style={styles.name}>{profile.fullName}</Text>
         <Text style={styles.email}>{profile.email}</Text>

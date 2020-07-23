@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {ILLogoPNG, ILNullPhotoGrey} from '../../../assets';
-import {colors} from '../../../utils';
+import {colors, getData} from '../../../utils';
 import {Button, Gap} from '../../atoms';
 
 const Header = ({
@@ -13,6 +13,19 @@ const Header = ({
   onPressUserProfile,
   type,
 }) => {
+  const [profile, setProfile] = useState({
+    fullName: '',
+    email: '',
+    photo: ILNullPhotoGrey,
+  });
+
+  useEffect(() => {
+    getData('user').then((res) => {
+      const data = res;
+      data.photo = {uri: res.photo};
+      setProfile(data);
+    });
+  }, []);
   if (type === 'logo-only') {
     return (
       <View style={styles.container}>
@@ -21,7 +34,7 @@ const Header = ({
             <Image source={ILLogoPNG} />
           </View>
           <TouchableOpacity onPress={onPressUserProfile}>
-            <Image source={ILNullPhotoGrey} style={styles.nullPhoto} />
+            <Image source={profile.photo} style={styles.nullPhoto} />
           </TouchableOpacity>
         </View>
       </View>

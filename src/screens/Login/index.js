@@ -8,6 +8,12 @@ import {ILLogoBlue} from '../../assets';
 import {Button, Gap, Input, Link, Loading} from '../../components';
 import {Fire} from '../../config';
 import {colors, fonts, storeData, useForm} from '../../utils';
+import {GoogleSignin} from '@react-native-community/google-signin';
+
+GoogleSignin.configure({
+  webClientId:
+    '451238088540-06p3mn77g84bgv7nnq7bci1m0jk1dm5a.apps.googleusercontent.com',
+});
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -46,7 +52,7 @@ const Login = ({navigation}) => {
       );
   };
 
-  const FacebookAuth = async () => {
+  const getFacebookAuth = async () => {
     const result = await LoginManager.logInWithPermissions([
       'public_profile',
       'email',
@@ -68,8 +74,21 @@ const Login = ({navigation}) => {
     return auth().signInWithCredential(facebookCredential);
   };
 
+  const getGoogleAuth = async () => {
+    await GoogleSignin.hasPlayServices();
+    // Get the users ID token
+    const {idToken} = await GoogleSignin.signIn();
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
+  };
+
   const signInFacebook = () => {
-    FacebookAuth()
+    setLoading(true);
+    getFacebookAuth()
       .then((res) => {
         const data = {
           uid: res.user.uid,
@@ -80,11 +99,41 @@ const Login = ({navigation}) => {
         Fire.database().ref(`users/${data.uid}/`).set(data);
         storeData('user', data);
         dispatch({type: 'SET_LOGIN', value: true});
+        setLoading(false);
         navigation.replace('MainApp');
       })
       .catch((error) => {
+        setLoading(false);
+        console.log(error.message);
         showMessage({
-          message: 'Login Facebook gagal',
+          message: error.message,
+          type: 'default',
+          backgroundColor: colors.error,
+          color: colors.white,
+        });
+      });
+  };
+
+  const signInGoogle = () => {
+    setLoading(true);
+    getGoogleAuth()
+      .then((res) => {
+        const data = {
+          uid: res.user.uid,
+          fullName: res.user.displayName,
+          email: res.user.email,
+          photo: res.user.photoURL,
+        };
+        Fire.database().ref(`users/${data.uid}/`).set(data);
+        storeData('user', data);
+        dispatch({type: 'SET_LOGIN', value: true});
+        setLoading(false);
+        navigation.replace('MainApp');
+      })
+      .catch((error) => {
+        setLoading(false);
+        showMessage({
+          message: error.message,
           type: 'default',
           backgroundColor: colors.error,
           color: colors.white,
@@ -119,13 +168,18 @@ const Login = ({navigation}) => {
         <Gap height={24} />
         <Text style={styles.text}>Atau masuk dengan</Text>
         <Gap height={22} />
+
         <View style={styles.socialLogin}>
           <Button
             title="Facebook"
             type="button-icon-text"
             onPress={signInFacebook}
           />
-          <Button title="Google" type="button-icon-text" />
+          <Button
+            title="Google"
+            type="button-icon-text"
+            onPress={signInGoogle}
+          />
         </View>
         <Gap height={70} />
         <View style={styles.register}>

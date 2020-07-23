@@ -6,6 +6,7 @@ import ILButtonGoogle from './ILButtonGoogle.svg';
 import ILNullPhoto from './ILNullPhoto.svg';
 import ILPaper from './ILPaper.png';
 import ILNullPhotoGrey from './ILNullPhotoGrey.png';
+import ILNullPhotoPNG from './ILNullPhoto.png';
 
 export {
   ILLogo,
@@ -16,4 +17,5 @@ export {
   ILNullPhoto,
   ILPaper,
   ILNullPhotoGrey,
+  ILNullPhotoPNG,
 };

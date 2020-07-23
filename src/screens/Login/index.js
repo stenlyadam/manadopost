@@ -1,4 +1,3 @@
-import auth from '@react-native-firebase/auth';
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
@@ -9,8 +8,10 @@ import {Button, Gap, Input, Link, Loading} from '../../components';
 import {Fire} from '../../config';
 import {colors, fonts, storeData, useForm} from '../../utils';
 import {GoogleSignin} from '@react-native-community/google-signin';
+import auth from '@react-native-firebase/auth';
 
 GoogleSignin.configure({
+  //google-services.json: oauth_client/client_id
   webClientId:
     '451238088540-06p3mn77g84bgv7nnq7bci1m0jk1dm5a.apps.googleusercontent.com',
 });
@@ -23,7 +24,42 @@ const Login = ({navigation}) => {
   });
   const [loading, setLoading] = useState(false);
 
-  const signIn = () => {
+  const getFacebookAuth = async () => {
+    const result = await LoginManager.logInWithPermissions([
+      'public_profile',
+      'email',
+    ]);
+
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
+    // Once signed in, get the users AccesToken
+    const data = await AccessToken.getCurrentAccessToken();
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken,
+    );
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(facebookCredential);
+  };
+
+  const getGoogleAuth = async () => {
+    await GoogleSignin.hasPlayServices();
+    // Get the users ID token
+    await GoogleSignin.hasPlayServices();
+    const {idToken} = await GoogleSignin.signIn();
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
+  };
+
+  const signInWithEmail = () => {
     setLoading(true);
     Fire.auth()
       .signInWithEmailAndPassword(form.email, form.password)
@@ -52,41 +88,7 @@ const Login = ({navigation}) => {
       );
   };
 
-  const getFacebookAuth = async () => {
-    const result = await LoginManager.logInWithPermissions([
-      'public_profile',
-      'email',
-    ]);
-
-    if (result.isCancelled) {
-      throw 'User cancelled the login process';
-    }
-    // Once signed in, get the users AccesToken
-    const data = await AccessToken.getCurrentAccessToken();
-    if (!data) {
-      throw 'Something went wrong obtaining access token';
-    }
-    // Create a Firebase credential with the AccessToken
-    const facebookCredential = auth.FacebookAuthProvider.credential(
-      data.accessToken,
-    );
-    // Sign-in the user with the credential
-    return auth().signInWithCredential(facebookCredential);
-  };
-
-  const getGoogleAuth = async () => {
-    await GoogleSignin.hasPlayServices();
-    // Get the users ID token
-    const {idToken} = await GoogleSignin.signIn();
-
-    // Create a Google credential with the token
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-
-    // Sign-in the user with the credential
-    return auth().signInWithCredential(googleCredential);
-  };
-
-  const signInFacebook = () => {
+  const signInWithFacebook = () => {
     setLoading(true);
     getFacebookAuth()
       .then((res) => {
@@ -104,7 +106,6 @@ const Login = ({navigation}) => {
       })
       .catch((error) => {
         setLoading(false);
-        console.log(error.message);
         showMessage({
           message: error.message,
           type: 'default',
@@ -114,7 +115,7 @@ const Login = ({navigation}) => {
       });
   };
 
-  const signInGoogle = () => {
+  const signInWithGoogle = () => {
     setLoading(true);
     getGoogleAuth()
       .then((res) => {
@@ -164,7 +165,7 @@ const Login = ({navigation}) => {
           onChangeText={(value) => setForm('password', value)}
         />
         <Gap height={30} />
-        <Button title="Masuk" onPress={signIn} />
+        <Button title="Masuk" onPress={signInWithEmail} />
         <Gap height={24} />
         <Text style={styles.text}>Atau masuk dengan</Text>
         <Gap height={22} />
@@ -173,12 +174,12 @@ const Login = ({navigation}) => {
           <Button
             title="Facebook"
             type="button-icon-text"
-            onPress={signInFacebook}
+            onPress={signInWithFacebook}
           />
           <Button
             title="Google"
             type="button-icon-text"
-            onPress={signInGoogle}
+            onPress={signInWithGoogle}
           />
         </View>
         <Gap height={70} />

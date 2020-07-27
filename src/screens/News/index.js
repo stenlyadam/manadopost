@@ -73,7 +73,12 @@ const News = ({navigation, route}) => {
   return (
     <View style={styles.screens}>
       <View style={styles.headerWrapper}>
-        <Header onPressMenu={() => navigation.openDrawer()} />
+        <Header
+          onPressMenu={() => navigation.openDrawer()}
+          onPressSearch={() =>
+            navigation.navigate('Search', {category: category, title: title})
+          }
+        />
         <View style={styles.menu}>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <Button

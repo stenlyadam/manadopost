@@ -34,34 +34,36 @@ const Article = ({route, navigation}) => {
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          {ads.map((item, index) => {
-            if (index === 0) {
-              return (
-                <Ads
-                  key={item.id}
-                  title={item.category}
-                  image={{uri: item.image}}
-                  type={item.type}
-                />
-              );
-            }
-          })}
+          {ads &&
+            ads.map((item, index) => {
+              if (index === 0) {
+                return (
+                  <Ads
+                    key={item.id}
+                    title={item.category}
+                    image={{uri: item.image}}
+                    type={item.type}
+                  />
+                );
+              }
+            })}
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.date}>{Moment(date).format('LLLL')}</Text>
           <Image source={{uri: image}} style={styles.image} />
           <WebView content={content} />
-          {ads.map((item, index) => {
-            if (index > 0) {
-              return (
-                <Ads
-                  key={item.id}
-                  title={item.category}
-                  image={{uri: item.image}}
-                  type={item.type}
-                />
-              );
-            }
-          })}
+          {ads &&
+            ads.map((item, index) => {
+              if (index > 0) {
+                return (
+                  <Ads
+                    key={item.id}
+                    title={item.category}
+                    image={{uri: item.image}}
+                    type={item.type}
+                  />
+                );
+              }
+            })}
         </View>
       </ScrollView>
     </View>

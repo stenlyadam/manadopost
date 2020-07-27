@@ -2,7 +2,17 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {colors, fonts} from '../../../utils';
 
-const NewsItem = ({image, title, date, onPress}) => {
+const NewsItem = ({image, title, date, onPress, type}) => {
+  if (type === 'no-image') {
+    return (
+      <TouchableOpacity style={styles.container} onPress={onPress}>
+        <View style={styles.content}>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.date}>{date}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={image} style={styles.image} />

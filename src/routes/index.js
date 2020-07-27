@@ -20,6 +20,7 @@ import {
   UserProfile,
   Video,
   TermAndCondition,
+  Search,
 } from '../screens';
 import {colors} from '../utils';
 
@@ -202,6 +203,11 @@ const Routes = () => {
         name="TermAndCondition"
         component={TermAndCondition}
         options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        options={headerArtikelConf}
       />
     </Stack.Navigator>
   );

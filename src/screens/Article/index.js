@@ -3,12 +3,11 @@ import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
 import Share from 'react-native-share';
-import {Header, WebView} from '../../components';
+import {Header, WebView, Ads} from '../../components';
 import {colors, fonts} from '../../utils';
 
 const Article = ({route, navigation}) => {
-  const {image, title, date, content, link} = route.params;
-
+  const {image, title, date, content, link, ads} = route.params;
   const shareArticle = () => {
     const shareOptions = {
       title: title,
@@ -35,12 +34,34 @@ const Article = ({route, navigation}) => {
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          {/* <Ads type="small-banner" /> */}
+          {ads.map((item, index) => {
+            if (index === 0) {
+              return (
+                <Ads
+                  key={item.id}
+                  title={item.category}
+                  image={{uri: item.image}}
+                  type={item.type}
+                />
+              );
+            }
+          })}
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.date}>{Moment(date).format('LLLL')}</Text>
           <Image source={{uri: image}} style={styles.image} />
           <WebView content={content} />
-          {/* <Ads type="medium-banner" /> */}
+          {ads.map((item, index) => {
+            if (index > 0) {
+              return (
+                <Ads
+                  key={item.id}
+                  title={item.category}
+                  image={{uri: item.image}}
+                  type={item.type}
+                />
+              );
+            }
+          })}
         </View>
       </ScrollView>
     </View>

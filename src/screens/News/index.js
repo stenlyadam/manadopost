@@ -16,6 +16,7 @@ import {colors, fonts, formatDate} from '../../utils';
 
 const News = ({navigation, route}) => {
   const [news, setNews] = useState([]);
+  const [articleAds, setArticleAds] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
   const {category, title = 'Berita Terbaru'} = route.params;
@@ -46,10 +47,14 @@ const News = ({navigation, route}) => {
               }
             }
             //Remove undefined element
-            var filteredNews = response.filter((el) => {
+            let filteredNews = response.filter((el) => {
               return el !== undefined;
             });
+            let article = res.val().filter((el) => {
+              return el.article;
+            });
             //Set state
+            setArticleAds(article);
             setNews(filteredNews);
           } else {
             setNews(response);
@@ -119,6 +124,7 @@ const News = ({navigation, route}) => {
                 content: item.content.rendered,
                 related: item['jetpack-related-posts'],
                 link: item.link,
+                ads: articleAds,
               };
               if (
                 (title === 'Berita Terbaru' || title === 'Berita Utama') &&
@@ -141,6 +147,7 @@ const News = ({navigation, route}) => {
                   image={{uri: item.jetpack_featured_media_url}}
                   title={item.title.rendered}
                   date={formatDate(item.date)}
+                  ads={data.ads}
                   onPress={() => navigation.navigate('Article', data)}
                 />
               );

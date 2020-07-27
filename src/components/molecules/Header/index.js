@@ -33,6 +33,17 @@ const Header = ({
           <View style={styles.logoWrapper}>
             <Image source={ILLogoPNG} />
           </View>
+        </View>
+      </View>
+    );
+  }
+  if (type === 'logo-profile') {
+    return (
+      <View style={styles.container}>
+        <View style={styles.logoOnly}>
+          <View style={styles.logoWrapper}>
+            <Image source={ILLogoPNG} />
+          </View>
           <TouchableOpacity onPress={onPressUserProfile}>
             <Image source={profile.photo} style={styles.nullPhoto} />
           </TouchableOpacity>

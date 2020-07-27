@@ -1,12 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import {Title, Gap} from '../../components';
+import {Title, Gap, Button, Header} from '../../components';
 import {colors, fonts} from '../../utils';
 
-const index = () => {
+const index = ({navigation}) => {
   return (
     <View style={styles.screen}>
-      <Title title="Term And Condition" />
+      <Header type="logo-only" />
+      <Title title="Term And Agreement" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <Text style={styles.text}>
@@ -36,6 +37,10 @@ const index = () => {
             address, ataupun nomor rekening.
           </Text>
         </View>
+        <Gap height={20} />
+        <View style={styles.buttonWrapper}>
+          <Button title="Setuju" onPress={() => navigation.replace('Login')} />
+        </View>
       </ScrollView>
     </View>
   );
@@ -54,8 +59,11 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: fonts.primary.normal,
-    fontSize: 18,
+    fontSize: 16,
     color: colors.text.primary,
     textAlign: 'justify',
+  },
+  buttonWrapper: {
+    paddingHorizontal: 20,
   },
 });

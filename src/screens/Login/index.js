@@ -52,6 +52,7 @@ const Login = ({navigation}) => {
 
   const signInWithFacebook = () => {
     setLoading(true);
+
     getFacebookAuth()
       .then((res) => {
         const data = {
@@ -145,7 +146,7 @@ const Login = ({navigation}) => {
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>
-            Dapatkan berita gratis terupdate setiap hari di tab MP News
+            Dapatkan berita gratis terupdate setiap hari di MP News
           </Text>
         </View>
       </View>

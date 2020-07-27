@@ -201,7 +201,7 @@ const Routes = () => {
       <Stack.Screen
         name="TermAndCondition"
         component={TermAndCondition}
-        options={headerArtikelConf}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

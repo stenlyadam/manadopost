@@ -21,9 +21,14 @@ const Login = ({navigation}) => {
       'email',
     ]);
 
+    const error = {
+      message: '',
+    };
     if (result.isCancelled) {
-      throw 'User cancelled the login process';
+      error.message = 'Login cancelled';
+      throw error;
     }
+
     // Once signed in, get the users AccesToken
     const data = await AccessToken.getCurrentAccessToken();
     if (!data) {
@@ -55,22 +60,50 @@ const Login = ({navigation}) => {
 
     getFacebookAuth()
       .then((res) => {
-        const data = {
+        const newUser = {
           uid: res.user.uid,
           fullName: res.user.displayName,
           email: res.user.email,
           photo: res.user.photoURL,
         };
-        Fire.database().ref(`users/${data.uid}/`).set(data);
-        storeData('user', data);
-        dispatch({type: 'SET_LOGIN', value: true});
-        setLoading(false);
-        navigation.replace('MainApp');
+        Fire.database()
+          .ref('users/')
+          .orderByChild('uid')
+          .equalTo(newUser.uid)
+          .once('value')
+          .then((user) => {
+            if (!user.val()) {
+              Fire.database().ref(`users/${newUser.uid}/`).set(newUser);
+              storeData('user', newUser);
+            } else {
+              //Convert object to array
+              const oldUser = Object.values(user.val());
+              storeData('user', oldUser[0]);
+            }
+            dispatch({type: 'SET_LOGIN', value: true});
+            setLoading(false);
+            navigation.replace('MainApp');
+          })
+          .catch(() => {
+            setLoading(false);
+            showMessage({
+              message: 'Login facebook error',
+              type: 'default',
+              backgroundColor: colors.error,
+              color: colors.white,
+            });
+          });
       })
       .catch((error) => {
+        let message = '';
+        if (error.code === 'auth/account-exists-with-different-credential') {
+          message = 'Anda sudah terdaftar menggunakan social media yang lain';
+        } else {
+          message = error.message;
+        }
         setLoading(false);
         showMessage({
-          message: error.message,
+          message: message,
           type: 'default',
           backgroundColor: colors.error,
           color: colors.white,
@@ -82,17 +115,41 @@ const Login = ({navigation}) => {
     setLoading(true);
     getGoogleAuth()
       .then((res) => {
-        const data = {
+        const newUser = {
           uid: res.user.uid,
           fullName: res.user.displayName,
           email: res.user.email,
           photo: res.user.photoURL,
         };
-        Fire.database().ref(`users/${data.uid}/`).set(data);
-        storeData('user', data);
-        dispatch({type: 'SET_LOGIN', value: true});
-        setLoading(false);
-        navigation.replace('MainApp');
+        //Check if user exists
+        Fire.database()
+          .ref('users/')
+          .orderByChild('uid')
+          .equalTo(newUser.uid)
+          .once('value')
+          .then((user) => {
+            //If Not Exist
+            if (!user.val()) {
+              Fire.database().ref(`users/${newUser.uid}/`).set(newUser);
+              storeData('user', newUser);
+            } else {
+              //Convert object to array
+              const oldUser = Object.values(user.val());
+              storeData('user', oldUser[0]);
+            }
+            dispatch({type: 'SET_LOGIN', value: true});
+            setLoading(false);
+            navigation.replace('MainApp');
+          })
+          .catch(() => {
+            setLoading(false);
+            showMessage({
+              message: 'Error',
+              type: 'default',
+              backgroundColor: colors.error,
+              color: colors.white,
+            });
+          });
       })
       .catch((error) => {
         setLoading(false);

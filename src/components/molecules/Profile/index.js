@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.primary,
     textTransform: 'capitalize',
+    maxWidth: 200,
   },
   email: {
     fontFamily: fonts.primary.normal,

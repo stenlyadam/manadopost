@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
 import ButtonIcon from './ButtonIcon';
 import IconOnly from './IconOnly';
 import {fonts, colors} from '../../../utils';
@@ -18,10 +18,10 @@ const Button = ({title, type, icon, onPress, price}) => {
 
   if (type === 'button-subscribe') {
     return (
-      <TouchableOpacity onPress={onPress} style={styles.subscribe}>
+      <View style={styles.subscribe}>
         <Text style={styles.textSubcribe}>{title}</Text>
         <Text style={styles.textSubcribe}>{price}</Text>
-      </TouchableOpacity>
+      </View>
     );
   }
 

@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'space-around',
+    marginTop: 10,
   },
   contentText: {
     fontFamily: fonts.primary.normal,

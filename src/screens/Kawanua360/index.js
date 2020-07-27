@@ -7,7 +7,7 @@ const Kawanua360 = ({navigation, route}) => {
   return (
     <View style={styles.screen}>
       <Header
-        type="logo-only"
+        type="logo-profile"
         onPressUserProfile={() => navigation.navigate('UserProfile')}
       />
       <Title title={title} />

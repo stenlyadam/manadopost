@@ -21,7 +21,7 @@ const Digital = ({route, navigation}) => {
   return (
     <View style={styles.screen}>
       <Header
-        type="logo-only"
+        type="logo-profile"
         onPressUserProfile={() => navigation.navigate('UserProfile')}
       />
       <Title title={title} />

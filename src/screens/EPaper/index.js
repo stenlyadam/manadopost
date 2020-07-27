@@ -1,10 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {DummyKoran1, DummyKoran2, DummyKoran3, DummyKoran4} from '../../assets';
 import {Header, MagazineCard, Title} from '../../components';
+import {Fire} from '../../config';
 import {colors} from '../../utils';
 
 const EPaper = ({route, navigation}) => {
+  const [epaper, setEpaper] = useState([]);
+
+  useEffect(() => {
+    Fire.database()
+      .ref('epapers/')
+      .once('value')
+      .then((res) => {
+        if (res.val()) {
+          setEpaper(res.val());
+        }
+      });
+  }, []);
+
   const {title} = route.params;
   return (
     <View style={styles.screen}>
@@ -12,17 +25,22 @@ const EPaper = ({route, navigation}) => {
         type="logo-only"
         onPressUserProfile={() => navigation.navigate('UserProfile')}
       />
-      <Title title={title} search />
+      <Title title={title} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <MagazineCard image={DummyKoran1} />
-          <MagazineCard image={DummyKoran2} />
-          <MagazineCard image={DummyKoran3} />
-          <MagazineCard image={DummyKoran4} />
-          <MagazineCard image={DummyKoran1} />
-          <MagazineCard image={DummyKoran2} />
-          <MagazineCard image={DummyKoran3} />
-          <MagazineCard image={DummyKoran4} />
+          {epaper.map((item) => (
+            <MagazineCard
+              key={item.id}
+              image={{uri: item.thumbnail}}
+              date={item.date}
+              onPress={() =>
+                navigation.navigate('ReadMagazine', {
+                  uri: item.link,
+                  title: title,
+                })
+              }
+            />
+          ))}
         </View>
       </ScrollView>
     </View>

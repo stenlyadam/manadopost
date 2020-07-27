@@ -24,7 +24,7 @@ const Digital = ({route, navigation}) => {
         type="logo-only"
         onPressUserProfile={() => navigation.navigate('UserProfile')}
       />
-      <Title title={title} search />
+      <Title title={title} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           {magazine.map((item) => (

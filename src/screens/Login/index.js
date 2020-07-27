@@ -13,7 +13,7 @@ import auth from '@react-native-firebase/auth';
 GoogleSignin.configure({
   //google-services.json: oauth_client/client_id
   webClientId:
-    '451238088540-06p3mn77g84bgv7nnq7bci1m0jk1dm5a.apps.googleusercontent.com',
+    '782626479856-89khocqerprpe29tscrpvdn5vb8ghan0.apps.googleusercontent.com',
 });
 
 const Login = ({navigation}) => {

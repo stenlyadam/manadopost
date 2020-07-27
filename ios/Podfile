@@ -44,8 +44,8 @@ def flipper_post_install(installer)
   end
 end
 
-target 'ManadoPost_v2' do
-  # Pods for ManadoPost_v2
+target 'manadopost' do
+  # Pods for manadopost
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -79,7 +79,7 @@ target 'ManadoPost_v2' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  target 'ManadoPost_v2Tests' do
+  target 'manadopostTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -96,10 +96,10 @@ target 'ManadoPost_v2' do
   end
 end
 
-target 'ManadoPost_v2-tvOS' do
-  # Pods for ManadoPost_v2-tvOS
+target 'manadopost-tvOS' do
+  # Pods for manadopost-tvOS
 
-  target 'ManadoPost_v2-tvOSTests' do
+  target 'manadopost-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

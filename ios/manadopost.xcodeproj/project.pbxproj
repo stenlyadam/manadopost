@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* ManadoPost_v2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ManadoPost_v2Tests.m */; };
+		00E356F31AD99517003FC87E /* manadopostTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* manadopostTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		14E1CB3F2FF99D8E41A84785 /* libPods-ManadoPost_v2-ManadoPost_v2Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3D5A965811050199766574D /* libPods-ManadoPost_v2-ManadoPost_v2Tests.a */; };
+		14E1CB3F2FF99D8E41A84785 /* libPods-manadopost-manadopostTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3D5A965811050199766574D /* libPods-manadopost-manadopostTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* ManadoPost_v2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ManadoPost_v2Tests.m */; };
-		33112E0518B19F159CD2CFFA /* libPods-ManadoPost_v2-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC5CF52BD2338954CCEC6CC /* libPods-ManadoPost_v2-tvOSTests.a */; };
-		429E9501E29AF938B759EFFC /* libPods-ManadoPost_v2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 938B7C43508390FC0C0D5C80 /* libPods-ManadoPost_v2.a */; };
-		5C9FBDC1FC4EFFF306CF861B /* libPods-ManadoPost_v2-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFFCB11DCDB3DE1CBD8A3A4F /* libPods-ManadoPost_v2-tvOS.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* manadopostTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* manadopostTests.m */; };
+		33112E0518B19F159CD2CFFA /* libPods-manadopost-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CC5CF52BD2338954CCEC6CC /* libPods-manadopost-tvOSTests.a */; };
+		429E9501E29AF938B759EFFC /* libPods-manadopost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 938B7C43508390FC0C0D5C80 /* libPods-manadopost.a */; };
+		5C9FBDC1FC4EFFF306CF861B /* libPods-manadopost-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFFCB11DCDB3DE1CBD8A3A4F /* libPods-manadopost-tvOS.a */; };
 		A0133F9109B742BD96813625 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03A192EA66714234A32C9EFA /* AntDesign.ttf */; };
 		F711E8A2BF8A4F8599F3E655 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 99B8D992957F43249A8F7513 /* Entypo.ttf */; };
 		D069C0B74C4E497590F9CBEF /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3EC5321D2E264D53904265AF /* EvilIcons.ttf */; };
@@ -44,45 +44,45 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = ManadoPost_v2;
+			remoteInfo = manadopost;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "ManadoPost_v2-tvOS";
+			remoteInfo = "manadopost-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* ManadoPost_v2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManadoPost_v2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* manadopostTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = manadopostTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* ManadoPost_v2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManadoPost_v2Tests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* ManadoPost_v2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManadoPost_v2.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ManadoPost_v2/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ManadoPost_v2/AppDelegate.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* manadopostTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = manadopostTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* manadopost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = manadopost.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = manadopost/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = manadopost/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ManadoPost_v2/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ManadoPost_v2/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ManadoPost_v2/main.m; sourceTree = "<group>"; };
-		23BF54A4DB69A7711CE1DFDE /* Pods-ManadoPost_v2-ManadoPost_v2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManadoPost_v2-ManadoPost_v2Tests.debug.xcconfig"; path = "Target Support Files/Pods-ManadoPost_v2-ManadoPost_v2Tests/Pods-ManadoPost_v2-ManadoPost_v2Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		2AC424C49DA8C898E847C0B3 /* Pods-ManadoPost_v2-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManadoPost_v2-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ManadoPost_v2-tvOSTests/Pods-ManadoPost_v2-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* ManadoPost_v2-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ManadoPost_v2-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* ManadoPost_v2-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ManadoPost_v2-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		47761854A089D92B0A8C63DF /* Pods-ManadoPost_v2-ManadoPost_v2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManadoPost_v2-ManadoPost_v2Tests.release.xcconfig"; path = "Target Support Files/Pods-ManadoPost_v2-ManadoPost_v2Tests/Pods-ManadoPost_v2-ManadoPost_v2Tests.release.xcconfig"; sourceTree = "<group>"; };
-		83730434A2DE91CD20C2066C /* Pods-ManadoPost_v2-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManadoPost_v2-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ManadoPost_v2-tvOS/Pods-ManadoPost_v2-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		847173D58B6E077C53246C31 /* Pods-ManadoPost_v2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManadoPost_v2.debug.xcconfig"; path = "Target Support Files/Pods-ManadoPost_v2/Pods-ManadoPost_v2.debug.xcconfig"; sourceTree = "<group>"; };
-		8CC5CF52BD2338954CCEC6CC /* libPods-ManadoPost_v2-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ManadoPost_v2-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		938B7C43508390FC0C0D5C80 /* libPods-ManadoPost_v2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ManadoPost_v2.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6EB480F0A305C347F7C0EC8 /* Pods-ManadoPost_v2-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManadoPost_v2-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ManadoPost_v2-tvOSTests/Pods-ManadoPost_v2-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AA0EBA27A7E19590F0150255 /* Pods-ManadoPost_v2-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManadoPost_v2-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ManadoPost_v2-tvOS/Pods-ManadoPost_v2-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		B0744E66CC856C1C6B8FAC00 /* Pods-ManadoPost_v2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManadoPost_v2.release.xcconfig"; path = "Target Support Files/Pods-ManadoPost_v2/Pods-ManadoPost_v2.release.xcconfig"; sourceTree = "<group>"; };
-		B3D5A965811050199766574D /* libPods-ManadoPost_v2-ManadoPost_v2Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ManadoPost_v2-ManadoPost_v2Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = manadopost/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = manadopost/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = manadopost/main.m; sourceTree = "<group>"; };
+		23BF54A4DB69A7711CE1DFDE /* Pods-manadopost-manadopostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manadopost-manadopostTests.debug.xcconfig"; path = "Target Support Files/Pods-manadopost-manadopostTests/Pods-manadopost-manadopostTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2AC424C49DA8C898E847C0B3 /* Pods-manadopost-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manadopost-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-manadopost-tvOSTests/Pods-manadopost-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* manadopost-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "manadopost-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* manadopost-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "manadopost-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47761854A089D92B0A8C63DF /* Pods-manadopost-manadopostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manadopost-manadopostTests.release.xcconfig"; path = "Target Support Files/Pods-manadopost-manadopostTests/Pods-manadopost-manadopostTests.release.xcconfig"; sourceTree = "<group>"; };
+		83730434A2DE91CD20C2066C /* Pods-manadopost-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manadopost-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-manadopost-tvOS/Pods-manadopost-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		847173D58B6E077C53246C31 /* Pods-manadopost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manadopost.debug.xcconfig"; path = "Target Support Files/Pods-manadopost/Pods-manadopost.debug.xcconfig"; sourceTree = "<group>"; };
+		8CC5CF52BD2338954CCEC6CC /* libPods-manadopost-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manadopost-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		938B7C43508390FC0C0D5C80 /* libPods-manadopost.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manadopost.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6EB480F0A305C347F7C0EC8 /* Pods-manadopost-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manadopost-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-manadopost-tvOSTests/Pods-manadopost-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AA0EBA27A7E19590F0150255 /* Pods-manadopost-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manadopost-tvOS.release.xcconfig"; path = "Target Support Files/Pods-manadopost-tvOS/Pods-manadopost-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		B0744E66CC856C1C6B8FAC00 /* Pods-manadopost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-manadopost.release.xcconfig"; path = "Target Support Files/Pods-manadopost/Pods-manadopost.release.xcconfig"; sourceTree = "<group>"; };
+		B3D5A965811050199766574D /* libPods-manadopost-manadopostTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manadopost-manadopostTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		FFFCB11DCDB3DE1CBD8A3A4F /* libPods-ManadoPost_v2-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ManadoPost_v2-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFFCB11DCDB3DE1CBD8A3A4F /* libPods-manadopost-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-manadopost-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03A192EA66714234A32C9EFA /* AntDesign.ttf */ = {isa = PBXFileReference; name = "AntDesign.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		99B8D992957F43249A8F7513 /* Entypo.ttf */ = {isa = PBXFileReference; name = "Entypo.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		3EC5321D2E264D53904265AF /* EvilIcons.ttf */ = {isa = PBXFileReference; name = "EvilIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
@@ -106,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E1CB3F2FF99D8E41A84785 /* libPods-ManadoPost_v2-ManadoPost_v2Tests.a in Frameworks */,
+				14E1CB3F2FF99D8E41A84785 /* libPods-manadopost-manadopostTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				429E9501E29AF938B759EFFC /* libPods-ManadoPost_v2.a in Frameworks */,
+				429E9501E29AF938B759EFFC /* libPods-manadopost.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C9FBDC1FC4EFFF306CF861B /* libPods-ManadoPost_v2-tvOS.a in Frameworks */,
+				5C9FBDC1FC4EFFF306CF861B /* libPods-manadopost-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,20 +130,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33112E0518B19F159CD2CFFA /* libPods-ManadoPost_v2-tvOSTests.a in Frameworks */,
+				33112E0518B19F159CD2CFFA /* libPods-manadopost-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* ManadoPost_v2Tests */ = {
+		00E356EF1AD99517003FC87E /* manadopostTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* ManadoPost_v2Tests.m */,
+				00E356F21AD99517003FC87E /* manadopostTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = ManadoPost_v2Tests;
+			path = manadopostTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -154,7 +154,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* ManadoPost_v2 */ = {
+		13B07FAE1A68108700A75B9A /* manadopost */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -165,7 +165,7 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = ManadoPost_v2;
+			name = manadopost;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -173,10 +173,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				938B7C43508390FC0C0D5C80 /* libPods-ManadoPost_v2.a */,
-				B3D5A965811050199766574D /* libPods-ManadoPost_v2-ManadoPost_v2Tests.a */,
-				FFFCB11DCDB3DE1CBD8A3A4F /* libPods-ManadoPost_v2-tvOS.a */,
-				8CC5CF52BD2338954CCEC6CC /* libPods-ManadoPost_v2-tvOSTests.a */,
+				938B7C43508390FC0C0D5C80 /* libPods-manadopost.a */,
+				B3D5A965811050199766574D /* libPods-manadopost-manadopostTests.a */,
+				FFFCB11DCDB3DE1CBD8A3A4F /* libPods-manadopost-tvOS.a */,
+				8CC5CF52BD2338954CCEC6CC /* libPods-manadopost-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -191,9 +191,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* ManadoPost_v2 */,
+				13B07FAE1A68108700A75B9A /* manadopost */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* ManadoPost_v2Tests */,
+				00E356EF1AD99517003FC87E /* manadopostTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				AA2668B46F3977D0AF7470F7 /* Pods */,
@@ -207,10 +207,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* ManadoPost_v2.app */,
-				00E356EE1AD99517003FC87E /* ManadoPost_v2Tests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* ManadoPost_v2-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* ManadoPost_v2-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* manadopost.app */,
+				00E356EE1AD99517003FC87E /* manadopostTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* manadopost-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* manadopost-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -218,14 +218,14 @@
 		AA2668B46F3977D0AF7470F7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				847173D58B6E077C53246C31 /* Pods-ManadoPost_v2.debug.xcconfig */,
-				B0744E66CC856C1C6B8FAC00 /* Pods-ManadoPost_v2.release.xcconfig */,
-				23BF54A4DB69A7711CE1DFDE /* Pods-ManadoPost_v2-ManadoPost_v2Tests.debug.xcconfig */,
-				47761854A089D92B0A8C63DF /* Pods-ManadoPost_v2-ManadoPost_v2Tests.release.xcconfig */,
-				83730434A2DE91CD20C2066C /* Pods-ManadoPost_v2-tvOS.debug.xcconfig */,
-				AA0EBA27A7E19590F0150255 /* Pods-ManadoPost_v2-tvOS.release.xcconfig */,
-				A6EB480F0A305C347F7C0EC8 /* Pods-ManadoPost_v2-tvOSTests.debug.xcconfig */,
-				2AC424C49DA8C898E847C0B3 /* Pods-ManadoPost_v2-tvOSTests.release.xcconfig */,
+				847173D58B6E077C53246C31 /* Pods-manadopost.debug.xcconfig */,
+				B0744E66CC856C1C6B8FAC00 /* Pods-manadopost.release.xcconfig */,
+				23BF54A4DB69A7711CE1DFDE /* Pods-manadopost-manadopostTests.debug.xcconfig */,
+				47761854A089D92B0A8C63DF /* Pods-manadopost-manadopostTests.release.xcconfig */,
+				83730434A2DE91CD20C2066C /* Pods-manadopost-tvOS.debug.xcconfig */,
+				AA0EBA27A7E19590F0150255 /* Pods-manadopost-tvOS.release.xcconfig */,
+				A6EB480F0A305C347F7C0EC8 /* Pods-manadopost-tvOSTests.debug.xcconfig */,
+				2AC424C49DA8C898E847C0B3 /* Pods-manadopost-tvOSTests.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -258,9 +258,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* ManadoPost_v2Tests */ = {
+		00E356ED1AD99517003FC87E /* manadopostTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ManadoPost_v2Tests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "manadopostTests" */;
 			buildPhases = (
 				593AAF500691974A8F865F21 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -272,14 +272,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = ManadoPost_v2Tests;
-			productName = ManadoPost_v2Tests;
-			productReference = 00E356EE1AD99517003FC87E /* ManadoPost_v2Tests.xctest */;
+			name = manadopostTests;
+			productName = manadopostTests;
+			productReference = 00E356EE1AD99517003FC87E /* manadopostTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* ManadoPost_v2 */ = {
+		13B07F861A680F5B00A75B9A /* manadopost */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ManadoPost_v2" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "manadopost" */;
 			buildPhases = (
 				19D65DF31A9943AB73F24937 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -292,14 +292,14 @@
 			);
 			dependencies = (
 			);
-			name = ManadoPost_v2;
-			productName = ManadoPost_v2;
-			productReference = 13B07F961A680F5B00A75B9A /* ManadoPost_v2.app */;
+			name = manadopost;
+			productName = manadopost;
+			productReference = 13B07F961A680F5B00A75B9A /* manadopost.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* ManadoPost_v2-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* manadopost-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ManadoPost_v2-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "manadopost-tvOS" */;
 			buildPhases = (
 				24A399BC98D3CBFC451A7E67 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -312,14 +312,14 @@
 			);
 			dependencies = (
 			);
-			name = "ManadoPost_v2-tvOS";
-			productName = "ManadoPost_v2-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* ManadoPost_v2-tvOS.app */;
+			name = "manadopost-tvOS";
+			productName = "manadopost-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* manadopost-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* ManadoPost_v2-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* manadopost-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ManadoPost_v2-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "manadopost-tvOSTests" */;
 			buildPhases = (
 				F47C3BF9AB549966AAAFFFAB /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -331,9 +331,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "ManadoPost_v2-tvOSTests";
-			productName = "ManadoPost_v2-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* ManadoPost_v2-tvOSTests.xctest */;
+			name = "manadopost-tvOSTests";
+			productName = "manadopost-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* manadopost-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -362,7 +362,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ManadoPost_v2" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "manadopost" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -375,10 +375,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* ManadoPost_v2 */,
-				00E356ED1AD99517003FC87E /* ManadoPost_v2Tests */,
-				2D02E47A1E0B4A5D006451C7 /* ManadoPost_v2-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* ManadoPost_v2-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* manadopost */,
+				00E356ED1AD99517003FC87E /* manadopostTests */,
+				2D02E47A1E0B4A5D006451C7 /* manadopost-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* manadopost-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -463,7 +463,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ManadoPost_v2-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-manadopost-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -485,7 +485,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ManadoPost_v2-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-manadopost-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -521,7 +521,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ManadoPost_v2-ManadoPost_v2Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-manadopost-manadopostTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -543,7 +543,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ManadoPost_v2-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-manadopost-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -595,7 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* ManadoPost_v2Tests.m in Sources */,
+				00E356F31AD99517003FC87E /* manadopostTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,7 +621,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* ManadoPost_v2Tests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* manadopostTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,12 +630,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* ManadoPost_v2 */;
+			target = 13B07F861A680F5B00A75B9A /* manadopost */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* ManadoPost_v2-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* manadopost-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -647,7 +647,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = ManadoPost_v2;
+			path = manadopost;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -655,14 +655,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 23BF54A4DB69A7711CE1DFDE /* Pods-ManadoPost_v2-ManadoPost_v2Tests.debug.xcconfig */;
+			baseConfigurationReference = 23BF54A4DB69A7711CE1DFDE /* Pods-manadopost-manadopostTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ManadoPost_v2Tests/Info.plist;
+				INFOPLIST_FILE = manadopostTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -672,17 +672,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ManadoPost_v2.app/ManadoPost_v2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/manadopost.app/manadopost";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 47761854A089D92B0A8C63DF /* Pods-ManadoPost_v2-ManadoPost_v2Tests.release.xcconfig */;
+			baseConfigurationReference = 47761854A089D92B0A8C63DF /* Pods-manadopost-manadopostTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = ManadoPost_v2Tests/Info.plist;
+				INFOPLIST_FILE = manadopostTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -692,13 +692,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ManadoPost_v2.app/ManadoPost_v2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/manadopost.app/manadopost";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 847173D58B6E077C53246C31 /* Pods-ManadoPost_v2.debug.xcconfig */;
+			baseConfigurationReference = 847173D58B6E077C53246C31 /* Pods-manadopost.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -708,7 +708,7 @@
 					"$(inherited)",
 					"FB_SONARKIT_ENABLED=1",
 				);
-				INFOPLIST_FILE = ManadoPost_v2/Info.plist;
+				INFOPLIST_FILE = manadopost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -716,7 +716,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = ManadoPost_v2;
+				PRODUCT_NAME = manadopost;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -725,12 +725,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0744E66CC856C1C6B8FAC00 /* Pods-ManadoPost_v2.release.xcconfig */;
+			baseConfigurationReference = B0744E66CC856C1C6B8FAC00 /* Pods-manadopost.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = ManadoPost_v2/Info.plist;
+				INFOPLIST_FILE = manadopost/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -738,7 +738,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = ManadoPost_v2;
+				PRODUCT_NAME = manadopost;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -746,7 +746,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83730434A2DE91CD20C2066C /* Pods-ManadoPost_v2-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 83730434A2DE91CD20C2066C /* Pods-manadopost-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -757,14 +757,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "ManadoPost_v2-tvOS/Info.plist";
+				INFOPLIST_FILE = "manadopost-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.ManadoPost_v2-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.manadopost-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -774,7 +774,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA0EBA27A7E19590F0150255 /* Pods-ManadoPost_v2-tvOS.release.xcconfig */;
+			baseConfigurationReference = AA0EBA27A7E19590F0150255 /* Pods-manadopost-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -785,14 +785,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "ManadoPost_v2-tvOS/Info.plist";
+				INFOPLIST_FILE = "manadopost-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.ManadoPost_v2-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.manadopost-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -802,7 +802,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6EB480F0A305C347F7C0EC8 /* Pods-ManadoPost_v2-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = A6EB480F0A305C347F7C0EC8 /* Pods-manadopost-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -812,24 +812,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "ManadoPost_v2-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "manadopost-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.ManadoPost_v2-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.manadopost-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ManadoPost_v2-tvOS.app/ManadoPost_v2-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/manadopost-tvOS.app/manadopost-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AC424C49DA8C898E847C0B3 /* Pods-ManadoPost_v2-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 2AC424C49DA8C898E847C0B3 /* Pods-manadopost-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -839,17 +839,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "ManadoPost_v2-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "manadopost-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.ManadoPost_v2-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.manadopost-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ManadoPost_v2-tvOS.app/ManadoPost_v2-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/manadopost-tvOS.app/manadopost-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -970,7 +970,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ManadoPost_v2Tests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "manadopostTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -979,7 +979,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ManadoPost_v2" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "manadopost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -988,7 +988,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ManadoPost_v2-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "manadopost-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -997,7 +997,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ManadoPost_v2-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "manadopost-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1006,7 +1006,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ManadoPost_v2" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "manadopost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

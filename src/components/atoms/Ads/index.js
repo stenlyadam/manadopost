@@ -1,24 +1,21 @@
 import React from 'react';
-import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import {colors} from '../../../utils';
 
 const Ads = ({type, title, image}) => {
   return (
     <View style={styles.container}>
+      {type === 'extra-small-banner' && (
+        <Image source={image} style={styles.bannerExtraSmall} />
+      )}
       {type === 'small-banner' && (
-        <ImageBackground source={image} style={styles.bannerSmall}>
-          <Text>{title} Small Ads</Text>
-        </ImageBackground>
+        <Image source={image} style={styles.bannerSmall} />
       )}
       {type === 'medium-banner' && (
-        <ImageBackground source={image} style={styles.bannerMedium}>
-          <Text>{title} Medium Ads</Text>
-        </ImageBackground>
+        <Image source={image} style={styles.bannerMedium} />
       )}
       {type === 'full-banner' && (
-        <ImageBackground source={image} style={styles.bannerFull}>
-          <Text>{title} Full Ads</Text>
-        </ImageBackground>
+        <Image source={image} style={styles.bannerFull} />
       )}
     </View>
   );
@@ -32,23 +29,30 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
   },
+  bannerExtraSmall: {
+    width: '100%',
+    height: 120,
+    borderRadius: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   bannerSmall: {
     width: '100%',
-    height: 160,
+    height: 180,
     borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
   },
   bannerMedium: {
     width: '100%',
-    height: 360,
+    height: 320,
     borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',
   },
   bannerFull: {
     width: '100%',
-    height: 580,
+    height: 620,
     borderRadius: 14,
     justifyContent: 'center',
     alignItems: 'center',

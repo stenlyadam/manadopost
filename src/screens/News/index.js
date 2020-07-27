@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
@@ -6,30 +7,84 @@ import {
   Button,
   Header,
   Headline,
+  Loading,
   NewsItem,
   Title,
-  Loading,
 } from '../../components';
+import Fire from '../../config/Fire';
 import {colors, fonts, formatDate} from '../../utils';
+import {useSelector, useDispatch} from 'react-redux';
+import {DummyNews2} from '../../assets';
 
 const News = ({navigation, route}) => {
   const [news, setNews] = useState([]);
+  // const [ads, setAds] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
-  let count = 0;
+
+  // const dispatch = useDispatch();
+  // const news = useSelector((state) => state.news);
+
   const {category, title = 'Berita Terbaru'} = route.params;
 
   useEffect(() => {
     setRefreshing(true);
-    getDataJSONFromAPI(category);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    Fire.database()
+      .ref('ads/')
+      .orderByChild('category')
+      .equalTo(title)
+      .once('value')
+      .then((res) => {
+        getNews(category).then((response) => {
+          if (res.val()) {
+            //Combine news with ads
+            let count_ads = 1;
+            for (let i = 0; i < response.length; i++) {
+              //Jika iklan lebih dari 10
+              if (res.val().length > 10) {
+                if (i % 2 === 0) {
+                  response.splice(i, 0, res.val()[count_ads]);
+                  count_ads++;
+                }
+              }
+              if (i % 5 === 0) {
+                response.splice(i, 0, res.val()[count_ads]);
+                count_ads++;
+              }
+            }
+            //Remove undefined element
+            var filteredNews = response.filter((el) => {
+              return el !== undefined;
+            });
+            //Set state
+            setNews(filteredNews);
+          } else {
+            setNews(response);
+          }
+          setRefreshing(false);
+        });
+      });
   }, []);
 
-  const getDataJSONFromAPI = async (newsCategory) => {
+  const getNews = async (newsCategory) => {
     let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=50&categories=${newsCategory}`;
     const response = await Axios.get(url);
-    setNews(response.data);
-    setRefreshing(false);
+    return response.data;
   };
+
+  // const getAds = (newsTitle) => {
+  //   Fire.database()
+  //     .ref('ads/')
+  //     .orderByChild('category')
+  //     .equalTo(newsTitle)
+  //     .once('value')
+  //     .then((res) => {
+  //       if (res.val()) {
+  //         setAds(res.val());
+  //         data = res.val();
+  //         console.log(data);
+  //       }
+  //     });
+  // };
 
   return (
     <View style={styles.screens}>
@@ -64,51 +119,53 @@ const News = ({navigation, route}) => {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          {news.map((item) => {
-            count++;
-            const data = {
-              image: item.jetpack_featured_media_url,
-              title: item.title.rendered,
-              date: item.date,
-              desc: item.excerpt.rendered,
-              content: item.content.rendered,
-              related: item['jetpack-related-posts'],
-              link: item.link,
-            };
-            if (
-              (title === 'Berita Terbaru' || title === 'Berita Utama') &&
-              count === 1
-            ) {
+          {news.map((item, index) => {
+            //Kondisi jika akan menampilkan iklan
+            if (index % 5 === 0) {
               return (
-                <Headline
+                <Ads
                   key={item.id}
-                  image={{uri: data.image}}
-                  title={data.title}
-                  date={formatDate(data.date)}
-                  desc={data.desc}
-                  onPress={() => navigation.navigate('Article', data)}
+                  title={item.category}
+                  image={{uri: item.image}}
+                  type={item.type}
                 />
               );
-            }
-            return (
-              <View key={item.id}>
+            } else {
+              //Kondisi jika akan menampilkan berita
+              const data = {
+                image: item.jetpack_featured_media_url,
+                title: item.title.rendered,
+                date: item.date,
+                desc: item.excerpt.rendered,
+                content: item.content.rendered,
+                related: item['jetpack-related-posts'],
+                link: item.link,
+              };
+              if (
+                (title === 'Berita Terbaru' || title === 'Berita Utama') &&
+                index === 1
+              ) {
+                return (
+                  <Headline
+                    key={item.id}
+                    image={{uri: data.image}}
+                    title={data.title}
+                    date={formatDate(data.date)}
+                    desc={data.desc}
+                    onPress={() => navigation.navigate('Article', data)}
+                  />
+                );
+              }
+              return (
                 <NewsItem
+                  key={item.id}
                   image={{uri: item.jetpack_featured_media_url}}
                   title={item.title.rendered}
                   date={formatDate(item.date)}
                   onPress={() => navigation.navigate('Article', data)}
                 />
-                {count % 5 === 0 && (
-                  <Ads key={Math.random()} title={title} type="small-banner" />
-                )}
-                {count % 8 === 0 && (
-                  <Ads key={Math.random()} title={title} type="medium-banner" />
-                )}
-                {count % 13 === 0 && (
-                  <Ads key={Math.random()} title={title} type="full-banner" />
-                )}
-              </View>
-            );
+              );
+            }
           })}
         </View>
       </ScrollView>

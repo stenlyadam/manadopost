@@ -1,23 +1,22 @@
 import React from 'react';
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
-import {DummyAds1, DummyAds2, DummyAds3} from '../../../assets';
 import {colors} from '../../../utils';
 
-const Ads = ({type, title}) => {
+const Ads = ({type, title, image}) => {
   return (
     <View style={styles.container}>
       {type === 'small-banner' && (
-        <ImageBackground source={DummyAds1} style={styles.bannerSmall}>
+        <ImageBackground source={image} style={styles.bannerSmall}>
           <Text>{title} Small Ads</Text>
         </ImageBackground>
       )}
       {type === 'medium-banner' && (
-        <ImageBackground source={DummyAds2} style={styles.bannerMedium}>
+        <ImageBackground source={image} style={styles.bannerMedium}>
           <Text>{title} Medium Ads</Text>
         </ImageBackground>
       )}
       {type === 'full-banner' && (
-        <ImageBackground source={DummyAds3} style={styles.bannerFull}>
+        <ImageBackground source={image} style={styles.bannerFull}>
           <Text>{title} Full Ads</Text>
         </ImageBackground>
       )}

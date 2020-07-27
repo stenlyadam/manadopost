@@ -2,15 +2,15 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {colors, fonts} from '../../../utils';
 
-const MagazineCard = ({image, onPress}) => {
+const MagazineCard = ({image, date, onPress}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.dateText}>Senin, 27 Juni 2020</Text>
+      <Text style={styles.dateText}>{date}</Text>
       <View style={styles.imageWrapper}>
         <Image source={image} style={styles.image} />
       </View>
       <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text style={styles.textButton}>Download</Text>
+        <Text style={styles.textButton}>Buka</Text>
       </TouchableOpacity>
     </View>
   );

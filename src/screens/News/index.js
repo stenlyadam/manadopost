@@ -13,16 +13,10 @@ import {
 } from '../../components';
 import Fire from '../../config/Fire';
 import {colors, fonts, formatDate} from '../../utils';
-import {useSelector, useDispatch} from 'react-redux';
-import {DummyNews2} from '../../assets';
 
 const News = ({navigation, route}) => {
   const [news, setNews] = useState([]);
-  // const [ads, setAds] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
-
-  // const dispatch = useDispatch();
-  // const news = useSelector((state) => state.news);
 
   const {category, title = 'Berita Terbaru'} = route.params;
 
@@ -70,21 +64,6 @@ const News = ({navigation, route}) => {
     const response = await Axios.get(url);
     return response.data;
   };
-
-  // const getAds = (newsTitle) => {
-  //   Fire.database()
-  //     .ref('ads/')
-  //     .orderByChild('category')
-  //     .equalTo(newsTitle)
-  //     .once('value')
-  //     .then((res) => {
-  //       if (res.val()) {
-  //         setAds(res.val());
-  //         data = res.val();
-  //         console.log(data);
-  //       }
-  //     });
-  // };
 
   return (
     <View style={styles.screens}>

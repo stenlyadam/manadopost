@@ -1,11 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {DummyMagazine1, JSONDigital} from '../../assets';
 import {Header, MagazineCard, Title} from '../../components';
+import {Fire} from '../../config';
 import {colors} from '../../utils';
 
 const Digital = ({route, navigation}) => {
   const {title} = route.params;
+  const [magazine, setMagazine] = useState([]);
+
+  useEffect(() => {
+    Fire.database()
+      .ref('magazines/')
+      .once('value')
+      .then((res) => {
+        if (res.val()) {
+          setMagazine(res.val());
+        }
+      });
+  }, []);
   return (
     <View style={styles.screen}>
       <Header
@@ -15,13 +27,14 @@ const Digital = ({route, navigation}) => {
       <Title title={title} search />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          {JSONDigital.data.map((item) => (
+          {magazine.map((item) => (
             <MagazineCard
               key={item.id}
-              image={DummyMagazine1}
+              image={{uri: item.thumbnail}}
+              date={item.date}
               onPress={() =>
                 navigation.navigate('ReadMagazine', {
-                  uri: item.uri,
+                  uri: item.link,
                   title: title,
                 })
               }

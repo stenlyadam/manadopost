@@ -130,7 +130,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.manadopost_v2"
+        applicationId "com.manadopost"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

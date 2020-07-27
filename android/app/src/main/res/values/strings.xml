@@ -1,6 +1,5 @@
 <resources>
-    <string name="facebook_app_id">205476574207004</string>
-    <string name="fb_login_protocol_scheme">fb205476574207004</string>
-
-    <string name="app_name">ManadoPost_v2</string>
+    <string name="facebook_app_id">314671953020981</string>
+    <string name="fb_login_protocol_scheme">fb314671953020981</string>
+    <string name="app_name">manadopost</string>
 </resources>

@@ -1,28 +1,19 @@
+import auth from '@react-native-firebase/auth';
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import {showMessage} from 'react-native-flash-message';
+import {RadioButton} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {ILLogoBlue} from '../../assets';
-import {Button, Gap, Input, Link, Loading} from '../../components';
-import {Fire} from '../../config';
-import {colors, fonts, storeData, useForm} from '../../utils';
-import {GoogleSignin} from '@react-native-community/google-signin';
-import auth from '@react-native-firebase/auth';
-
-GoogleSignin.configure({
-  //google-services.json: oauth_client/client_id
-  webClientId:
-    '782626479856-89khocqerprpe29tscrpvdn5vb8ghan0.apps.googleusercontent.com',
-});
+import {Button, Gap, Loading} from '../../components';
+import {Fire, Google} from '../../config';
+import {colors, fonts, storeData} from '../../utils';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
-  const [form, setForm] = useForm({
-    email: '',
-    password: '',
-  });
   const [loading, setLoading] = useState(false);
+  const [checked] = useState('checked');
 
   const getFacebookAuth = async () => {
     const result = await LoginManager.logInWithPermissions([
@@ -47,45 +38,16 @@ const Login = ({navigation}) => {
   };
 
   const getGoogleAuth = async () => {
-    await GoogleSignin.hasPlayServices();
+    await Google.hasPlayServices();
     // Get the users ID token
-    await GoogleSignin.hasPlayServices();
-    const {idToken} = await GoogleSignin.signIn();
+    await Google.hasPlayServices();
+    const {idToken} = await Google.signIn();
 
     // Create a Google credential with the token
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
     // Sign-in the user with the credential
     return auth().signInWithCredential(googleCredential);
-  };
-
-  const signInWithEmail = () => {
-    setLoading(true);
-    Fire.auth()
-      .signInWithEmailAndPassword(form.email, form.password)
-      .then((success) => {
-        Fire.database()
-          .ref(`users/${success.user.uid}/`)
-          .once('value')
-          .then((res) => {
-            if (res.val()) {
-              storeData('user', res.val());
-              navigation.navigate('MainApp');
-            }
-            setLoading(false);
-            dispatch({type: 'SET_LOGIN', value: true});
-          });
-      })
-      .catch(
-        (error) =>
-          showMessage({
-            message: error.message,
-            type: 'default',
-            backgroundColor: colors.error,
-            color: colors.white,
-          }),
-        setLoading(false),
-      );
   };
 
   const signInWithFacebook = () => {
@@ -145,50 +107,46 @@ const Login = ({navigation}) => {
   return (
     <>
       <View style={styles.screen}>
-        <Gap height={30} />
         <View style={styles.logoWrapper}>
           <ILLogoBlue style={styles.logo} />
         </View>
-        <Gap height={74} />
+        <View style={styles.content}>
+          <Text style={styles.text}>
+            Login praktis dengan akun media sosial
+          </Text>
+          <View style={styles.term}>
+            <Text style={styles.text}>I accept terms and agreement</Text>
+            <RadioButton
+              value="agree"
+              status={checked}
+              onPress={() => {
+                navigation.navigate('TermAndCondition');
+              }}
+              color={colors.primary}
+            />
+          </View>
 
-        <Input
-          placeholder="Email"
-          icon="email"
-          value={form.email}
-          onChangeText={(value) => setForm('email', value)}
-        />
-        <Input
-          placeholder="Password"
-          icon="password"
-          secureTextEntry
-          value={form.password}
-          onChangeText={(value) => setForm('password', value)}
-        />
-        <Gap height={30} />
-        <Button title="Masuk" onPress={signInWithEmail} />
-        <Gap height={24} />
-        <Text style={styles.text}>Atau masuk dengan</Text>
-        <Gap height={22} />
-
-        <View style={styles.socialLogin}>
-          <Button
-            title="Facebook"
-            type="button-icon-text"
-            onPress={signInWithFacebook}
-          />
-          <Button
-            title="Google"
-            type="button-icon-text"
-            onPress={signInWithGoogle}
-          />
+          <View style={styles.socialLogin}>
+            <Gap height={20} />
+            <Button
+              title="Facebook"
+              type="button-icon-text"
+              onPress={signInWithFacebook}
+            />
+            <Gap height={40} />
+            <Button
+              title="Google"
+              type="button-icon-text"
+              onPress={signInWithGoogle}
+            />
+            <Gap height={20} />
+          </View>
         </View>
-        <Gap height={70} />
-        <View style={styles.register}>
-          <Text style={styles.text}>Buat Akun Gratis? </Text>
-          <Link
-            title="Klik disini"
-            onPress={() => navigation.navigate('Register')}
-          />
+
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            Dapatkan berita gratis terupdate setiap hari di tab MP News
+          </Text>
         </View>
       </View>
       {loading && <Loading />}
@@ -200,25 +158,51 @@ export default Login;
 
 const styles = StyleSheet.create({
   screen: {
-    paddingHorizontal: 30,
     backgroundColor: colors.white,
     flex: 1,
+    justifyContent: 'space-between',
+    paddingHorizontal: 30,
   },
   logoWrapper: {
     alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
   },
   text: {
     fontFamily: fonts.primary.normal,
     fontSize: 16,
     color: colors.text.secondary,
     textAlign: 'center',
+    paddingVertical: 10,
+  },
+  content: {
+    flex: 1,
   },
   socialLogin: {
-    flexDirection: 'row',
+    borderTopColor: colors.border2,
+    borderTopWidth: 1,
+    borderBottomColor: colors.border2,
+    borderBottomWidth: 1,
+    marginTop: 10,
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  register: {
+  footer: {
+    marginHorizontal: -30,
+    backgroundColor: colors.primary,
+    height: 100,
+    justifyContent: 'center',
+    paddingHorizontal: 50,
+  },
+  footerText: {
+    color: colors.white,
+    textAlign: 'center',
+    fontFamily: fonts.primary.normal,
+    fontSize: 16,
+  },
+  term: {
     flexDirection: 'row',
+    alignItems: 'center',
     justifyContent: 'center',
   },
 });

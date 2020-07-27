@@ -19,6 +19,7 @@ import {
   Splash,
   UserProfile,
   Video,
+  TermAndCondition,
 } from '../screens';
 import {colors} from '../utils';
 
@@ -195,6 +196,11 @@ const Routes = () => {
       <Stack.Screen
         name="ReadMagazine"
         component={ReadMagazine}
+        options={headerArtikelConf}
+      />
+      <Stack.Screen
+        name="TermAndCondition"
+        component={TermAndCondition}
         options={headerArtikelConf}
       />
     </Stack.Navigator>

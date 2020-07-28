@@ -4,6 +4,7 @@ import {StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector} from 'react-redux';
 import {Profile} from '..';
+import {IconKawanua} from '../../../assets';
 import {colors} from '../../../utils';
 import {Button} from '../../atoms';
 
@@ -157,6 +158,190 @@ const index = (props) => {
             }}
           />
         </View>
+        <View style={styles.drawerSection}>
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Gorontalo Post"
+            onPress={() => {
+              props.navigation.navigate('GorontaloPost');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Bitung"
+            onPress={() => {
+              props.navigation.navigate('Bitung');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Tomohon"
+            onPress={() => {
+              props.navigation.navigate('Tomohon');
+            }}
+          />
+        </View>
+        <View style={styles.drawerSection}>
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Minahasa"
+            onPress={() => {
+              props.navigation.navigate('Minahasa');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Minahasa Utara"
+            onPress={() => {
+              props.navigation.navigate('MinahasaUtara');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Minahasa Selatan"
+            onPress={() => {
+              props.navigation.navigate('MinahasaSelatan');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Minahasa Tenggara"
+            onPress={() => {
+              props.navigation.navigate('MinahasaTenggara');
+            }}
+          />
+        </View>
+        <View style={styles.drawerSection}>
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Bolmong"
+            onPress={() => {
+              props.navigation.navigate('Bolmong');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Bolmut"
+            onPress={() => {
+              props.navigation.navigate('Bolmut');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Boltim"
+            onPress={() => {
+              props.navigation.navigate('Boltim');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Bolsel"
+            onPress={() => {
+              props.navigation.navigate('Bolsel');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Kotamobagu"
+            onPress={() => {
+              props.navigation.navigate('Kotamobagu');
+            }}
+          />
+        </View>
+        <View style={styles.drawerSection}>
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Nusa Utara"
+            onPress={() => {
+              props.navigation.navigate('NusaUtara');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Sangihe"
+            onPress={() => {
+              props.navigation.navigate('Sangihe');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Sitaro"
+            onPress={() => {
+              props.navigation.navigate('Sitaro');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconKawanua />
+              </View>
+            )}
+            label="Talaud"
+            onPress={() => {
+              props.navigation.navigate('Talaud');
+            }}
+          />
+        </View>
       </DrawerContentScrollView>
     </View>
   );
@@ -176,5 +361,8 @@ const styles = StyleSheet.create({
   signIn: {
     paddingHorizontal: 10,
     paddingVertical: 15,
+  },
+  icon: {
+    paddingLeft: 5,
   },
 });

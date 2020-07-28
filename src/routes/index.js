@@ -124,6 +124,86 @@ const DrawerRoutes = () => {
         component={News}
         initialParams={{category: 69, title: 'Show & Selebriti'}}
       />
+      <Drawer.Screen
+        name="GorontaloPost"
+        component={News}
+        initialParams={{category: 64, title: 'Gorontalo Post'}}
+      />
+      <Drawer.Screen
+        name="Minahasa"
+        component={News}
+        initialParams={{category: 30, title: 'Minahasa'}}
+      />
+      <Drawer.Screen
+        name="MinahasaUtara"
+        component={News}
+        initialParams={{category: 31, title: 'Minahasa Utara'}}
+      />
+      <Drawer.Screen
+        name="MinahasaSelatan"
+        component={News}
+        initialParams={{category: 51, title: 'Minahasa Selatan'}}
+      />
+      <Drawer.Screen
+        name="MinahasaTenggara"
+        component={News}
+        initialParams={{category: 52, title: 'Minahasa Tenggara'}}
+      />
+      <Drawer.Screen
+        name="Bitung"
+        component={News}
+        initialParams={{category: 49, title: 'Bitung'}}
+      />
+      <Drawer.Screen
+        name="Tomohon"
+        component={News}
+        initialParams={{category: 53, title: 'Tomohon'}}
+      />
+      <Drawer.Screen
+        name="Bolmong"
+        component={News}
+        initialParams={{category: 55, title: 'Bolmong'}}
+      />
+      <Drawer.Screen
+        name="Bolmut"
+        component={News}
+        initialParams={{category: 56, title: 'Bolmut'}}
+      />
+      <Drawer.Screen
+        name="Boltim"
+        component={News}
+        initialParams={{category: 57, title: 'Boltim'}}
+      />
+      <Drawer.Screen
+        name="Bolsel"
+        component={News}
+        initialParams={{category: 58, title: 'Bolsel'}}
+      />
+      <Drawer.Screen
+        name="Kotamobagu"
+        component={News}
+        initialParams={{category: 59, title: 'Kotamobagu'}}
+      />
+      <Drawer.Screen
+        name="NusaUtara"
+        component={News}
+        initialParams={{category: 60, title: 'Nusa Utara'}}
+      />
+      <Drawer.Screen
+        name="Sangihe"
+        component={News}
+        initialParams={{category: 61, title: 'Sangihe'}}
+      />
+      <Drawer.Screen
+        name="Sitaro"
+        component={News}
+        initialParams={{category: 62, title: 'Sitaro'}}
+      />
+      <Drawer.Screen
+        name="Talaud"
+        component={News}
+        initialParams={{category: 63, title: 'Talaud'}}
+      />
     </Drawer.Navigator>
   );
 };

@@ -34,36 +34,40 @@ const Article = ({route, navigation}) => {
       />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          {ads &&
-            ads.map((item, index) => {
-              if (index === 0) {
-                return (
-                  <Ads
-                    key={item.id}
-                    title={item.category}
-                    image={{uri: item.image}}
-                    type={item.type}
-                  />
-                );
-              }
-            })}
+          <View style={styles.adsWrapper}>
+            {ads &&
+              ads.map((item, index) => {
+                if (index === 0) {
+                  return (
+                    <Ads
+                      key={item.id}
+                      title={item.category}
+                      image={{uri: item.image}}
+                      type={item.type}
+                    />
+                  );
+                }
+              })}
+          </View>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.date}>{Moment(date).format('LLLL')}</Text>
           <Image source={{uri: image}} style={styles.image} />
           <WebView content={content} />
-          {ads &&
-            ads.map((item, index) => {
-              if (index > 0) {
-                return (
-                  <Ads
-                    key={item.id}
-                    title={item.category}
-                    image={{uri: item.image}}
-                    type={item.type}
-                  />
-                );
-              }
-            })}
+          <View style={styles.adsWrapper}>
+            {ads &&
+              ads.map((item, index) => {
+                if (index > 0) {
+                  return (
+                    <Ads
+                      key={item.id}
+                      title={item.category}
+                      image={{uri: item.image}}
+                      type={item.type}
+                    />
+                  );
+                }
+              })}
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -76,6 +80,9 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: colors.white,
+  },
+  adsWrapper: {
+    marginHorizontal: -10,
   },
   headerWrapper: {
     backgroundColor: colors.secondary,

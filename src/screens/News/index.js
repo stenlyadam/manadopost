@@ -21,46 +21,74 @@ const News = ({navigation, route}) => {
 
   const {category, title = 'Berita Terbaru'} = route.params;
 
+  const mergeNewsWithAds = (newsArray, adsArray) => {
+    let count = 0;
+    for (let i = 0; i < newsArray.length; i++) {
+      //Jika iklan lebih dari 10
+      if (adsArray.length > 10) {
+        if (i % 2 === 0) {
+          newsArray.splice(i, 0, adsArray[count]);
+        }
+      }
+      if (i % 5 === 0) {
+        newsArray.splice(i, 0, adsArray[count]);
+      }
+      count++;
+    }
+
+    let filteredNews = newsArray.filter((el) => {
+      return el !== undefined;
+    });
+    return filteredNews;
+  };
+
   useEffect(() => {
     setRefreshing(true);
     Fire.database()
       .ref('ads/')
-      .orderByChild('category')
-      .equalTo(title)
       .once('value')
       .then((res) => {
-        getNews(category).then((response) => {
-          if (res.val()) {
-            //Combine news with ads
-            let count_ads = 1;
-            for (let i = 0; i < response.length; i++) {
-              //Jika iklan lebih dari 10
-              if (res.val().length > 10) {
-                if (i % 2 === 0) {
-                  response.splice(i, 0, res.val()[count_ads]);
-                  count_ads++;
-                }
-              }
-              if (i % 5 === 0) {
-                response.splice(i, 0, res.val()[count_ads]);
-                count_ads++;
-              }
-            }
-            //Remove undefined element
-            let filteredNews = response.filter((el) => {
-              return el !== undefined;
-            });
-            let article = res.val().filter((el) => {
-              return el.article;
-            });
+        if (res.val()) {
+          //Get ads by category
+          let filteredAds = res.val().filter((el) => {
+            return el.category === title && !el.article;
+          });
+          //Get article ads by the category
+          let article = res.val().filter((el) => {
+            return el.category === title && el.article;
+          });
+
+          console.log('filter ads, ', filteredAds);
+          console.log('article ads, ', article);
+
+          getNews(category).then((response) => {
+            const mergedData = mergeNewsWithAds(response, filteredAds);
+            // let count_ads = 0;
+            // for (let i = 0; i < response.length; i++) {
+            //   //Jika iklan lebih dari 10
+            //   if (filteredAds.length > 10) {
+            //     if (i % 2 === 0) {
+            //       response.splice(i, 0, filteredAds[count_ads]);
+            //       count_ads++;
+            //     }
+            //   }
+            //   if (i % 5 === 0) {
+            //     response.splice(i, 0, filteredAds[count_ads]);
+            //     count_ads++;
+            //   }
+            // }
+            // let filteredNews = mergedData.filter((el) => {
+            //   return el !== undefined;
+            // });
+
             //Set state
             setArticleAds(article);
-            setNews(filteredNews);
-          } else {
-            setNews(response);
-          }
-          setRefreshing(false);
-        });
+            setNews(mergedData);
+          });
+        } else {
+          getNews(category).then((response) => setNews(response));
+        }
+        setRefreshing(false);
       });
   }, []);
 

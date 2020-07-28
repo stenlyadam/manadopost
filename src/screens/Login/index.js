@@ -60,8 +60,7 @@ const Login = ({navigation}) => {
 
     getFacebookAuth()
       .then((res) => {
-        //Merge array news with array ads
-        mergeNewsWithAds(res);
+        saveUserData(res);
       })
       .catch((error) => {
         let message = '';
@@ -84,8 +83,7 @@ const Login = ({navigation}) => {
     setLoading(true);
     getGoogleAuth()
       .then((res) => {
-        //Merge array news with array ads
-        mergeNewsWithAds(res);
+        saveUserData(res);
       })
       .catch((error) => {
         setLoading(false);
@@ -98,7 +96,7 @@ const Login = ({navigation}) => {
       });
   };
 
-  const mergeNewsWithAds = (res) => {
+  const saveUserData = (res) => {
     const newUser = {
       uid: res.user.uid,
       fullName: res.user.displayName,

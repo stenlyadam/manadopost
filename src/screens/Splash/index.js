@@ -1,22 +1,23 @@
+import auth from '@react-native-firebase/auth';
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {ILLogo} from '../../assets';
 import {colors} from '../../utils';
-import {Fire} from '../../config';
-import {useDispatch} from 'react-redux';
 
 const Splash = ({navigation}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setTimeout(() => {
-      Fire.auth().onAuthStateChanged((user) => {
+    const unsubscribe = auth().onAuthStateChanged((user) => {
+      setTimeout(() => {
         if (user) {
           dispatch({type: 'SET_LOGIN', value: true});
         }
         navigation.replace('MainApp');
-      });
-    }, 3000);
+      }, 3000);
+    });
+    return () => unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

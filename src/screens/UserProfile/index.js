@@ -4,8 +4,8 @@ import {showMessage} from 'react-native-flash-message';
 import {useDispatch} from 'react-redux';
 import {ILPaper} from '../../assets';
 import {Button, Loading, Profile} from '../../components';
-import {Fire} from '../../config';
 import {colors, fonts} from '../../utils';
+import auth from '@react-native-firebase/auth';
 
 const UserProfile = ({navigation}) => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const UserProfile = ({navigation}) => {
 
   const signOut = () => {
     setLoading(true);
-    Fire.auth()
+    auth()
       .signOut()
       .then(() => {
         setLoading(false);

@@ -35,68 +35,59 @@ const News = ({navigation, route}) => {
       }
       count++;
     }
-
-    let filteredNews = newsArray.filter((el) => {
+    //Remove undefined
+    let filteredData = newsArray.filter((el) => {
       return el !== undefined;
     });
-    return filteredNews;
+    return filteredData;
   };
-
-  useEffect(() => {
-    setRefreshing(true);
-    Fire.database()
-      .ref('ads/')
-      .once('value')
-      .then((res) => {
-        if (res.val()) {
-          //Get ads by category
-          let filteredAds = res.val().filter((el) => {
-            return el.category === title && !el.article;
-          });
-          //Get article ads by the category
-          let article = res.val().filter((el) => {
-            return el.category === title && el.article;
-          });
-
-          console.log('filter ads, ', filteredAds);
-          console.log('article ads, ', article);
-
-          getNews(category).then((response) => {
-            const mergedData = mergeNewsWithAds(response, filteredAds);
-            // let count_ads = 0;
-            // for (let i = 0; i < response.length; i++) {
-            //   //Jika iklan lebih dari 10
-            //   if (filteredAds.length > 10) {
-            //     if (i % 2 === 0) {
-            //       response.splice(i, 0, filteredAds[count_ads]);
-            //       count_ads++;
-            //     }
-            //   }
-            //   if (i % 5 === 0) {
-            //     response.splice(i, 0, filteredAds[count_ads]);
-            //     count_ads++;
-            //   }
-            // }
-            // let filteredNews = mergedData.filter((el) => {
-            //   return el !== undefined;
-            // });
-
-            //Set state
-            setArticleAds(article);
-            setNews(mergedData);
-          });
-        } else {
-          getNews(category).then((response) => setNews(response));
-        }
-        setRefreshing(false);
-      });
-  }, []);
 
   const getNews = async (newsCategory) => {
     let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=50&categories=${newsCategory}`;
     const response = await Axios.get(url);
     return response.data;
   };
+  const getAds = async () => {
+    const data = await Fire.database().ref('ads/').once('value');
+    if (data.val()) {
+      let filteredAds = data.val().filter((el) => {
+        return el.category === title && !el.article;
+      });
+      return filteredAds;
+    }
+    return data.val();
+  };
+
+  const getArticleAds = async () => {
+    const data = await Fire.database().ref('ads/').once('value');
+    if (data.val()) {
+      let article = data.val().filter((el) => {
+        return el.category === title && el.article;
+      });
+      return article;
+    }
+    return data.val();
+  };
+
+  useEffect(() => {
+    let mounted = true;
+    setRefreshing(true);
+    getAds().then((resAds) => {
+      getNews(category).then((resNews) => {
+        const mergedData = mergeNewsWithAds(resNews, resAds);
+        if (mounted) {
+          setNews(mergedData);
+          getArticleAds().then((resArticleAds) => {
+            setArticleAds(resArticleAds);
+          });
+        }
+      });
+    });
+    setRefreshing(false);
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   return (
     <View style={styles.screens}>

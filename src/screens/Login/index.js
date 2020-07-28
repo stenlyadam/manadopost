@@ -60,39 +60,8 @@ const Login = ({navigation}) => {
 
     getFacebookAuth()
       .then((res) => {
-        const newUser = {
-          uid: res.user.uid,
-          fullName: res.user.displayName,
-          email: res.user.email,
-          photo: res.user.photoURL,
-        };
-        Fire.database()
-          .ref('users/')
-          .orderByChild('uid')
-          .equalTo(newUser.uid)
-          .once('value')
-          .then((user) => {
-            if (!user.val()) {
-              Fire.database().ref(`users/${newUser.uid}/`).set(newUser);
-              storeData('user', newUser);
-            } else {
-              //Convert object to array
-              const oldUser = Object.values(user.val());
-              storeData('user', oldUser[0]);
-            }
-            dispatch({type: 'SET_LOGIN', value: true});
-            setLoading(false);
-            navigation.replace('MainApp');
-          })
-          .catch(() => {
-            setLoading(false);
-            showMessage({
-              message: 'Login facebook error',
-              type: 'default',
-              backgroundColor: colors.error,
-              color: colors.white,
-            });
-          });
+        //Merge array news with array ads
+        mergeNewsWithAds(res);
       })
       .catch((error) => {
         let message = '';
@@ -115,46 +84,53 @@ const Login = ({navigation}) => {
     setLoading(true);
     getGoogleAuth()
       .then((res) => {
-        const newUser = {
-          uid: res.user.uid,
-          fullName: res.user.displayName,
-          email: res.user.email,
-          photo: res.user.photoURL,
-        };
-        //Check if user exists
-        Fire.database()
-          .ref('users/')
-          .orderByChild('uid')
-          .equalTo(newUser.uid)
-          .once('value')
-          .then((user) => {
-            //If Not Exist
-            if (!user.val()) {
-              Fire.database().ref(`users/${newUser.uid}/`).set(newUser);
-              storeData('user', newUser);
-            } else {
-              //Convert object to array
-              const oldUser = Object.values(user.val());
-              storeData('user', oldUser[0]);
-            }
-            dispatch({type: 'SET_LOGIN', value: true});
-            setLoading(false);
-            navigation.replace('MainApp');
-          })
-          .catch(() => {
-            setLoading(false);
-            showMessage({
-              message: 'Error',
-              type: 'default',
-              backgroundColor: colors.error,
-              color: colors.white,
-            });
-          });
+        //Merge array news with array ads
+        mergeNewsWithAds(res);
       })
       .catch((error) => {
         setLoading(false);
         showMessage({
           message: error.message,
+          type: 'default',
+          backgroundColor: colors.error,
+          color: colors.white,
+        });
+      });
+  };
+
+  const mergeNewsWithAds = (res) => {
+    const newUser = {
+      uid: res.user.uid,
+      fullName: res.user.displayName,
+      email: res.user.email,
+      photo: res.user.photoURL,
+    };
+    //Check if user exists
+    Fire.database()
+      .ref('users/')
+      .orderByChild('uid')
+      .equalTo(newUser.uid)
+      .once('value')
+      .then((user) => {
+        //If Not Exist then add new user
+        if (!user.val()) {
+          Fire.database().ref(`users/${newUser.uid}/`).set(newUser);
+          //Store in async storage
+          storeData('user', newUser);
+        } else {
+          //Get user data and Convert object to array
+          const oldUser = Object.values(user.val());
+          //Store in async storage
+          storeData('user', oldUser[0]);
+        }
+        dispatch({type: 'SET_LOGIN', value: true});
+        setLoading(false);
+        navigation.replace('MainApp');
+      })
+      .catch(() => {
+        setLoading(false);
+        showMessage({
+          message: 'Error',
           type: 'default',
           backgroundColor: colors.error,
           color: colors.white,

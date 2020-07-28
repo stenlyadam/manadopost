@@ -28,7 +28,7 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
-const headerArtikelConf = ({navigation}) => {
+const headerConf = ({navigation}) => {
   return {
     headerTitleAlign: 'center',
     headerStyle: {
@@ -164,11 +164,7 @@ const Routes = () => {
         component={Splash}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={headerArtikelConf}
-      />
+      <Stack.Screen name="Login" component={Login} options={headerConf} />
       <Stack.Screen
         name="Register"
         component={Register}
@@ -187,28 +183,24 @@ const Routes = () => {
       <Stack.Screen
         name="UserProfile"
         component={UserProfile}
-        options={headerArtikelConf}
+        options={headerConf}
       />
       <Stack.Screen
         name="EditProfile"
         component={EditProfile}
-        options={headerArtikelConf}
+        options={headerConf}
       />
       <Stack.Screen
         name="ReadMagazine"
         component={ReadMagazine}
-        options={headerArtikelConf}
+        options={headerConf}
       />
       <Stack.Screen
         name="TermAndCondition"
         component={TermAndCondition}
         options={{headerShown: false}}
       />
-      <Stack.Screen
-        name="Search"
-        component={Search}
-        options={headerArtikelConf}
-      />
+      <Stack.Screen name="Search" component={Search} options={headerConf} />
     </Stack.Navigator>
   );
 };

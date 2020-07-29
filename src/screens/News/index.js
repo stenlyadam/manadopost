@@ -65,21 +65,25 @@ const News = ({navigation, route}) => {
     return data.val();
   };
 
+  const getAllFilteredData = async () => {
+    const resNews = await getNews(category);
+    const resAds = await getAds();
+    const mergedData = mergeNewsWithAds(resNews, resAds);
+    const resArticle = await getArticleAds();
+    return [mergedData, resArticle];
+  };
+
   useEffect(() => {
     let mounted = true;
     setRefreshing(true);
-    getAds().then((resAds) => {
-      getNews(category).then((resNews) => {
-        const mergedData = mergeNewsWithAds(resNews, resAds);
-        if (mounted) {
-          setNews(mergedData);
-          getArticleAds().then((resArticleAds) => {
-            setArticleAds(resArticleAds);
-          });
-          setRefreshing(false);
-        }
-      });
+    getAllFilteredData().then(([newsData, articlesData]) => {
+      if (mounted) {
+        setNews(newsData);
+        setArticleAds(articlesData);
+        setRefreshing(false);
+      }
     });
+
     return () => {
       mounted = false;
     };

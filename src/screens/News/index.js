@@ -24,16 +24,11 @@ const News = ({navigation, route}) => {
   const mergeNewsWithAds = (newsArray, adsArray) => {
     let count = 0;
     for (let i = 0; i < newsArray.length; i++) {
-      //Jika iklan lebih dari 10
-      if (adsArray.length > 10) {
-        if (i % 2 === 0) {
-          newsArray.splice(i, 0, adsArray[count]);
-        }
-      }
-      if (i % 5 === 0) {
+      if (i % 3 === 0) {
+        //max ads 33
         newsArray.splice(i, 0, adsArray[count]);
+        count++;
       }
-      count++;
     }
     //Remove undefined
     let filteredData = newsArray.filter((el) => {
@@ -43,10 +38,11 @@ const News = ({navigation, route}) => {
   };
 
   const getNews = async (newsCategory) => {
-    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=50&categories=${newsCategory}`;
+    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=100&categories=${newsCategory}`;
     const response = await Axios.get(url);
     return response.data;
   };
+
   const getAds = async () => {
     const data = await Fire.database().ref('ads/').once('value');
     if (data.val()) {
@@ -80,10 +76,10 @@ const News = ({navigation, route}) => {
           getArticleAds().then((resArticleAds) => {
             setArticleAds(resArticleAds);
           });
+          setRefreshing(false);
         }
       });
     });
-    setRefreshing(false);
     return () => {
       mounted = false;
     };
@@ -129,7 +125,7 @@ const News = ({navigation, route}) => {
         <View style={styles.content}>
           {news.map((item, index) => {
             //Kondisi jika akan menampilkan iklan
-            if (index % 5 === 0) {
+            if (index % 3 === 0) {
               return (
                 <Ads
                   key={item.id}

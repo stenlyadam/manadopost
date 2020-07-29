@@ -4,7 +4,7 @@ import {StyleSheet, View} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector} from 'react-redux';
 import {Profile} from '..';
-import {IconKawanua} from '../../../assets';
+import {IconMP} from '../../../assets';
 import {colors} from '../../../utils';
 import {Button} from '../../atoms';
 
@@ -162,7 +162,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Gorontalo Post"
@@ -173,7 +173,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Bitung"
@@ -184,7 +184,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Tomohon"
@@ -197,7 +197,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Minahasa"
@@ -208,7 +208,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Minahasa Utara"
@@ -219,7 +219,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Minahasa Selatan"
@@ -230,7 +230,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Minahasa Tenggara"
@@ -243,7 +243,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Bolmong"
@@ -254,7 +254,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Bolmut"
@@ -265,7 +265,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Boltim"
@@ -276,7 +276,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Bolsel"
@@ -287,7 +287,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Kotamobagu"
@@ -300,7 +300,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Nusa Utara"
@@ -311,7 +311,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Sangihe"
@@ -322,7 +322,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Sitaro"
@@ -333,7 +333,7 @@ const index = (props) => {
           <DrawerItem
             icon={() => (
               <View style={styles.icon}>
-                <IconKawanua />
+                <IconMP />
               </View>
             )}
             label="Talaud"

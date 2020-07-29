@@ -21,6 +21,7 @@ import IconEmail from './ic-email.svg';
 import IconGoogle from './ic-google.svg';
 import IconCalenderGrey from './ic-calender-grey.svg';
 import IconShare from './ic-share-white.svg';
+import IconMP from './ic-mp.svg';
 
 export {
   IconMenu,
@@ -46,4 +47,5 @@ export {
   IconGoogle,
   IconCalenderGrey,
   IconShare,
+  IconMP,
 };

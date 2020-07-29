@@ -7,6 +7,7 @@ const WebView = ({content, type, uri}) => {
   if (type === 'uri') {
     return (
       <WebViewURI
+        style={styles.webView}
         source={{
           uri: uri,
         }}

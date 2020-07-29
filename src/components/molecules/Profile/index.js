@@ -26,7 +26,6 @@ const index = ({onPress, viewOnly}) => {
         <View style={styles.profile}>
           <Text style={styles.name}>{profile.fullName}</Text>
           <Text style={styles.email}>{profile.email}</Text>
-          <Text style={styles.email}>{profile.phoneNumber}</Text>
           <Text style={styles.desc}>Paket berlangganan AKTIF</Text>
           {/* <Text style={styles.desc}>Aktif Hingga 12 September 2020</Text> */}
         </View>
@@ -49,7 +48,7 @@ export default index;
 const styles = StyleSheet.create({
   profileWrapper: {
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
     marginTop: 10,
     flexDirection: 'row',
     marginLeft: 10,

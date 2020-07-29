@@ -38,7 +38,6 @@ const UserProfile = ({navigation}) => {
           title="Edit akun"
           onPress={() => navigation.navigate('EditProfile')}
         />
-
         <View style={styles.content}>
           <View>
             <Text style={styles.contentText}>
@@ -57,7 +56,6 @@ const UserProfile = ({navigation}) => {
           <View style={styles.image}>
             <Image source={ILPaper} />
           </View>
-
           <View style={styles.subscribe}>
             <Button
               type="button-subscribe"
@@ -131,7 +129,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'space-around',
-    marginTop: 10,
+    marginTop: 5,
   },
   contentText: {
     fontFamily: fonts.primary.normal,

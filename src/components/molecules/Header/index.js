@@ -110,6 +110,6 @@ const styles = StyleSheet.create({
   logoWrapper: {
     flex: 1,
     alignItems: 'center',
-    marginRight: -22,
+    marginRight: -10,
   },
 });

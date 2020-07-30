@@ -9,6 +9,7 @@ import Profile from './Profile';
 import Title from './Title';
 import Loading from './Loading';
 import CategoryCard from './CategoryCard';
+import LocationCard from './LocationCard';
 
 export {
   Header,
@@ -22,4 +23,5 @@ export {
   Title,
   Loading,
   CategoryCard,
+  LocationCard,
 };

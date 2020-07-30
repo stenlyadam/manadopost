@@ -13,6 +13,7 @@ import ILHotel from './ILHotel.svg';
 import ILShop from './ILShop.svg';
 import ILSport from './ILSport.svg';
 import ILBudaya from './ILBudaya.svg';
+import ILGoogleMap from './ILGoogleMap.png';
 
 export {
   ILLogo,
@@ -30,4 +31,5 @@ export {
   ILShop,
   ILSport,
   ILBudaya,
+  ILGoogleMap,
 };

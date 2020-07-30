@@ -4,7 +4,7 @@ import {showMessage} from 'react-native-flash-message';
 import {useDispatch} from 'react-redux';
 import {ILPaper} from '../../assets';
 import {Button, Loading, Profile} from '../../components';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, storeData} from '../../utils';
 import auth from '@react-native-firebase/auth';
 
 const UserProfile = ({navigation}) => {
@@ -18,6 +18,7 @@ const UserProfile = ({navigation}) => {
       .then(() => {
         setLoading(false);
         dispatch({type: 'SET_LOGIN', value: false});
+        storeData('user', {});
         navigation.replace('MainApp');
       })
       .catch((err) => {

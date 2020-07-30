@@ -21,7 +21,8 @@ import {
   Video,
   TermAndCondition,
   Search,
-  ChooseCategory,
+  Explore360,
+  ChooseLocation,
 } from '../screens';
 import {colors} from '../utils';
 
@@ -283,9 +284,14 @@ const Routes = () => {
       />
       <Stack.Screen name="Search" component={Search} options={headerConf} />
       <Stack.Screen
-        name="ChooseCategory"
-        component={ChooseCategory}
-        options={{headerShown: false}}
+        name="Explore360"
+        component={Explore360}
+        options={headerConf}
+      />
+      <Stack.Screen
+        name="ChooseLocation"
+        component={ChooseLocation}
+        options={headerConf}
       />
     </Stack.Navigator>
   );

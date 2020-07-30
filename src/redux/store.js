@@ -2,6 +2,7 @@ import {createStore} from 'redux';
 
 const initialState = {
   login: false,
+  location: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -9,6 +10,12 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       login: action.value,
+    };
+  }
+  if (action.type === 'SET_LOCATION') {
+    return {
+      ...state,
+      location: action.value,
     };
   }
   return state;

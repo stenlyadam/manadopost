@@ -25,7 +25,6 @@ const EditProfile = ({navigation}) => {
       setProfile(data);
       setFullName(res.fullName);
       setPhoneNumber(res.phoneNumber);
-      // setPhoto(res.photo);
     });
   }, []);
 

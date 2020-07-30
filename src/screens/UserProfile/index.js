@@ -1,11 +1,10 @@
+import auth from '@react-native-firebase/auth';
 import React, {useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
 import {useDispatch} from 'react-redux';
 import {ILPaper} from '../../assets';
 import {Button, Loading, Profile} from '../../components';
-import {colors, fonts, storeData} from '../../utils';
-import auth from '@react-native-firebase/auth';
+import {colors, fonts, showError, storeData} from '../../utils';
 
 const UserProfile = ({navigation}) => {
   const dispatch = useDispatch();
@@ -23,12 +22,7 @@ const UserProfile = ({navigation}) => {
       })
       .catch((err) => {
         setLoading(false);
-        showMessage({
-          message: err.message,
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+        showError(err.message);
       });
   };
   return (

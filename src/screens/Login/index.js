@@ -2,13 +2,12 @@ import auth from '@react-native-firebase/auth';
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
-import {showMessage} from 'react-native-flash-message';
 import {RadioButton} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {ILLogoBlue} from '../../assets';
 import {Button, Gap, Loading} from '../../components';
 import {Fire, Google} from '../../config';
-import {colors, fonts, storeData} from '../../utils';
+import {colors, fonts, showError, storeData} from '../../utils';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -70,12 +69,7 @@ const Login = ({navigation}) => {
           message = error.message;
         }
         setLoading(false);
-        showMessage({
-          message: message,
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+        showError(message);
       });
   };
 
@@ -87,12 +81,7 @@ const Login = ({navigation}) => {
       })
       .catch((error) => {
         setLoading(false);
-        showMessage({
-          message: error.message,
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+        showError(error.message);
       });
   };
 
@@ -127,12 +116,7 @@ const Login = ({navigation}) => {
       })
       .catch(() => {
         setLoading(false);
-        showMessage({
-          message: 'Error',
-          type: 'default',
-          backgroundColor: colors.error,
-          color: colors.white,
-        });
+        showError('Error');
       });
   };
 

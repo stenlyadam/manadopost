@@ -1,10 +1,9 @@
 import Moment from 'moment';
 import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
 import Share from 'react-native-share';
-import {Header, WebView, Ads} from '../../components';
-import {colors, fonts} from '../../utils';
+import {Ads, Header, WebView} from '../../components';
+import {colors, fonts, showError} from '../../utils';
 
 const Article = ({route, navigation}) => {
   const {image, title, date, content, link, ads} = route.params;
@@ -16,12 +15,7 @@ const Article = ({route, navigation}) => {
     };
 
     Share.open(shareOptions).catch((error) =>
-      showMessage({
-        message: 'Oops, sepertinya anda tidak membagikan artikel ini',
-        type: 'default',
-        backgroundColor: colors.error,
-        color: colors.white,
-      }),
+      showError('Oops, sepertinya anda tidak membagikan artikel ini'),
     );
   };
 

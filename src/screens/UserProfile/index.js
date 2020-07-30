@@ -4,7 +4,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {ILPaper} from '../../assets';
 import {Button, Loading, Profile} from '../../components';
-import {colors, fonts, showError, storeData} from '../../utils';
+import {colors, fonts, showError} from '../../utils';
 
 const UserProfile = ({navigation}) => {
   const dispatch = useDispatch();
@@ -17,7 +17,6 @@ const UserProfile = ({navigation}) => {
       .then(() => {
         setLoading(false);
         dispatch({type: 'SET_LOGIN', value: false});
-        storeData('user', {});
         navigation.replace('MainApp');
       })
       .catch((err) => {

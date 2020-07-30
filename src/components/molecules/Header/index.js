@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {ILLogoPNG, ILNullPhotoGrey} from '../../../assets';
+import {ILLogoPNG, ILNullPhotoPNG} from '../../../assets';
 import {colors, getData} from '../../../utils';
 import {Button, Gap} from '../../atoms';
+import {useSelector} from 'react-redux';
 
 const Header = ({
   onPressBack,
@@ -13,18 +14,22 @@ const Header = ({
   onPressUserProfile,
   type,
 }) => {
+  const login = useSelector((state) => state.login);
   const [profile, setProfile] = useState({
     fullName: '',
     email: '',
-    photo: ILNullPhotoGrey,
+    photo: ILNullPhotoPNG,
   });
 
   useEffect(() => {
-    getData('user').then((res) => {
-      const data = res;
-      data.photo = {uri: res.photo};
-      setProfile(data);
-    });
+    if (login) {
+      getData('user').then((res) => {
+        const data = res;
+        data.photo = {uri: res.photo};
+        setProfile(data);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   if (type === 'logo-only') {
     return (

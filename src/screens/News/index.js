@@ -12,7 +12,7 @@ import {
   Title,
 } from '../../components';
 import Fire from '../../config/Fire';
-import {colors, fonts, formatDate} from '../../utils';
+import {colors, fonts, formatDate, storeData, getData} from '../../utils';
 
 const News = ({navigation, route}) => {
   const [news, setNews] = useState([]);
@@ -70,6 +70,7 @@ const News = ({navigation, route}) => {
     const resAds = await getAds();
     const mergedData = mergeNewsWithAds(resNews, resAds);
     const resArticle = await getArticleAds();
+    storeData(`news ${title}`, mergedData);
     return [mergedData, resArticle];
   };
 
@@ -78,9 +79,11 @@ const News = ({navigation, route}) => {
     setRefreshing(true);
     getAllFilteredData().then(([newsData, articlesData]) => {
       if (mounted) {
-        setNews(newsData);
-        setArticleAds(articlesData);
-        setRefreshing(false);
+        getData(`news ${title}`).then((localStorage) => {
+          setNews(localStorage);
+          setArticleAds(articlesData);
+          setRefreshing(false);
+        });
       }
     });
 

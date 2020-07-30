@@ -7,6 +7,12 @@ import ILNullPhoto from './ILNullPhoto.svg';
 import ILPaper from './ILPaper.png';
 import ILNullPhotoGrey from './ILNullPhotoGrey.png';
 import ILNullPhotoPNG from './ILNullPhoto.png';
+import ILAerialView from './ILAerialView.svg';
+import ILRekreasi from './ILRekreasi.svg';
+import ILHotel from './ILHotel.svg';
+import ILShop from './ILShop.svg';
+import ILSport from './ILSport.svg';
+import ILBudaya from './ILBudaya.svg';
 
 export {
   ILLogo,
@@ -18,4 +24,10 @@ export {
   ILPaper,
   ILNullPhotoGrey,
   ILNullPhotoPNG,
+  ILAerialView,
+  ILRekreasi,
+  ILHotel,
+  ILShop,
+  ILSport,
+  ILBudaya,
 };

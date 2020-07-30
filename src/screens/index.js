@@ -12,6 +12,7 @@ import EditProfile from './EditProfile';
 import ReadMagazine from './ReadMagazine';
 import TermAndCondition from './TermAndCondition';
 import Search from './Search';
+import ChooseCategory from './ChooseCategory';
 
 export {
   Splash,
@@ -28,4 +29,5 @@ export {
   ReadMagazine,
   TermAndCondition,
   Search,
+  ChooseCategory,
 };

@@ -8,6 +8,7 @@ import DrawerNavigator from './DrawerNavigator';
 import Profile from './Profile';
 import Title from './Title';
 import Loading from './Loading';
+import CategoryCard from './CategoryCard';
 
 export {
   Header,
@@ -20,4 +21,5 @@ export {
   Profile,
   Title,
   Loading,
+  CategoryCard,
 };

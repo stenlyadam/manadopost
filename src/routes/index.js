@@ -21,6 +21,7 @@ import {
   Video,
   TermAndCondition,
   Search,
+  ChooseCategory,
 } from '../screens';
 import {colors} from '../utils';
 
@@ -238,7 +239,7 @@ const MainApp = () => {
 
 const Routes = () => {
   return (
-    <Stack.Navigator initialRouteName="Splash">
+    <Stack.Navigator initialRouteName="MainApp">
       <Stack.Screen
         name="Splash"
         component={Splash}
@@ -281,6 +282,11 @@ const Routes = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen name="Search" component={Search} options={headerConf} />
+      <Stack.Screen
+        name="ChooseCategory"
+        component={ChooseCategory}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };

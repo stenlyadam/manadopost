@@ -2,10 +2,10 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {colors, fonts} from '../../../utils';
 
-const index = ({onPress, title, image}) => {
+const index = ({onPress, title, thumbnail}) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Image source={{uri: image}} style={styles.image} />
+      <Image source={{uri: thumbnail}} style={styles.thumbnail} />
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
@@ -24,15 +24,16 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 10,
   },
-  image: {
+  thumbnail: {
     width: 103,
     height: 75,
     borderRadius: 15,
   },
   text: {
     fontFamily: fonts.primary.normal,
-    fontSize: 12,
+    fontSize: 10,
     color: colors.text.primary,
     paddingVertical: 10,
+    textAlign: 'center',
   },
 });

@@ -25,6 +25,7 @@ const index = ({navigation, route}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(location);
   return (
     <View style={styles.screen}>
       <Title title={title} />
@@ -35,7 +36,7 @@ const index = ({navigation, route}) => {
             <LocationCard
               key={item.id}
               title={item.site_name}
-              image={item.image}
+              thumbnail={item.thumbnail}
               onPress={() =>
                 navigation.navigate('Explore360', {title: title, data: item})
               }

@@ -15,11 +15,56 @@
       },
       "oauth_client": [
         {
+          "client_id": "782626479856-jmf6q6ntbaaanc8savfbtbuk48v04m0l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.manadopost",
+            "certificate_hash": "797bcdc62bd3289382e35e6d61b7ee813155c36c"
+          }
+        },
+        {
           "client_id": "782626479856-223s116k4pdslm9rusjt6esg2ruah7nd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.manadopost",
             "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "782626479856-89khocqerprpe29tscrpvdn5vb8ghan0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSSFfvBAkWOcoO4zHWA40nvjntHqJYHS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782626479856-89khocqerprpe29tscrpvdn5vb8ghan0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782626479856:android:f3090f3e713a79147fec35",
+        "android_client_info": {
+          "package_name": "com.mp.manadopost"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782626479856-hdoc3h3ibi1inrg330p0p2im5q4pilpt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mp.manadopost",
+            "certificate_hash": "6a50066fe93c777516875fd556e42f75adafff8b"
           }
         },
         {

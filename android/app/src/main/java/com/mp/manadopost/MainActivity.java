@@ -1,4 +1,4 @@
-package com.manadopost;
+package com.mp.manadopost;
 
 import com.facebook.react.ReactActivity;
 

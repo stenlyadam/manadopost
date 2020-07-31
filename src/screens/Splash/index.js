@@ -9,15 +9,14 @@ const Splash = ({navigation}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged((user) => {
-      setTimeout(() => {
+    setTimeout(() => {
+      auth().onAuthStateChanged((user) => {
         if (user) {
           dispatch({type: 'SET_LOGIN', value: true});
         }
         navigation.replace('MainApp');
-      }, 3000);
-    });
-    return () => unsubscribe();
+      });
+    }, 3000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

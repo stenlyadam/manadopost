@@ -25,7 +25,6 @@ const index = ({navigation, route}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(location);
   return (
     <View style={styles.screen}>
       <Title title={title} />

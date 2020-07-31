@@ -21,6 +21,21 @@ const Header = ({
     photo: ILNullPhotoPNG,
   });
 
+  const UserProfile = () => {
+    if (!login) {
+      return (
+        <View>
+          <Image source={profile.photo} style={styles.nullPhoto} />
+        </View>
+      );
+    }
+    return (
+      <TouchableOpacity onPress={onPressUserProfile}>
+        <Image source={profile.photo} style={styles.nullPhoto} />
+      </TouchableOpacity>
+    );
+  };
+
   useEffect(() => {
     if (login) {
       getData('user').then((res) => {
@@ -49,9 +64,7 @@ const Header = ({
           <View style={styles.logoWrapper}>
             <Image source={ILLogoPNG} />
           </View>
-          <TouchableOpacity onPress={onPressUserProfile}>
-            <Image source={profile.photo} style={styles.nullPhoto} />
-          </TouchableOpacity>
+          <UserProfile />
         </View>
       </View>
     );

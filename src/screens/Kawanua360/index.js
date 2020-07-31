@@ -1,10 +1,29 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {CategoryCard, Header, Title} from '../../components';
+import {CategoryCard, Header, Title, Notification} from '../../components';
 import {colors} from '../../utils';
+import {useSelector} from 'react-redux';
 
 const Kawanua360 = ({route, navigation}) => {
   const {title} = route.params;
+
+  const login = useSelector((state) => state.login);
+
+  if (!login) {
+    return (
+      <View style={styles.screen}>
+        <Header
+          type="logo-profile"
+          onPressUserProfile={() => navigation.navigate('UserProfile')}
+        />
+        <Title title={title} />
+        <Notification
+          title={`Silahkan login terlebih dahulu untuk dapat mengakses menu ${title}`}
+        />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.screen}>
       <Header

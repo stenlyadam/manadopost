@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {Header, MagazineCard, Title} from '../../components';
+import {Header, MagazineCard, Title, Notification} from '../../components';
 import {Fire} from '../../config';
 import {colors} from '../../utils';
+import {useSelector} from 'react-redux';
 
 const EPaper = ({route, navigation}) => {
   const [epaper, setEpaper] = useState([]);
+  const {title} = route.params;
+  const login = useSelector((state) => state.login);
 
   useEffect(() => {
     Fire.database()
@@ -18,7 +21,21 @@ const EPaper = ({route, navigation}) => {
       });
   }, []);
 
-  const {title} = route.params;
+  if (!login) {
+    return (
+      <View style={styles.screen}>
+        <Header
+          type="logo-profile"
+          onPressUserProfile={() => navigation.navigate('UserProfile')}
+        />
+        <Title title={title} />
+        <Notification
+          title={`Silahkan login terlebih dahulu untuk dapat mengakses menu ${title}`}
+        />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.screen}>
       <Header

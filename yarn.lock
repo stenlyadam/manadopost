@@ -1460,6 +1460,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/auth/-/auth-8.2.0.tgz#dc64b2fb1138a713ea15ab1ed4cffd273f1f70ed"
   integrity sha512-zsLL2hSrhsIhmtf3/VGxbHYPlBvfULd8mK1mObKuSIZlMW6gpokyIaAjfuQ0x6r7NWYjtcPP4QBX95kk3Ztutg==
 
+"@react-native-firebase/messaging@^7.5.0":
+  version "7.5.0"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-7.5.0.tgz#f377554e972f637010f0ff42be2a4f7d10571ddf"
+  integrity sha512-jPy13OTe4/yc6kgrXYUJo/PM6dgNMAkNWgv6Wjme4XTvfg9A5nJg2LtuTs46Fbw0dAuAYKnk6CJE3omQGnSQoA==
+
 "@react-navigation/bottom-tabs@^5.7.0":
   version "5.7.2"
   resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-5.7.2.tgz#330c8ade026030830fce7806ce53cbae97a36e28"
@@ -3013,6 +3018,11 @@ domutils@^1.7.0:
   dependencies:
     dom-serializer "0"
     domelementtype "1"
+
+dooboolab-welcome@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/dooboolab-welcome/-/dooboolab-welcome-1.2.0.tgz#295818ce85a8e97dc90c0ec0510b4008e2d722dc"
+  integrity sha512-XgEbjJHAsKLge/e8jtuHsv84Ovg1Gx0GvnOTOmOlVGV1643nduTAkT3fyo/mxKbzvyXBr47RHaJAY4R2toI0UA==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
@@ -6302,6 +6312,13 @@ react-native-gesture-handler@^1.6.1:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.4"
     prop-types "^15.7.2"
+
+react-native-iap@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/react-native-iap/-/react-native-iap-4.5.0.tgz#3837f287460dc5dab3b4f4adc57af2f363df77dc"
+  integrity sha512-745s02fU3sppsf/HMLpaesFmGodRCFdfTuIWbXlLpNxgXLa1POKfNMVuPHkm0lIzARNdHXiEfMHlHa2KaWV8xA==
+  dependencies:
+    dooboolab-welcome "^1.2.0"
 
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"

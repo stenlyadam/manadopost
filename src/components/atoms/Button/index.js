@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   subscribe: {
     backgroundColor: colors.button.tertiary.background,
-    width: 98,
+    width: 115,
     height: 85,
     justifyContent: 'center',
     alignItems: 'center',

@@ -8,6 +8,7 @@ import {YellowBox} from 'react-native';
 
 const MainApp = () => {
   YellowBox.ignoreWarnings(['Setting a timer']);
+  console.disableYellowBox = true;
   return (
     <>
       <NavigationContainer>

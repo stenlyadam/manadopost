@@ -2,31 +2,60 @@
 import auth from '@react-native-firebase/auth';
 import Moment from 'moment';
 import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View, YellowBox} from 'react-native';
 import IAP from 'react-native-iap';
 import {useDispatch} from 'react-redux';
-import {ILPaper} from '../../assets';
+import {ILPaper, ILNullPhotoPNG} from '../../assets';
 import {Button, Loading, Profile} from '../../components';
 import {Fire} from '../../config';
-import {colors, fonts, getData, showError} from '../../utils';
+import {
+  colors,
+  fonts,
+  getData,
+  showError,
+  storeData,
+  getProductTitle,
+} from '../../utils';
 
 const UserProfile = ({navigation}) => {
+  YellowBox.disableYellowBox = true;
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [setProfile] = useState({
+    fullName: '',
+    email: '',
+    photo: ILNullPhotoPNG,
+    subscription: {},
+  });
 
-  const subscriptionIds = [
-    'paket_3_tahunan',
-    'paket_1_bulanan',
-    'paket_2_enam_bulan',
-  ];
+  // const subscriptionIds = [
+  //   'paket_3_tahunan',
+  //   'paket_1_bulanan',
+  //   'paket_2_enam_bulan',
+  // ];
+  const productIds = ['1_bulan', '6_bulan', '1_tahun'];
 
-  const [subscriptions, setSubscriptions] = useState([]);
+  // const [subscriptions, setSubscriptions] = useState([]);
+  const [products, setProducts] = useState([]);
 
   let purchaseUpdateSubscription;
   let purchaseErrorSubscription;
 
   useEffect(() => {
-    IAP.getSubscriptions(subscriptionIds).then((res) => setSubscriptions(res));
+    Moment.locale('en');
+    // IAP.getSubscriptions(subscriptionIds).then((res) => setSubscriptions(res));
+
+    (async function intialize() {
+      try {
+        await IAP.initConnection();
+        //Make all products consumable
+        await IAP.consumeAllItemsAndroid();
+        const purchases = await IAP.getAvailablePurchases();
+        console.log(purchases);
+      } catch (err) {}
+    })();
+
+    IAP.getProducts(productIds).then((res) => setProducts(res));
 
     purchaseUpdateSubscription = IAP.purchaseUpdatedListener((purchase) => {
       const receipt = purchase.transactionReceipt;
@@ -34,29 +63,41 @@ const UserProfile = ({navigation}) => {
         const receiptJSON = JSON.parse(receipt);
         const dateReceipt = Moment(receiptJSON.purchaseTime);
         let expirationDate = dateReceipt;
-
-        if (receiptJSON.productId === 'paket_1_bulanan') {
-          expirationDate = expirationDate.add(1, 'M').format('LL');
-        } else if (receiptJSON.productId === 'paket_2_enam_bulan') {
-          expirationDate = expirationDate.add(6, 'M').format('LL');
+        //Subscription
+        // if (receiptJSON.productId === 'paket_1_bulanan') {
+        //   expirationDate = expirationDate.add(1, 'M').format('LL');
+        // } else if (receiptJSON.productId === 'paket_2_enam_bulan') {
+        //   expirationDate = expirationDate.add(6, 'M').format('LL');
+        // } else {
+        //   expirationDate = expirationDate.add(12, 'M').format('LL');
+        // }
+        if (receiptJSON.productId === '1_bulan') {
+          expirationDate = expirationDate.add(1, 'M').format('LLL');
+        } else if (receiptJSON.productId === '6_bulan') {
+          expirationDate = expirationDate.add(6, 'M').format('LLL');
         } else {
-          expirationDate = expirationDate.add(12, 'M').format('LL');
+          expirationDate = expirationDate.add(12, 'M').format('LLL');
         }
 
         const data = {
-          status: 'subscribed',
+          isSubscribed: true,
           orderId: receiptJSON.orderId,
           productId: receiptJSON.productId,
-          purchaseTime: Moment(receiptJSON.purchaseTime).format('LL'),
-          expirationDate: expirationDate,
+          purchaseDate: Moment(receiptJSON.purchaseTime).format('LLL'),
+          expireDate: expirationDate,
         };
 
-        IAP.finishTransaction(purchase).then((resReceipt) => {
+        IAP.finishTransaction(purchase).then(() => {
           getData('user').then((resUser) => {
-            console.log(resReceipt);
+            //Save to firebase
             Fire.database()
               .ref(`users/${resUser.uid}`)
               .update({subscription: data});
+
+            const dataUser = resUser;
+            dataUser.subscription = data;
+            //Store data with subscription in local storage
+            storeData('user', dataUser);
           });
         });
       }
@@ -93,6 +134,7 @@ const UserProfile = ({navigation}) => {
         showError(err.message);
       });
   };
+
   return (
     <>
       <View style={styles.screen}>
@@ -120,23 +162,18 @@ const UserProfile = ({navigation}) => {
             <Image source={ILPaper} />
           </View>
           <View style={styles.subscribe}>
-            {subscriptions.map((item) => {
+            {products.map((item) => {
               return (
                 <Button
                   key={item.productId}
                   type="button-subscribe"
-                  title={item.title}
+                  title={getProductTitle(item.productId)}
                   price={item.localizedPrice}
                   onPress={() => {
-                    IAP.requestSubscription(item.productId).catch((error) =>
+                    IAP.requestPurchase(item.productId).catch((error) =>
                       showError(error.message),
                     );
                   }}
-                  // onPress={() => {
-                  //   Linking.openURL(
-                  //     `https://play.google.com/store/account/subscriptions?package=${item.packageName}&sku=${item.productId}`,
-                  //   );
-                  // }}
                 />
               );
             })}

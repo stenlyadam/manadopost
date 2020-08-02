@@ -2,13 +2,14 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
 import {ILNullPhotoPNG} from '../../../assets';
-import {fonts, colors, getData} from '../../../utils';
+import {fonts, colors, getData, getProductTitle} from '../../../utils';
 
 const index = ({onPress, viewOnly}) => {
   const [profile, setProfile] = useState({
     fullName: '',
     email: '',
     photo: ILNullPhotoPNG,
+    subscription: {},
   });
 
   useEffect(() => {
@@ -26,8 +27,22 @@ const index = ({onPress, viewOnly}) => {
         <View style={styles.profile}>
           <Text style={styles.name}>{profile.fullName}</Text>
           <Text style={styles.email}>{profile.email}</Text>
-          <Text style={styles.desc}>Paket berlangganan AKTIF</Text>
-          {/* <Text style={styles.desc}>Aktif Hingga 12 September 2020</Text> */}
+          {profile.subscription.isSubscribed && (
+            <>
+              <Text style={styles.desc}>
+                Paket berlangganan :{' '}
+                {getProductTitle(profile.subscription.productId)}
+              </Text>
+              <Text style={styles.desc}>
+                Aktif Hingga {profile.subscription.expireDate}
+              </Text>
+            </>
+          )}
+          {!profile.subscription.isSubscribed && (
+            <>
+              <Text style={styles.desc}>Paket berlangganan: TIDAK AKTIF</Text>
+            </>
+          )}
         </View>
       </View>
     );

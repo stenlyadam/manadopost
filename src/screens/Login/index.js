@@ -91,6 +91,7 @@ const Login = ({navigation}) => {
       fullName: res.user.displayName,
       email: res.user.email,
       photo: res.user.photoURL,
+      subscription: {},
     };
     //Check if user exists
     Fire.database()

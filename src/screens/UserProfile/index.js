@@ -1,14 +1,83 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import auth from '@react-native-firebase/auth';
-import React, {useState} from 'react';
+import Moment from 'moment';
+import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
+import IAP from 'react-native-iap';
 import {useDispatch} from 'react-redux';
 import {ILPaper} from '../../assets';
 import {Button, Loading, Profile} from '../../components';
-import {colors, fonts, showError} from '../../utils';
+import {Fire} from '../../config';
+import {colors, fonts, getData, showError} from '../../utils';
 
 const UserProfile = ({navigation}) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+
+  const subscriptionIds = [
+    'paket_3_tahunan',
+    'paket_1_bulanan',
+    'paket_2_enam_bulan',
+  ];
+
+  const [subscriptions, setSubscriptions] = useState([]);
+
+  let purchaseUpdateSubscription;
+  let purchaseErrorSubscription;
+
+  useEffect(() => {
+    IAP.getSubscriptions(subscriptionIds).then((res) => setSubscriptions(res));
+
+    purchaseUpdateSubscription = IAP.purchaseUpdatedListener((purchase) => {
+      const receipt = purchase.transactionReceipt;
+      if (receipt) {
+        const receiptJSON = JSON.parse(receipt);
+        const dateReceipt = Moment(receiptJSON.purchaseTime);
+        let expirationDate = dateReceipt;
+
+        if (receiptJSON.productId === 'paket_1_bulanan') {
+          expirationDate = expirationDate.add(1, 'M').format('LL');
+        } else if (receiptJSON.productId === 'paket_2_enam_bulan') {
+          expirationDate = expirationDate.add(6, 'M').format('LL');
+        } else {
+          expirationDate = expirationDate.add(12, 'M').format('LL');
+        }
+
+        const data = {
+          status: 'subscribed',
+          orderId: receiptJSON.orderId,
+          productId: receiptJSON.productId,
+          purchaseTime: Moment(receiptJSON.purchaseTime).format('LL'),
+          expirationDate: expirationDate,
+        };
+
+        IAP.finishTransaction(purchase).then((resReceipt) => {
+          getData('user').then((resUser) => {
+            console.log(resReceipt);
+            Fire.database()
+              .ref(`users/${resUser.uid}`)
+              .update({subscription: data});
+          });
+        });
+      }
+    });
+
+    purchaseErrorSubscription = IAP.purchaseErrorListener((purchaseError) => {
+      showError(JSON.stringify(purchaseError));
+    });
+
+    return () => {
+      if (purchaseUpdateSubscription) {
+        purchaseUpdateSubscription.remove();
+        purchaseUpdateSubscription = null;
+      }
+      if (purchaseErrorSubscription) {
+        purchaseErrorSubscription.remove();
+        purchaseErrorSubscription = null;
+      }
+      IAP.endConnection();
+    };
+  }, []);
 
   const signOut = () => {
     setLoading(true);
@@ -51,21 +120,26 @@ const UserProfile = ({navigation}) => {
             <Image source={ILPaper} />
           </View>
           <View style={styles.subscribe}>
-            <Button
-              type="button-subscribe"
-              title="1 Bulan"
-              price="Rp. 15.000"
-            />
-            <Button
-              type="button-subscribe"
-              title="2 Bulan"
-              price="Rp. 25.000"
-            />
-            <Button
-              type="button-subscribe"
-              title="3 Bulan"
-              price="Rp. 30.000"
-            />
+            {subscriptions.map((item) => {
+              return (
+                <Button
+                  key={item.productId}
+                  type="button-subscribe"
+                  title={item.title}
+                  price={item.localizedPrice}
+                  onPress={() => {
+                    IAP.requestSubscription(item.productId).catch((error) =>
+                      showError(error.message),
+                    );
+                  }}
+                  // onPress={() => {
+                  //   Linking.openURL(
+                  //     `https://play.google.com/store/account/subscriptions?package=${item.packageName}&sku=${item.productId}`,
+                  //   );
+                  // }}
+                />
+              );
+            })}
           </View>
           <Button title="Logout" onPress={signOut} />
         </View>

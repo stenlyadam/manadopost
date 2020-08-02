@@ -1,9 +1,9 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {colors, fonts} from '../../../utils';
 import ButtonIcon from './ButtonIcon';
-import IconOnly from './IconOnly';
-import {fonts, colors} from '../../../utils';
 import ButtonIconText from './ButtonIconText';
+import IconOnly from './IconOnly';
 
 const Button = ({title, type, icon, onPress, price}) => {
   if (type === 'button-icon') {
@@ -18,10 +18,10 @@ const Button = ({title, type, icon, onPress, price}) => {
 
   if (type === 'button-subscribe') {
     return (
-      <View style={styles.subscribe}>
+      <TouchableOpacity onPress={onPress} style={styles.subscribe}>
         <Text style={styles.textSubcribe}>{title}</Text>
         <Text style={styles.textSubcribe}>{price}</Text>
-      </View>
+      </TouchableOpacity>
     );
   }
 

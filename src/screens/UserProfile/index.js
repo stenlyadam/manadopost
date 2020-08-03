@@ -2,31 +2,24 @@
 import auth from '@react-native-firebase/auth';
 import Moment from 'moment';
 import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, Text, View, YellowBox} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import IAP from 'react-native-iap';
 import {useDispatch} from 'react-redux';
-import {ILPaper, ILNullPhotoPNG} from '../../assets';
+import {ILPaper} from '../../assets';
 import {Button, Loading, Profile} from '../../components';
 import {Fire} from '../../config';
 import {
   colors,
   fonts,
   getData,
+  getProductTitle,
   showError,
   storeData,
-  getProductTitle,
 } from '../../utils';
 
 const UserProfile = ({navigation}) => {
-  YellowBox.disableYellowBox = true;
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-  const [setProfile] = useState({
-    fullName: '',
-    email: '',
-    photo: ILNullPhotoPNG,
-    subscription: {},
-  });
 
   // const subscriptionIds = [
   //   'paket_3_tahunan',
@@ -42,7 +35,6 @@ const UserProfile = ({navigation}) => {
   let purchaseErrorSubscription;
 
   useEffect(() => {
-    Moment.locale('en');
     // IAP.getSubscriptions(subscriptionIds).then((res) => setSubscriptions(res));
 
     (async function intialize() {
@@ -50,8 +42,6 @@ const UserProfile = ({navigation}) => {
         await IAP.initConnection();
         //Make all products consumable
         await IAP.consumeAllItemsAndroid();
-        const purchases = await IAP.getAvailablePurchases();
-        console.log(purchases);
       } catch (err) {}
     })();
 

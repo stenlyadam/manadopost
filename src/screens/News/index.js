@@ -2,7 +2,6 @@
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import IAP from 'react-native-iap';
 import {
   Ads,
   Button,
@@ -77,10 +76,6 @@ const News = ({navigation, route}) => {
 
   useEffect(() => {
     let mounted = true;
-    // IAP.getAvailablePurchases().then((purchase) => console.log(purchase));
-    // IAP.getPurchaseHistory().then((purchase) =>
-    //   console.log('purchase history, ', purchase),
-    // );
 
     setRefreshing(true);
     getAllFilteredData().then(([newsData, articlesData]) => {

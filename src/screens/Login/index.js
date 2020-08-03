@@ -7,7 +7,8 @@ import {useDispatch} from 'react-redux';
 import {ILLogoBlue} from '../../assets';
 import {Button, Gap, Loading} from '../../components';
 import {Fire, Google} from '../../config';
-import {colors, fonts, showError, storeData} from '../../utils';
+import {colors, fonts, showError, storeData, getData} from '../../utils';
+import Moment from 'moment';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const Login = ({navigation}) => {
     const error = {
       message: '',
     };
+
     if (result.isCancelled) {
       error.message = 'Login cancelled';
       throw error;
@@ -108,6 +110,8 @@ const Login = ({navigation}) => {
         } else {
           //Get user data and Convert object to array
           const oldUser = Object.values(user.val());
+          //Check expire date
+          checkExpireDate(oldUser[0]);
           //Store in async storage
           storeData('user', oldUser[0]);
         }
@@ -119,6 +123,32 @@ const Login = ({navigation}) => {
         setLoading(false);
         showError('Error');
       });
+  };
+
+  const checkExpireDate = (user) => {
+    const expireDate = user.subscription.expireDate;
+    const now = Moment().format('LLL');
+
+    const data = {
+      isSubscribed: false,
+      orderId: '',
+      productId: '',
+      purchaseDate: '',
+      expireDate: '',
+    };
+
+    if (now > expireDate) {
+      getData('user').then((resUser) => {
+        const dataUser = resUser;
+        dataUser.subscription = data;
+        //Save to firebase
+        Fire.database()
+          .ref(`users/${resUser.uid}`)
+          .update({subscription: data});
+        //Store data with subscription in local storage
+        storeData('user', dataUser);
+      });
+    }
   };
 
   return (

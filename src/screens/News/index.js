@@ -38,7 +38,13 @@ const News = ({navigation, route}) => {
   };
 
   const getNews = async (newsCategory) => {
-    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=100&categories=${newsCategory}`;
+    let url;
+    if (newsCategory === 70) {
+      url = 'https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=100';
+    } else {
+      url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=100&categories=${newsCategory}`;
+    }
+
     const response = await Axios.get(url);
     return response.data;
   };
@@ -176,6 +182,7 @@ const News = ({navigation, route}) => {
                   title={item.title.rendered}
                   date={formatDate(item.date)}
                   ads={data.ads}
+                  category={item.categories[0]}
                   onPress={() => navigation.navigate('Article', data)}
                 />
               );

@@ -24,22 +24,28 @@ const Homepage = ({navigation, route}) => {
 
   const mergeNewsWithAds = (newsArray, adsArray) => {
     let count = 0;
+    console.log(adsArray.length);
     for (let i = 0; i < newsArray.length; i++) {
       if (i % 3 === 0) {
         //max ads 33
+        if (count === adsArray.length) {
+          break;
+        }
         newsArray.splice(i, 0, adsArray[count]);
         count++;
       }
     }
+
     //Remove undefined
     let filteredData = newsArray.filter((el) => {
       return el !== undefined;
     });
+
     return filteredData;
   };
 
   const getHeadlines = async (newsCategory) => {
-    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=50&categories=${newsCategory}`;
+    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=10&categories=${newsCategory}`;
     const response = await Axios.get(url);
     return response.data;
   };
@@ -84,7 +90,6 @@ const Homepage = ({navigation, route}) => {
 
   useEffect(() => {
     let mounted = true;
-
     setRefreshing(true);
     getAllFilteredData().then(([newsData, articlesData, headlinesData]) => {
       if (mounted) {
@@ -112,11 +117,10 @@ const Homepage = ({navigation, route}) => {
           }
         />
         <Menu navigation={navigation} />
-
-        <Title title={title} />
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
+        {!refreshing && <Title title="Berita Utama" />}
         <View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.headline}>
@@ -146,10 +150,11 @@ const Homepage = ({navigation, route}) => {
             </View>
           </ScrollView>
         </View>
+        {!refreshing && <Title title="Berita Terbaru" />}
         <View>
           {news.map((item, index) => {
             //Kondisi jika akan menampilkan iklan
-            if (index % 3 === 0) {
+            if (item.category) {
               return (
                 <Ads
                   key={item.id}

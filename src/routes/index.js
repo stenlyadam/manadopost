@@ -140,7 +140,7 @@ const DrawerRoutes = () => {
       <Drawer.Screen
         name="Minahasa"
         component={News}
-        initialParams={{category: 131, title: 'Minahasa Raya'}}
+        initialParams={{category: 30, title: 'Minahasa'}}
       />
       <Drawer.Screen
         name="MinahasaUtara"

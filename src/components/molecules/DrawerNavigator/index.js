@@ -33,9 +33,9 @@ const index = (props) => {
             icon={({color, size}) => (
               <Icon name="calendar-today" color={color} size={size} />
             )}
-            label="Berita Terbaru"
+            label="All Category"
             onPress={() => {
-              props.navigation.navigate('BeritaTerbaru');
+              props.navigation.navigate('Beranda');
             }}
           />
           <DrawerItem
@@ -200,7 +200,7 @@ const index = (props) => {
                 <IconMP />
               </View>
             )}
-            label="Minahasa Raya"
+            label="Minahasa"
             onPress={() => {
               props.navigation.navigate('Minahasa');
             }}

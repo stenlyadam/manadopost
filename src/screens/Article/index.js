@@ -18,6 +18,7 @@ const Article = ({route, navigation}) => {
       showError('Oops, sepertinya anda tidak membagikan artikel ini'),
     );
   };
+  console.log(ads);
 
   return (
     <View style={styles.screen}>
@@ -50,7 +51,7 @@ const Article = ({route, navigation}) => {
           <View style={styles.adsWrapper}>
             {ads &&
               ads.map((item, index) => {
-                if (index > 0) {
+                if (index > 1) {
                   return (
                     <Ads
                       key={item.id}

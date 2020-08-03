@@ -99,7 +99,7 @@ export const getCategoryName = (categoryId) => {
       categoryName = 'Internasional';
       break;
     case 131:
-      categoryName = 'Minahasa Raya';
+      categoryName = 'Minahasa';
       break;
   }
   return categoryName;

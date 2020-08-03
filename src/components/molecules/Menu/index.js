@@ -11,15 +11,15 @@ const index = ({navigation}) => {
           title="Beranda"
           onPress={() => navigation.navigate('Beranda')}
         />
-        <Button
-          title="Berita Terbaru"
-          onPress={() => navigation.navigate('BeritaTerbaru')}
-        />
         <Button title="Ekbis" onPress={() => navigation.navigate('Ekbis')} />
         <Button title="Polbub" onPress={() => navigation.navigate('Polbub')} />
         <Button
           title="KumKrim"
           onPress={() => navigation.navigate('HukumKriminal')}
+        />
+        <Button
+          title="Kapol"
+          onPress={() => navigation.navigate('Kawanuapolis')}
         />
       </ScrollView>
     </View>

@@ -14,6 +14,7 @@ import TermAndCondition from './TermAndCondition';
 import Search from './Search';
 import ChooseLocation from './ChooseLocation';
 import Explore360 from './Explore360';
+import Homepage from './Homepage';
 
 export {
   Splash,
@@ -32,4 +33,5 @@ export {
   Search,
   ChooseLocation,
   Explore360,
+  Homepage,
 };

@@ -200,7 +200,7 @@ const index = (props) => {
                 <IconMP />
               </View>
             )}
-            label="Minahasa"
+            label="Minahasa Raya"
             onPress={() => {
               props.navigation.navigate('Minahasa');
             }}

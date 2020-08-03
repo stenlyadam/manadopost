@@ -10,6 +10,7 @@ import Title from './Title';
 import Loading from './Loading';
 import CategoryCard from './CategoryCard';
 import LocationCard from './LocationCard';
+import Menu from './Menu';
 
 export {
   Header,
@@ -24,4 +25,5 @@ export {
   Loading,
   CategoryCard,
   LocationCard,
+  Menu,
 };

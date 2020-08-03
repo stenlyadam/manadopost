@@ -2,16 +2,25 @@
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import {Ads, Header, Loading, Menu, NewsItem, Title} from '../../components';
+import {
+  Ads,
+  Header,
+  Headline,
+  Loading,
+  Menu,
+  NewsItem,
+  Title,
+} from '../../components';
 import Fire from '../../config/Fire';
 import {colors, fonts, formatDate, getData, storeData} from '../../utils';
 
-const News = ({navigation, route}) => {
+const Homepage = ({navigation, route}) => {
   const [news, setNews] = useState([]);
+  const [headlines, setHeadlines] = useState([]);
   const [articleAds, setArticleAds] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
-  const {category, title = 'Berita Terbaru'} = route.params;
+  const {category, title = 'Beranda'} = route.params;
 
   const mergeNewsWithAds = (newsArray, adsArray) => {
     let count = 0;
@@ -29,8 +38,14 @@ const News = ({navigation, route}) => {
     return filteredData;
   };
 
-  const getNews = async (newsCategory) => {
-    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=100&categories=${newsCategory}`;
+  const getHeadlines = async (newsCategory) => {
+    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=50&categories=${newsCategory}`;
+    const response = await Axios.get(url);
+    return response.data;
+  };
+
+  const getNews = async () => {
+    let url = 'https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=100';
     const response = await Axios.get(url);
     return response.data;
   };
@@ -58,23 +73,25 @@ const News = ({navigation, route}) => {
   };
 
   const getAllFilteredData = async () => {
-    const resNews = await getNews(category);
+    const resHeadlines = await getHeadlines(category);
+    const resNews = await getNews();
     const resAds = await getAds();
     const mergedData = mergeNewsWithAds(resNews, resAds);
     const resArticle = await getArticleAds();
     storeData(`news ${title}`, mergedData);
-    return [mergedData, resArticle];
+    return [mergedData, resArticle, resHeadlines];
   };
 
   useEffect(() => {
     let mounted = true;
 
     setRefreshing(true);
-    getAllFilteredData().then(([newsData, articlesData]) => {
+    getAllFilteredData().then(([newsData, articlesData, headlinesData]) => {
       if (mounted) {
         getData(`news ${title}`).then((localStorage) => {
           setNews(localStorage);
           setArticleAds(articlesData);
+          setHeadlines(headlinesData);
           setRefreshing(false);
         });
       }
@@ -95,11 +112,41 @@ const News = ({navigation, route}) => {
           }
         />
         <Menu navigation={navigation} />
+
         <Title title={title} />
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.content}>
+        <View>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <View style={styles.headline}>
+              {headlines.map((item) => {
+                const data = {
+                  image: item.jetpack_featured_media_url,
+                  title: item.title.rendered,
+                  date: item.date,
+                  desc: item.excerpt.rendered,
+                  content: item.content.rendered,
+                  related: item['jetpack-related-posts'],
+                  link: item.link,
+                  ads: articleAds,
+                };
+                return (
+                  <Headline
+                    key={item.id}
+                    image={{uri: data.image}}
+                    title={data.title}
+                    date={formatDate(data.date)}
+                    desc={data.desc}
+                    category={item.categories[0]}
+                    onPress={() => navigation.navigate('Article', data)}
+                  />
+                );
+              })}
+            </View>
+          </ScrollView>
+        </View>
+        <View>
           {news.map((item, index) => {
             //Kondisi jika akan menampilkan iklan
             if (index % 3 === 0) {
@@ -130,6 +177,7 @@ const News = ({navigation, route}) => {
                   title={item.title.rendered}
                   date={formatDate(item.date)}
                   ads={data.ads}
+                  category={item.categories[0]}
                   onPress={() => navigation.navigate('Article', data)}
                 />
               );
@@ -142,7 +190,7 @@ const News = ({navigation, route}) => {
   );
 };
 
-export default News;
+export default Homepage;
 
 const styles = StyleSheet.create({
   screens: {
@@ -169,5 +217,8 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 16,
     fontFamily: fonts.primary[600],
+  },
+  headline: {
+    flexDirection: 'row',
   },
 });

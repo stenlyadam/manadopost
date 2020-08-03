@@ -23,6 +23,7 @@ import {
   Search,
   Explore360,
   ChooseLocation,
+  Homepage,
 } from '../screens';
 import {colors} from '../utils';
 
@@ -56,6 +57,11 @@ const styles = StyleSheet.create({
 const DrawerRoutes = () => {
   return (
     <Drawer.Navigator drawerContent={(props) => <DrawerNavigator {...props} />}>
+      <Drawer.Screen
+        name="Beranda"
+        component={Homepage}
+        initialParams={{category: 129}}
+      />
       <Drawer.Screen
         name="BeritaTerbaru"
         component={News}
@@ -134,7 +140,7 @@ const DrawerRoutes = () => {
       <Drawer.Screen
         name="Minahasa"
         component={News}
-        initialParams={{category: 30, title: 'Minahasa'}}
+        initialParams={{category: 131, title: 'Minahasa Raya'}}
       />
       <Drawer.Screen
         name="MinahasaUtara"

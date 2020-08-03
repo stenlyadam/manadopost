@@ -9,7 +9,7 @@ export const getCategoryName = (categoryId) => {
       categoryName = 'Berita Utama';
       break;
     case 30:
-      categoryName = 'Minahasa Raya';
+      categoryName = 'Minahasa';
       break;
     case 31:
       categoryName = 'Minahasa Utara';
@@ -97,6 +97,9 @@ export const getCategoryName = (categoryId) => {
       break;
     case 133:
       categoryName = 'Internasional';
+      break;
+    case 131:
+      categoryName = 'Minahasa Raya';
       break;
   }
   return categoryName;

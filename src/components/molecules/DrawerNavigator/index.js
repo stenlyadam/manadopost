@@ -303,17 +303,6 @@ const index = (props) => {
                 <IconMP />
               </View>
             )}
-            label="Nusa Utara"
-            onPress={() => {
-              props.navigation.navigate('NusaUtara');
-            }}
-          />
-          <DrawerItem
-            icon={() => (
-              <View style={styles.icon}>
-                <IconMP />
-              </View>
-            )}
             label="Sangihe"
             onPress={() => {
               props.navigation.navigate('Sangihe');
@@ -339,6 +328,17 @@ const index = (props) => {
             label="Talaud"
             onPress={() => {
               props.navigation.navigate('Talaud');
+            }}
+          />
+          <DrawerItem
+            icon={() => (
+              <View style={styles.icon}>
+                <IconMP />
+              </View>
+            )}
+            label="About"
+            onPress={() => {
+              props.navigation.navigate('About');
             }}
           />
         </View>

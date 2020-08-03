@@ -15,6 +15,7 @@ import Search from './Search';
 import ChooseLocation from './ChooseLocation';
 import Explore360 from './Explore360';
 import Homepage from './Homepage';
+import About from './About';
 
 export {
   Splash,
@@ -34,4 +35,5 @@ export {
   ChooseLocation,
   Explore360,
   Homepage,
+  About,
 };

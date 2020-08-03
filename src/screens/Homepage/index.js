@@ -205,13 +205,6 @@ const styles = StyleSheet.create({
   headerWrapper: {
     backgroundColor: colors.secondary,
   },
-  menu: {
-    backgroundColor: colors.primary,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 51,
-  },
   title: {
     backgroundColor: colors.tertiary,
     paddingLeft: 12,

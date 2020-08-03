@@ -18,7 +18,6 @@ const Article = ({route, navigation}) => {
       showError('Oops, sepertinya anda tidak membagikan artikel ini'),
     );
   };
-  console.log(ads);
 
   return (
     <View style={styles.screen}>
@@ -51,7 +50,7 @@ const Article = ({route, navigation}) => {
           <View style={styles.adsWrapper}>
             {ads &&
               ads.map((item, index) => {
-                if (index > 1) {
+                if (index > 0) {
                   return (
                     <Ads
                       key={item.id}
@@ -94,6 +93,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary.normal,
     fontSize: 14,
     color: colors.text.secondary,
+    paddingBottom: 5,
   },
   image: {
     width: '100%',

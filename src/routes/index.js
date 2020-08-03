@@ -24,6 +24,7 @@ import {
   Explore360,
   ChooseLocation,
   Homepage,
+  About,
 } from '../screens';
 import {colors} from '../utils';
 
@@ -193,11 +194,6 @@ const DrawerRoutes = () => {
         initialParams={{category: 59, title: 'Kotamobagu'}}
       />
       <Drawer.Screen
-        name="NusaUtara"
-        component={News}
-        initialParams={{category: 60, title: 'Nusa Utara'}}
-      />
-      <Drawer.Screen
         name="Sangihe"
         component={News}
         initialParams={{category: 61, title: 'Sangihe'}}
@@ -299,6 +295,7 @@ const Routes = () => {
         component={ChooseLocation}
         options={headerConf}
       />
+      <Stack.Screen name="About" component={About} options={headerConf} />
     </Stack.Navigator>
   );
 };

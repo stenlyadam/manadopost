@@ -21,7 +21,7 @@ const About = ({navigation}) => {
             Jl. Babe Palar No. 62 Wanea - Manado
           </Text>
           <Text style={styles.address}>Tlp : (0431) 855-558, 855-559</Text>
-          <Text style={styles.address}>Hp/WA : 081143400450</Text>
+          <Text style={styles.address}>Hp/WA : 081340747101</Text>
           <Text style={styles.address}>
             Email : redaksimanadopost@gmail.com
           </Text>

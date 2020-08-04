@@ -1,16 +1,9 @@
 import React from 'react';
-import {
-  Dimensions,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {WebView} from 'react-native-webview';
-import {Title, Gap} from '../../components';
-import {colors, fonts} from '../../utils';
 import {ILGoogleMap} from '../../assets';
+import {Gap, Title} from '../../components';
+import {colors, fonts} from '../../utils';
 
 const Explore360 = ({route}) => {
   const {title, data, category} = route.params;
@@ -21,14 +14,15 @@ const Explore360 = ({route}) => {
   return (
     <View style={styles.screen}>
       <Title title={title} />
+      <View style={styles.webViewWrapper}>
+        <WebView
+          source={{
+            uri: location.link,
+          }}
+        />
+      </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
-          <WebView
-            source={{
-              uri: location.link,
-            }}
-            style={{height: Dimensions.get('window').height}}
-          />
           <View style={styles.desc}>
             <Text style={styles.text}>{location.description}</Text>
             <Gap height={10} />
@@ -49,6 +43,9 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: colors.white,
+  },
+  webViewWrapper: {
+    height: 400,
   },
   content: {
     flex: 1,

@@ -24,7 +24,7 @@ const Homepage = ({navigation, route}) => {
 
   const mergeNewsWithAds = (newsArray, adsArray) => {
     let count = 0;
-    console.log(adsArray.length);
+
     for (let i = 0; i < newsArray.length; i++) {
       if (i % 3 === 0) {
         //max ads 33

@@ -7,12 +7,12 @@ import ILNullPhoto from './ILNullPhoto.svg';
 import ILPaper from './ILPaper.png';
 import ILNullPhotoGrey from './ILNullPhotoGrey.png';
 import ILNullPhotoPNG from './ILNullPhoto.png';
-import ILAerialView from './ILAerialView.svg';
-import ILRekreasi from './ILRekreasi.svg';
-import ILHotel from './ILHotel.svg';
-import ILShop from './ILShop.svg';
-import ILSport from './ILSport.svg';
-import ILBudaya from './ILBudaya.svg';
+import ILAerialView from './ILAerialView.png';
+import ILRekreasi from './ILRekreasi.png';
+import ILHotel from './ILHotel.png';
+import ILShop from './ILShop.png';
+import ILSport from './ILSport.png';
+import ILBudaya from './ILBudaya.png';
 import ILGoogleMap from './ILGoogleMap.png';
 
 export {

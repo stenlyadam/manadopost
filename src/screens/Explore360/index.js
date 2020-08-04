@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   webViewWrapper: {
-    height: 400,
+    height: '70%',
   },
   content: {
     flex: 1,

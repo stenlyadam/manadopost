@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
 import {
   ILAerialView,
   ILBudaya,
@@ -13,19 +13,19 @@ const index = ({title, type, onPress}) => {
   const Icon = () => {
     switch (type) {
       case 'aerial':
-        return <ILAerialView />;
+        return <Image source={ILAerialView} style={styles.image} />;
       case 'rekreasi':
-        return <ILRekreasi />;
+        return <Image source={ILRekreasi} style={styles.image} />;
       case 'hotel':
-        return <ILHotel />;
+        return <Image source={ILHotel} style={styles.image} />;
       case 'shop':
-        return <ILShop />;
+        return <Image source={ILShop} style={styles.image} />;
       case 'sport':
-        return <ILSport />;
+        return <Image source={ILSport} style={styles.image} />;
       case 'budaya':
-        return <ILBudaya />;
+        return <Image source={ILBudaya} style={styles.image} />;
       default:
-        return <ILAerialView />;
+        return <Image source={ILAerialView} style={styles.image} />;
     }
   };
 
@@ -74,5 +74,9 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.kawanua.aerial.text,
     paddingBottom: 20,
+  },
+  image: {
+    height: 100,
+    width: 100,
   },
 });

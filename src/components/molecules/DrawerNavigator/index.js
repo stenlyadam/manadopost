@@ -31,9 +31,9 @@ const index = (props) => {
         <View style={styles.drawerSection}>
           <DrawerItem
             icon={({color, size}) => (
-              <Icon name="calendar-today" color={color} size={size} />
+              <Icon name="home" color={color} size={size} />
             )}
-            label="All Category"
+            label="Beranda"
             onPress={() => {
               props.navigation.navigate('Beranda');
             }}

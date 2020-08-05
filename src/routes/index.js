@@ -7,24 +7,24 @@ import {ILLogoPNG} from '../assets';
 import {Button, DrawerNavigator} from '../components';
 import BottomNavigator from '../components/molecules/BottomNavigator';
 import {
+  About,
   Article,
+  ChooseLocation,
   Digital,
   EditProfile,
   EPaper,
+  Explore360,
+  Homepage,
   Kawanua360,
   Login,
   News,
   ReadMagazine,
   Register,
+  Search,
   Splash,
+  TermAndCondition,
   UserProfile,
   Video,
-  TermAndCondition,
-  Search,
-  Explore360,
-  ChooseLocation,
-  Homepage,
-  About,
 } from '../screens';
 import {colors} from '../utils';
 

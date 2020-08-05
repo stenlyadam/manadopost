@@ -6,3 +6,4 @@ export * from './localStorage';
 export * from './showMessage';
 export * from './getProductTitle';
 export * from './getCategoryName';
+export * from './rootNavigation';

@@ -9,6 +9,7 @@ import {Button, Gap, Loading} from '../../components';
 import {Fire, Google} from '../../config';
 import {colors, fonts, showError, storeData, getData} from '../../utils';
 import Moment from 'moment';
+import messaging from '@react-native-firebase/messaging';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -87,12 +88,18 @@ const Login = ({navigation}) => {
       });
   };
 
-  const saveUserData = (res) => {
+  const saveUserData = async (res) => {
+    //Get user Token for push notification
+    const authorizationStatus = await messaging().requestPermission();
+    console.log(authorizationStatus);
+    const userToken = await messaging().getToken();
+
     const newUser = {
       uid: res.user.uid,
       fullName: res.user.displayName,
       email: res.user.email,
       photo: res.user.photoURL,
+      token: userToken,
       subscription: {},
     };
     //Check if user exists

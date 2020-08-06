@@ -9,15 +9,36 @@ import messaging from '@react-native-firebase/messaging';
 import {showError, navigationRef, navigate} from './utils';
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import Axios from 'axios';
+
+const getArticle = async (post_id) => {
+  let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts/${post_id}`;
+  const response = await Axios.get(url);
+  return response.data;
+};
 
 PushNotification.configure({
+  // onRegister: function (token) {
+  //   console.log('TOKEN:', token);
+  // },
   // (required) Called when a remote is received or opened, or local notification is opened
   onNotification: (notification) => {
-    console.log('NOTIFICATION:', notification);
+    if (!notification.foreground) {
+      getArticle(notification.id).then((res) => {
+        const data = {
+          image: res.jetpack_featured_media_url,
+          title: res.title.rendered,
+          date: res.date,
+          desc: res.excerpt.rendered,
+          content: res.content.rendered,
+          related: res['jetpack-related-posts'],
+          link: res.link,
+          ads: [],
+        };
 
-    // process the notification
-    navigate('About');
-
+        navigate('Article', data);
+      });
+    }
     // (required) Called when a remote is received or opened, or local notification is opened
     notification.finish(PushNotificationIOS.FetchResult.NoData);
   },

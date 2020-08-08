@@ -125,8 +125,7 @@ const Homepage = ({navigation, route}) => {
         <Swiper
           style={styles.headlineWrapper}
           height={'60%'}
-          showsButtons={true}
-          autoplay>
+          showsButtons={true}>
           {headlines.map((item) => {
             const data = {
               image: item.jetpack_featured_media_url,
@@ -145,7 +144,6 @@ const Homepage = ({navigation, route}) => {
                   image={{uri: data.image}}
                   title={data.title}
                   date={formatDate(data.date)}
-                  category={item.categories[0]}
                   onPress={() => navigation.navigate('Article', data)}
                 />
               </View>

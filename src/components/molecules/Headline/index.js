@@ -11,10 +11,10 @@ const Headline = ({image, title, date, desc, category, onPress}) => {
         <Image source={image} style={styles.image} />
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.date}>{date}</Text>
-        {/* <View>
-        <Text style={styles.rubrik}>{getCategoryName(category)}</Text>
-      </View>
-      <WebView content={desc} /> */}
+        <View>
+          <Text style={styles.rubrik}>{getCategoryName(category)}</Text>
+        </View>
+        <WebView content={desc} />
       </TouchableOpacity>
     </View>
   );

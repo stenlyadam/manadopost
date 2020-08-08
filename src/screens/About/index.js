@@ -1,11 +1,18 @@
 import React from 'react';
-import {Linking, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Linking,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+} from 'react-native';
 import {
   IconFacebookRounded,
   IconInstagramRounded,
   IconWebsiteRounded,
   IconWhatsappRounded,
-  ILLogoBlue,
+  ILLogoBluePNG,
 } from '../../assets';
 import {Gap} from '../../components';
 import {colors, fonts} from '../../utils';
@@ -13,7 +20,7 @@ import {colors, fonts} from '../../utils';
 const About = ({navigation}) => {
   return (
     <View style={styles.screen}>
-      <ILLogoBlue style={styles.logo} />
+      <Image source={ILLogoBluePNG} style={styles.logo} />
       <View style={styles.content}>
         <View style={styles.addressWrapper}>
           <Text style={styles.building}>Gedung Graha Pena</Text>
@@ -76,7 +83,7 @@ const About = ({navigation}) => {
             onPress={() => {
               Linking.openURL('https://www.instagram.com/manado.post.id/');
             }}>
-            <IconInstagramRounded />
+            <Image source={IconInstagramRounded} style={styles.icon} />
           </TouchableOpacity>
           <Gap width={20} />
           <TouchableOpacity
@@ -137,6 +144,8 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginVertical: 30,
+    width: 225,
+    height: 25,
   },
   footer: {
     marginHorizontal: -30,
@@ -150,5 +159,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: fonts.primary.normal,
     fontSize: 16,
+  },
+  icon: {
+    height: 31,
+    width: 31,
   },
 });

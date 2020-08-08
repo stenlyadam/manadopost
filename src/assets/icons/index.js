@@ -23,7 +23,7 @@ import IconCalenderGrey from './ic-calender-grey.svg';
 import IconShare from './ic-share-white.svg';
 import IconMP from './ic-mp.svg';
 import IconFacebookRounded from './ic-facebook-rounded.svg';
-import IconInstagramRounded from './ic-instagram-rounded.svg';
+import IconInstagramRounded from './ic-instagram-rounded.png';
 import IconWhatsappRounded from './ic-whatsapp-rounded.svg';
 import IconWebsiteRounded from './ic-website-rounded.svg';
 

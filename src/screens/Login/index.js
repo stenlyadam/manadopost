@@ -1,10 +1,10 @@
 import auth from '@react-native-firebase/auth';
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Image} from 'react-native';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import {RadioButton} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
-import {ILLogoBlue} from '../../assets';
+import {ILLogoBluePNG} from '../../assets';
 import {Button, Gap, Loading} from '../../components';
 import {Fire, Google} from '../../config';
 import {colors, fonts, showError, storeData, getData} from '../../utils';
@@ -162,7 +162,7 @@ const Login = ({navigation}) => {
     <>
       <View style={styles.screen}>
         <View style={styles.logoWrapper}>
-          <ILLogoBlue style={styles.logo} />
+          <Image source={ILLogoBluePNG} style={styles.logo} />
         </View>
         <View style={styles.content}>
           <Text style={styles.text}>
@@ -258,5 +258,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  logo: {
+    marginVertical: 30,
+    width: 225,
+    height: 25,
   },
 });

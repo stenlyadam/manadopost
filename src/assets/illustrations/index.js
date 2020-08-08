@@ -1,6 +1,7 @@
 import ILLogo from './ILLogo.svg';
 import ILLogoPNG from './ILLogo.png';
 import ILLogoBlue from './ILLogoBlue.svg';
+import ILLogoBluePNG from './ILLogoBlue.png';
 import ILButtonFacebook from './ILButtonFacebook.svg';
 import ILButtonGoogle from './ILButtonGoogle.svg';
 import ILNullPhoto from './ILNullPhoto.svg';
@@ -32,4 +33,5 @@ export {
   ILSport,
   ILBudaya,
   ILGoogleMap,
+  ILLogoBluePNG,
 };

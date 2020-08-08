@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import messaging from '@react-native-firebase/messaging';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Image, StyleSheet} from 'react-native';
 import {ILLogoPNG} from '../assets';
 import {Button, DrawerNavigator} from '../components';
@@ -26,7 +28,7 @@ import {
   UserProfile,
   Video,
 } from '../screens';
-import {colors} from '../utils';
+import {colors, navigate} from '../utils';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -240,7 +242,32 @@ const MainApp = () => {
   );
 };
 
-const Routes = () => {
+const Routes = ({navigation}) => {
+  useEffect(() => {
+    console.log('navigation, ', navigation);
+    //Foreground
+    // const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+    //   console.log('A new FCM message arrived!', remoteMessage);
+    // });
+    messaging().onNotificationOpenedApp((remoteMessage) => {
+      // console.log(
+      //   'Notification caused app to open from background state:',
+      //   remoteMessage.notification,
+      // );
+      const data = {
+        image: remoteMessage.data.image,
+        title: remoteMessage.notification.title,
+        date: remoteMessage.data.date,
+        desc: remoteMessage.notification.body,
+        content: remoteMessage.data.content,
+        link: remoteMessage.data.link,
+        ads: [],
+      };
+      navigate('Article', data);
+    });
+
+    // return unsubscribe;
+  }, []);
   return (
     <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen

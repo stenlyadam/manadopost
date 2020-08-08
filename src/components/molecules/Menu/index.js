@@ -12,7 +12,7 @@ const index = ({navigation}) => {
           onPress={() => navigation.navigate('Beranda')}
         />
         <Button title="Ekbis" onPress={() => navigation.navigate('Ekbis')} />
-        <Button title="Polbub" onPress={() => navigation.navigate('Polbub')} />
+        <Button title="PolPub" onPress={() => navigation.navigate('Polbub')} />
         <Button
           title="KumKrim"
           onPress={() => navigation.navigate('HukumKriminal')}

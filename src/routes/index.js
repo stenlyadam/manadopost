@@ -244,7 +244,6 @@ const MainApp = () => {
 
 const Routes = ({navigation}) => {
   useEffect(() => {
-    console.log('navigation, ', navigation);
     //Foreground
     // const unsubscribe = messaging().onMessage(async (remoteMessage) => {
     //   console.log('A new FCM message arrived!', remoteMessage);

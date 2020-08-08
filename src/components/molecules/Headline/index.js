@@ -6,15 +6,17 @@ import {WebView} from '../../atoms';
 
 const Headline = ({image, title, date, desc, category, onPress}) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image source={image} style={styles.image} />
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.date}>{date}</Text>
-      <View>
+    <View style={styles.container}>
+      <TouchableOpacity onPress={onPress}>
+        <Image source={image} style={styles.image} />
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.date}>{date}</Text>
+        {/* <View>
         <Text style={styles.rubrik}>{getCategoryName(category)}</Text>
       </View>
-      <WebView content={desc} />
-    </TouchableOpacity>
+      <WebView content={desc} /> */}
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -24,9 +26,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
     padding: 10,
+    flex: 1,
   },
   image: {
-    width: 400,
     height: 217,
     borderRadius: 14,
   },

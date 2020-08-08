@@ -2,6 +2,7 @@
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
+import Swiper from 'react-native-swiper';
 import {
   Ads,
   Header,
@@ -121,36 +122,38 @@ const Homepage = ({navigation, route}) => {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         {!refreshing && <Title title="Berita Utama" />}
-        <View>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={styles.headline}>
-              {headlines.map((item) => {
-                const data = {
-                  image: item.jetpack_featured_media_url,
-                  title: item.title.rendered,
-                  date: item.date,
-                  desc: item.excerpt.rendered,
-                  content: item.content.rendered,
-                  related: item['jetpack-related-posts'],
-                  link: item.link,
-                  ads: articleAds,
-                };
-                return (
-                  <Headline
-                    key={item.id}
-                    image={{uri: data.image}}
-                    title={data.title}
-                    date={formatDate(data.date)}
-                    desc={data.desc}
-                    category={item.categories[0]}
-                    onPress={() => navigation.navigate('Article', data)}
-                  />
-                );
-              })}
-            </View>
-          </ScrollView>
-        </View>
-        {!refreshing && <Title title="Berita Terbaru" />}
+        <Swiper
+          style={styles.headlineWrapper}
+          height={'60%'}
+          showsButtons={true}
+          autoplay>
+          {headlines.map((item) => {
+            const data = {
+              image: item.jetpack_featured_media_url,
+              title: item.title.rendered,
+              date: item.date,
+              desc: item.excerpt.rendered,
+              content: item.content.rendered,
+              related: item['jetpack-related-posts'],
+              link: item.link,
+              ads: articleAds,
+            };
+            return (
+              <View>
+                <Headline
+                  key={item.id}
+                  image={{uri: data.image}}
+                  title={data.title}
+                  date={formatDate(data.date)}
+                  category={item.categories[0]}
+                  onPress={() => navigation.navigate('Article', data)}
+                />
+              </View>
+            );
+          })}
+        </Swiper>
+
+        {!refreshing && <Title title="Berita Terbaru" secondary />}
         <View>
           {news.map((item, index) => {
             //Kondisi jika akan menampilkan iklan
@@ -198,6 +201,10 @@ const Homepage = ({navigation, route}) => {
 export default Homepage;
 
 const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+  },
+
   screens: {
     backgroundColor: colors.white,
     flex: 1,

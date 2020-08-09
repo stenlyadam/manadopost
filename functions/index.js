@@ -43,19 +43,19 @@ exports.pushNotification = functions.https.onRequest(
     const res = await axios.get(url);
 
     const tokens = [
-      'c1ruMo_nTb2VnBJelXOaIX:APA91bGejLDaz0COHVohCzrlo023WwRuMhOm1i0LSL7pgFDe0aMrqKscneGBpa16pC1dxFHGH-LEaKEJ4cb0tHcce0py7Rnpcsx0GDjpqLALvwvCS8df-jJf2G9rvCF30Fn5ur4iT3Od',
+      'ftVuDNMOSjmusMjgzC2Jek:APA91bGDlzLJNFtDlgmhkwvxoZSj-LIqEVnudj3r9n6_P0Wtz6CRXY2lgrekAkMure2OYILH3Dn2b22Vg9ywzh7gyOF4ucsiiM78uB7FlkgZnPqLNTVUVMKggKyRJGY9_-nOCLN-eqLw',
     ];
 
     const payload = {
       notification: {
         title: res.data.title.rendered,
-        body: res.data.excerpt.rendered,
       },
       data: {
         id: `${res.data.id}`,
         image: res.data.jetpack_featured_media_url,
         date: `${res.data.date}`,
         content: `${res.data.content.rendered}`,
+        desc: res.data.excerpt.rendered,
         link: res.data.link,
       },
     };

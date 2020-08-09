@@ -13,7 +13,7 @@ import {
   Title,
 } from '../../components';
 import Fire from '../../config/Fire';
-import {colors, fonts, formatDate, getData, storeData} from '../../utils';
+import {colors, fonts, formatDate} from '../../utils';
 
 const Homepage = ({navigation, route}) => {
   const [news, setNews] = useState([]);
@@ -46,7 +46,7 @@ const Homepage = ({navigation, route}) => {
   };
 
   const getHeadlines = async (newsCategory) => {
-    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=10&categories=${newsCategory}`;
+    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=7&categories=${newsCategory}`;
     const response = await Axios.get(url);
     return response.data;
   };
@@ -85,7 +85,6 @@ const Homepage = ({navigation, route}) => {
     const resAds = await getAds();
     const mergedData = mergeNewsWithAds(resNews, resAds);
     const resArticle = await getArticleAds();
-    storeData(`news ${title}`, mergedData);
     return [mergedData, resArticle, resHeadlines];
   };
 
@@ -94,12 +93,10 @@ const Homepage = ({navigation, route}) => {
     setRefreshing(true);
     getAllFilteredData().then(([newsData, articlesData, headlinesData]) => {
       if (mounted) {
-        getData(`news ${title}`).then((localStorage) => {
-          setNews(localStorage);
-          setArticleAds(articlesData);
-          setHeadlines(headlinesData);
-          setRefreshing(false);
-        });
+        setNews(newsData);
+        setArticleAds(articlesData);
+        setHeadlines(headlinesData);
+        setRefreshing(false);
       }
     });
 
@@ -107,6 +104,16 @@ const Homepage = ({navigation, route}) => {
       mounted = false;
     };
   }, []);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    getAllFilteredData().then(([newsData, articlesData, headlinesData]) => {
+      setNews(newsData);
+      setArticleAds(articlesData);
+      setHeadlines(headlinesData);
+      setRefreshing(false);
+    });
+  };
 
   return (
     <View style={styles.screens}>
@@ -121,7 +128,9 @@ const Homepage = ({navigation, route}) => {
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        {!refreshing && <Title title="Berita Utama" />}
+        {!refreshing && (
+          <Title title="Berita Utama" refresh onPress={onRefresh} />
+        )}
         <Swiper
           style={styles.headlineWrapper}
           height={'60%'}
@@ -138,9 +147,8 @@ const Homepage = ({navigation, route}) => {
               ads: articleAds,
             };
             return (
-              <View>
+              <View key={item.id}>
                 <Headline
-                  key={item.id}
                   image={{uri: data.image}}
                   title={data.title}
                   date={formatDate(data.date)}
@@ -152,6 +160,7 @@ const Homepage = ({navigation, route}) => {
         </Swiper>
 
         {!refreshing && <Title title="Berita Terbaru" secondary />}
+
         <View>
           {news.map((item, index) => {
             //Kondisi jika akan menampilkan iklan

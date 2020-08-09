@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import messaging from '@react-native-firebase/messaging';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -242,7 +241,7 @@ const MainApp = () => {
   );
 };
 
-const Routes = ({navigation}) => {
+const Routes = () => {
   useEffect(() => {
     //Foreground
     // const unsubscribe = messaging().onMessage(async (remoteMessage) => {
@@ -251,13 +250,13 @@ const Routes = ({navigation}) => {
     messaging().onNotificationOpenedApp((remoteMessage) => {
       // console.log(
       //   'Notification caused app to open from background state:',
-      //   remoteMessage.notification,
+      //   remoteMessage,
       // );
       const data = {
         image: remoteMessage.data.image,
         title: remoteMessage.notification.title,
         date: remoteMessage.data.date,
-        desc: remoteMessage.notification.body,
+        desc: remoteMessage.data.desc,
         content: remoteMessage.data.content,
         link: remoteMessage.data.link,
         ads: [],
@@ -267,6 +266,7 @@ const Routes = ({navigation}) => {
 
     // return unsubscribe;
   }, []);
+
   return (
     <Stack.Navigator initialRouteName="Splash">
       <Stack.Screen

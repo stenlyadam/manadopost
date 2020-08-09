@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import {fonts, colors} from '../../../utils';
-import {IconCalenderGrey} from '../../../assets';
+import {IconCalenderGrey, IconRefresh} from '../../../assets';
 
-const index = ({title, search, onPress, secondary}) => {
+const index = ({title, search, onPress, secondary, refresh}) => {
   return (
     <View style={styles.container(secondary)}>
       <Text style={styles.titleText(secondary)}>{title}</Text>
@@ -16,6 +16,11 @@ const index = ({title, search, onPress, secondary}) => {
             <IconCalenderGrey />
           </TouchableOpacity>
         </View>
+      )}
+      {refresh && (
+        <TouchableOpacity onPress={onPress}>
+          <IconRefresh />
+        </TouchableOpacity>
       )}
     </View>
   );

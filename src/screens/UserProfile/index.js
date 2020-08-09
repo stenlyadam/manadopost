@@ -42,13 +42,14 @@ const UserProfile = ({navigation}) => {
         await IAP.initConnection();
         //Make all products consumable
         await IAP.consumeAllItemsAndroid();
+        const resProducts = await IAP.getProducts(productIds);
+        setProducts(resProducts);
       } catch (err) {}
     })();
-    setLoading(true);
-    IAP.getProducts(productIds).then((res) => {
-      setProducts(res);
-      setLoading(false);
-    });
+
+    // IAP.getProducts(productIds).then((res) => {
+    //   setProducts(res);
+    // });
 
     purchaseUpdateSubscription = IAP.purchaseUpdatedListener((purchase) => {
       const receipt = purchase.transactionReceipt;

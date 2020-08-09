@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import {Ads, Header, Loading, Menu, NewsItem, Title} from '../../components';
+import {FlatList, StyleSheet, View} from 'react-native';
+import {Ads, Header, Menu, NewsItem, Title} from '../../components';
 import Fire from '../../config/Fire';
 import {colors, fonts, formatDate, getData, storeData} from '../../utils';
 
@@ -85,6 +85,52 @@ const News = ({navigation, route}) => {
     };
   }, []);
 
+  const renderItem = ({item}) => {
+    if (item.category) {
+      return (
+        <Ads
+          key={item.id}
+          title={item.category}
+          image={{uri: item.image}}
+          type={item.type}
+        />
+      );
+    } else {
+      //Kondisi jika akan menampilkan berita
+      const data = {
+        image: item.jetpack_featured_media_url,
+        title: item.title.rendered,
+        date: item.date,
+        desc: item.excerpt.rendered,
+        content: item.content.rendered,
+        related: item['jetpack-related-posts'],
+        link: item.link,
+        ads: articleAds,
+      };
+      return (
+        <NewsItem
+          key={item.id}
+          image={{uri: item.jetpack_featured_media_url}}
+          title={item.title.rendered}
+          date={formatDate(item.date)}
+          ads={data.ads}
+          onPress={() => navigation.navigate('Article', data)}
+        />
+      );
+    }
+  };
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    getAllFilteredData().then(([newsData, articlesData]) => {
+      getData(`news ${title}`).then((localStorage) => {
+        setNews(localStorage);
+        setArticleAds(articlesData);
+        setRefreshing(false);
+      });
+    });
+  };
+
   return (
     <View style={styles.screens}>
       <View style={styles.headerWrapper}>
@@ -98,46 +144,14 @@ const News = ({navigation, route}) => {
         <Title title={title} />
       </View>
 
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={styles.content}>
-          {news.map((item, index) => {
-            //Kondisi jika akan menampilkan iklan
-            if (index % 3 === 0) {
-              return (
-                <Ads
-                  key={item.id}
-                  title={item.category}
-                  image={{uri: item.image}}
-                  type={item.type}
-                />
-              );
-            } else {
-              //Kondisi jika akan menampilkan berita
-              const data = {
-                image: item.jetpack_featured_media_url,
-                title: item.title.rendered,
-                date: item.date,
-                desc: item.excerpt.rendered,
-                content: item.content.rendered,
-                related: item['jetpack-related-posts'],
-                link: item.link,
-                ads: articleAds,
-              };
-              return (
-                <NewsItem
-                  key={item.id}
-                  image={{uri: item.jetpack_featured_media_url}}
-                  title={item.title.rendered}
-                  date={formatDate(item.date)}
-                  ads={data.ads}
-                  onPress={() => navigation.navigate('Article', data)}
-                />
-              );
-            }
-          })}
-        </View>
-      </ScrollView>
-      {refreshing && <Loading />}
+      <FlatList
+        data={news}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderItem}
+        showsVerticalScrollIndicator={false}
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+      />
     </View>
   );
 };

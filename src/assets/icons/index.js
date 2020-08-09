@@ -26,6 +26,7 @@ import IconFacebookRounded from './ic-facebook-rounded.svg';
 import IconInstagramRounded from './ic-instagram-rounded.png';
 import IconWhatsappRounded from './ic-whatsapp-rounded.svg';
 import IconWebsiteRounded from './ic-website-rounded.svg';
+import IconRefresh from './ic-refresh.svg';
 
 export {
   IconMenu,
@@ -56,4 +57,5 @@ export {
   IconInstagramRounded,
   IconWhatsappRounded,
   IconWebsiteRounded,
+  IconRefresh,
 };

@@ -3,10 +3,12 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {Header, MagazineCard, Title} from '../../components';
 import {Fire} from '../../config';
 import {colors} from '../../utils';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const Digital = ({route, navigation}) => {
   const {title} = route.params;
   const [magazine, setMagazine] = useState([]);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     Fire.database()
@@ -18,13 +20,33 @@ const Digital = ({route, navigation}) => {
         }
       });
   }, []);
+
+  const onChangeDate = (event, selectedDate) => {
+    console.log('event, ', event);
+    console.log('selected Date, ', selectedDate);
+    setShow(false);
+  };
+
+  const onPress = () => {
+    setShow(true);
+  };
+
   return (
     <View style={styles.screen}>
       <Header
         type="logo-profile"
         onPressUserProfile={() => navigation.navigate('UserProfile')}
       />
-      <Title title={title} />
+      <Title title={title} search onPress={onPress} />
+      {show && (
+        <DateTimePicker
+          value={new Date()}
+          mode="date"
+          display="default"
+          onChange={onChangeDate}
+        />
+      )}
+
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           {magazine.map((item) => (

@@ -4,13 +4,13 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {colors, fonts, getCategoryName} from '../../../utils';
 import {WebView} from '../../atoms';
 
-const Headline = ({image, title, date, desc, category, onPress}) => {
+const Headline = ({image, title, desc, category, onPress}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
         <Image source={image} style={styles.image} />
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.date}>{date}</Text>
+        {/* <Text style={styles.date}>{date}</Text> */}
         <View>
           <Text style={styles.rubrik}>{getCategoryName(category)}</Text>
         </View>

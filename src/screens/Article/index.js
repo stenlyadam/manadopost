@@ -3,10 +3,10 @@ import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Share from 'react-native-share';
 import {Ads, Header, WebView} from '../../components';
-import {colors, fonts, showError} from '../../utils';
+import {colors, fonts, showError, getCategoryName} from '../../utils';
 
 const Article = ({route, navigation}) => {
-  const {image, title, date, content, link, ads} = route.params;
+  const {image, title, date, content, link, ads, category} = route.params;
   const shareArticle = () => {
     const shareOptions = {
       title: title,
@@ -44,6 +44,7 @@ const Article = ({route, navigation}) => {
               })}
           </View>
           <Text style={styles.title}>{title}</Text>
+          <Text style={styles.rubrik}>{getCategoryName(category)}</Text>
           <Text style={styles.date}>{Moment(date).format('LLLL')}</Text>
           <Image source={{uri: image}} style={styles.image} />
           <WebView content={content} />
@@ -111,5 +112,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.text.primary,
     marginVertical: 5,
+  },
+  rubrik: {
+    color: colors.primary,
+    fontFamily: fonts.primary[600],
+    fontSize: 14,
   },
 });

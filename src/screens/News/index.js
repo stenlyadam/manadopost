@@ -110,6 +110,7 @@ const News = ({navigation, route}) => {
         content: item.content.rendered,
         related: item['jetpack-related-posts'],
         link: item.link,
+        category: item.categories[0],
         ads: articleAds,
       };
       return (

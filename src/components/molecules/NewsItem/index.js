@@ -2,13 +2,13 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {colors, fonts, getCategoryName} from '../../../utils';
 
-const NewsItem = ({image, title, date, category, onPress, type}) => {
+const NewsItem = ({image, title, category, onPress, type}) => {
   if (type === 'no-image') {
     return (
       <TouchableOpacity style={styles.container} onPress={onPress}>
         <View style={styles.content}>
           <Text style={styles.title}>{title}</Text>
-          <Text style={styles.date}>{date}</Text>
+          {/* <Text style={styles.date}>{date}</Text> */}
         </View>
       </TouchableOpacity>
     );
@@ -18,7 +18,7 @@ const NewsItem = ({image, title, date, category, onPress, type}) => {
       <Image source={image} style={styles.image} />
       <View style={styles.content}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.date}>{date}</Text>
+        {/* <Text style={styles.date}>{date}</Text> */}
         <View>
           <Text style={styles.rubrik}>{getCategoryName(category)}</Text>
         </View>

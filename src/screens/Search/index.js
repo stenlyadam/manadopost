@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Axios from 'axios';
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import {Searchbar} from 'react-native-paper';
 import {Loading, NewsItem, Title} from '../../components';
-import {colors, formatDate} from '../../utils';
+import {colors} from '../../utils';
 
 const index = ({navigation, route}) => {
   const {category, title} = route.params;
@@ -47,27 +47,30 @@ const index = ({navigation, route}) => {
           onChangeText={onChangeSearch}
           value={searchQuery}
         />
-        {filterdNews.map((item) => {
-          const data = {
-            image: item.jetpack_featured_media_url,
-            title: item.title.rendered,
-            date: item.date,
-            desc: item.excerpt.rendered,
-            content: item.content.rendered,
-            related: item['jetpack-related-posts'],
-            link: item.link,
-          };
-          return (
-            <NewsItem
-              type="no-image"
-              key={item.id}
-              image={{uri: item.jetpack_featured_media_url}}
-              title={item.title.rendered}
-              date={formatDate(item.date)}
-              onPress={() => navigation.navigate('Article', data)}
-            />
-          );
-        })}
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {filterdNews.map((item) => {
+            const data = {
+              image: item.jetpack_featured_media_url,
+              title: item.title.rendered,
+              date: item.date,
+              desc: item.excerpt.rendered,
+              content: item.content.rendered,
+              category: item.categories[0],
+              related: item['jetpack-related-posts'],
+              link: item.link,
+            };
+            return (
+              <NewsItem
+                type="no-image"
+                key={item.id}
+                image={{uri: item.jetpack_featured_media_url}}
+                title={item.title.rendered}
+                // date={formatDate(item.date)}
+                onPress={() => navigation.navigate('Article', data)}
+              />
+            );
+          })}
+        </ScrollView>
         {loading && <Loading />}
       </View>
     </>

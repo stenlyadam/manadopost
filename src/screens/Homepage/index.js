@@ -12,7 +12,7 @@ import {
   NewsItem,
   Title,
 } from '../../components';
-import {colors, fonts, formatDate} from '../../utils';
+import {colors, fonts} from '../../utils';
 
 const Homepage = ({navigation, route}) => {
   const [news, setNews] = useState([]);
@@ -148,6 +148,7 @@ const Homepage = ({navigation, route}) => {
               desc: item.excerpt.rendered,
               content: item.content.rendered,
               related: item['jetpack-related-posts'],
+              category: item.categories[0],
               link: item.link,
               ads: articleAds,
             };
@@ -156,7 +157,7 @@ const Homepage = ({navigation, route}) => {
                 <Headline
                   image={{uri: data.image}}
                   title={data.title}
-                  date={formatDate(data.date)}
+                  // date={formatDate(data.date)}
                   onPress={() => navigation.navigate('Article', data)}
                 />
               </View>
@@ -188,6 +189,7 @@ const Homepage = ({navigation, route}) => {
                 content: item.content.rendered,
                 related: item['jetpack-related-posts'],
                 link: item.link,
+                category: item.categories[0],
                 ads: articleAds,
               };
               return (
@@ -195,7 +197,7 @@ const Homepage = ({navigation, route}) => {
                   key={item.id}
                   image={{uri: item.jetpack_featured_media_url}}
                   title={item.title.rendered}
-                  date={formatDate(item.date)}
+                  // date={formatDate(item.date)}
                   ads={data.ads}
                   category={item.categories[0]}
                   onPress={() => navigation.navigate('Article', data)}

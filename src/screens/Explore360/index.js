@@ -8,12 +8,13 @@ import Share from 'react-native-share';
 
 const Explore360 = ({route, navigation}) => {
   const {title, data} = route.params;
-
+  const linkMP =
+    'https://play.google.com/store/apps/details?id=com.manadopost.manadopost';
   const shareLocation = () => {
     const shareOptions = {
       title: `${title} (${data.site_name})`,
       message: `${title} (${data.site_name})`,
-      url: data.link_360,
+      url: `${data.link_360}. Download aplikasi berita paling lengkap se-Sulut 🤩👉 ${linkMP}`,
     };
 
     Share.open(shareOptions).catch((error) =>

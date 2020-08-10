@@ -8,10 +8,12 @@ import {colors, fonts, showError, getCategoryName} from '../../utils';
 const Article = ({route, navigation}) => {
   const {image, title, date, content, link, ads, category} = route.params;
   const shareArticle = () => {
+    const linkMP =
+      'https://play.google.com/store/apps/details?id=com.manadopost.manadopost';
     const shareOptions = {
       title: title,
       message: title,
-      url: link,
+      url: `${link}. Download aplikasi berita paling lengkap se-Sulut 🤩👉 ${linkMP}`,
     };
 
     Share.open(shareOptions).catch((error) =>

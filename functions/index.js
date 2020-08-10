@@ -39,12 +39,9 @@ exports.pushNotification = functions.https.onRequest(
     // }
     // console.log('Notification not sent');
 
-    let url = 'https://manadopost.jawapos.com/wp-json/wp/v2/posts/10526';
+    const post = request.body.post;
+    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts/${post.ID}`;
     const res = await axios.get(url);
-
-    const tokens = [
-      'ftVuDNMOSjmusMjgzC2Jek:APA91bGDlzLJNFtDlgmhkwvxoZSj-LIqEVnudj3r9n6_P0Wtz6CRXY2lgrekAkMure2OYILH3Dn2b22Vg9ywzh7gyOF4ucsiiM78uB7FlkgZnPqLNTVUVMKggKyRJGY9_-nOCLN-eqLw',
-    ];
 
     const payload = {
       notification: {
@@ -60,7 +57,27 @@ exports.pushNotification = functions.https.onRequest(
       },
     };
 
-    await admin.messaging().sendToDevice(tokens, payload);
-    response.send('success');
+    // const tokens = [
+    //   'ftVuDNMOSjmusMjgzC2Jek:APA91bGDlzLJNFtDlgmhkwvxoZSj-LIqEVnudj3r9n6_P0Wtz6CRXY2lgrekAkMure2OYILH3Dn2b22Vg9ywzh7gyOF4ucsiiM78uB7FlkgZnPqLNTVUVMKggKyRJGY9_-nOCLN-eqLw',
+    // ];
+    const tokens = [];
+    const snapshot = await admin.database().ref('users/').once('value');
+    snapshot.forEach((childSnapshot) => {
+      let userToken = childSnapshot.val().token;
+      if (userToken) {
+        tokens.push(userToken);
+      }
+    });
+
+    const category = request.body.taxonomies.category;
+    let categoryArray;
+
+    categoryArray = Object.keys(category);
+    if (categoryArray[0] === 'berita-utama') {
+      await admin.messaging().sendToDevice(tokens, payload);
+      // response.send('success');
+      console.log('Notication sent');
+    }
+    console.log('Notification not sent');
   },
 );

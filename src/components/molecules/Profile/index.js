@@ -9,7 +9,6 @@ const index = ({onPress, viewOnly}) => {
     fullName: '',
     email: '',
     photo: ILNullPhotoPNG,
-    subscription: {},
   });
 
   useEffect(() => {
@@ -27,7 +26,7 @@ const index = ({onPress, viewOnly}) => {
         <View style={styles.profile}>
           <Text style={styles.name}>{profile.fullName}</Text>
           <Text style={styles.email}>{profile.email}</Text>
-          {profile.subscription.isSubscribed && (
+          {profile.subscription && (
             <>
               <Text style={styles.desc}>
                 Paket berlangganan :{' '}
@@ -38,7 +37,7 @@ const index = ({onPress, viewOnly}) => {
               </Text>
             </>
           )}
-          {!profile.subscription.isSubscribed && (
+          {!profile.subscription && (
             <>
               <Text style={styles.desc}>Paket berlangganan: TIDAK AKTIF</Text>
             </>

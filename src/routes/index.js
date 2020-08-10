@@ -244,9 +244,9 @@ const MainApp = () => {
 const Routes = () => {
   useEffect(() => {
     //Foreground
-    messaging().onMessage(async (remoteMessage) => {
-      console.log('A new FCM message arrived!', remoteMessage);
-    });
+    // messaging().onMessage(async (remoteMessage) => {
+    //   console.log('A new FCM message arrived!', remoteMessage);
+    // });
     messaging().onNotificationOpenedApp((remoteMessage) => {
       // console.log(
       //   'Notification caused app to open from background state:',

@@ -1,15 +1,15 @@
 import auth from '@react-native-firebase/auth';
+import messaging from '@react-native-firebase/messaging';
+import Moment from 'moment';
 import React, {useState} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import {RadioButton} from 'react-native-paper';
 import {useDispatch} from 'react-redux';
 import {ILLogoBluePNG} from '../../assets';
 import {Button, Gap, Loading} from '../../components';
 import {Fire, Google} from '../../config';
-import {colors, fonts, showError, storeData, getData} from '../../utils';
-import Moment from 'moment';
-import messaging from '@react-native-firebase/messaging';
+import {colors, fonts, getData, showError, storeData} from '../../utils';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -90,8 +90,7 @@ const Login = ({navigation}) => {
 
   const saveUserData = async (res) => {
     //Get user Token for push notification
-    const authorizationStatus = await messaging().requestPermission();
-    console.log(authorizationStatus);
+    await messaging().requestPermission();
     const userToken = await messaging().getToken();
 
     const newUser = {
@@ -100,8 +99,8 @@ const Login = ({navigation}) => {
       email: res.user.email,
       photo: res.user.photoURL,
       token: userToken,
-      subscription: {},
     };
+
     //Check if user exists
     Fire.database()
       .ref('users/')
@@ -111,23 +110,35 @@ const Login = ({navigation}) => {
       .then((user) => {
         //If Not Exist then add new user
         if (!user.val()) {
+          console.log('user not exist');
           Fire.database().ref(`users/${newUser.uid}/`).set(newUser);
           //Store in async storage
           storeData('user', newUser);
         } else {
+          console.log('user exist');
+          //Update token in case token is changed
+          Fire.database()
+            .ref(`users/${newUser.uid}/`)
+            .update({token: userToken});
+
           //Get user data and Convert object to array
           const oldUser = Object.values(user.val());
-          //Check expire date
-          checkExpireDate(oldUser[0]);
-          //Store in async storage
-          storeData('user', oldUser[0]);
+          //Check if subscribed user or not
+          if (oldUser[0].subscription) {
+            //Check expire date
+            checkExpireDate(oldUser[0]);
+          } else {
+            //Store data user in async storage
+            storeData('user', oldUser[0]);
+          }
         }
         dispatch({type: 'SET_LOGIN', value: true});
         setLoading(false);
         navigation.replace('MainApp');
       })
-      .catch(() => {
+      .catch((error) => {
         setLoading(false);
+        console.log('error, ', error);
         showError('Error');
       });
   };

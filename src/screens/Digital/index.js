@@ -3,8 +3,7 @@ import Axios from 'axios';
 import Moment from 'moment';
 import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
-import {useSelector} from 'react-redux';
-import {Header, MagazineCard, Notification, Title} from '../../components';
+import {Header, MagazineCard, Title} from '../../components';
 import {colors} from '../../utils';
 
 const Digital = ({route, navigation}) => {
@@ -12,7 +11,6 @@ const Digital = ({route, navigation}) => {
   const [show, setShow] = useState(false);
   const {title} = route.params;
   const [refreshing, setRefreshing] = useState(false);
-  const login = useSelector((state) => state.login);
 
   const getEPaper = async () => {
     let url = 'http://api.mpdigital.id/mp';
@@ -73,21 +71,6 @@ const Digital = ({route, navigation}) => {
       setEpaper(res);
     });
   }, []);
-
-  if (!login) {
-    return (
-      <View style={styles.screen}>
-        <Header
-          type="logo-profile"
-          onPressUserProfile={() => navigation.navigate('UserProfile')}
-        />
-        <Title title={title} />
-        <Notification
-          title={`Silahkan login terlebih dahulu untuk dapat mengakses menu ${title}`}
-        />
-      </View>
-    );
-  }
 
   return (
     <View style={styles.screen}>

@@ -21,35 +21,29 @@ const UserProfile = ({navigation}) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
-  // const subscriptionIds = [
-  //   'paket_3_tahunan',
-  //   'paket_1_bulanan',
-  //   'paket_2_enam_bulan',
-  // ];
-  const productIds = ['1_bulan', '6_bulan', '1_tahun'];
-
-  // const [subscriptions, setSubscriptions] = useState([]);
+  // const productIds = ['1_bulan', '6_bulan', '1_tahun'];
   const [products, setProducts] = useState([]);
 
   let purchaseUpdateSubscription;
   let purchaseErrorSubscription;
 
   useEffect(() => {
-    // IAP.getSubscriptions(subscriptionIds).then((res) => setSubscriptions(res));
+    // (async function intialize() {
+    //   try {
+    //     await IAP.initConnection();
+    //     //Make all products consumable
+    //     await IAP.consumeAllItemsAndroid();
+    //   } catch (err) {}
+    // })();
 
-    (async function intialize() {
-      try {
-        await IAP.initConnection();
-        //Make all products consumable
-        await IAP.consumeAllItemsAndroid();
-        const resProducts = await IAP.getProducts(productIds);
-        setProducts(resProducts);
-      } catch (err) {}
-    })();
-
-    // IAP.getProducts(productIds).then((res) => {
-    //   setProducts(res);
+    // IAP.getProducts(productIds).then((resProduct) => {
+    //   setProducts(resProduct);
     // });
+
+    //Get data product from local storage
+    getData('productAppStore').then((res) => {
+      setProducts(res);
+    });
 
     purchaseUpdateSubscription = IAP.purchaseUpdatedListener((purchase) => {
       const receipt = purchase.transactionReceipt;
@@ -57,14 +51,7 @@ const UserProfile = ({navigation}) => {
         const receiptJSON = JSON.parse(receipt);
         const dateReceipt = Moment(receiptJSON.purchaseTime);
         let expirationDate = dateReceipt;
-        //Subscription
-        // if (receiptJSON.productId === 'paket_1_bulanan') {
-        //   expirationDate = expirationDate.add(1, 'M').format('LL');
-        // } else if (receiptJSON.productId === 'paket_2_enam_bulan') {
-        //   expirationDate = expirationDate.add(6, 'M').format('LL');
-        // } else {
-        //   expirationDate = expirationDate.add(12, 'M').format('LL');
-        // }
+
         if (receiptJSON.productId === '1_bulan') {
           expirationDate = expirationDate.add(1, 'M').format('LLL');
         } else if (receiptJSON.productId === '6_bulan') {

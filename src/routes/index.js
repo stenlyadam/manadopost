@@ -314,7 +314,7 @@ const Routes = () => {
       <Stack.Screen
         name="Explore360"
         component={Explore360}
-        options={headerConf}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="ChooseLocation"

@@ -73,7 +73,7 @@ const Kawanua360 = ({route, navigation}) => {
             navigation.navigate('ChooseLocation', {
               title: title,
               subTitle: 'Olahraga & Dive',
-              category: 'Olahraga',
+              category: 'Dive',
             })
           }
         />

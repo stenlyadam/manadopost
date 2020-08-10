@@ -1,27 +1,28 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, {useState, useEffect} from 'react';
+import Axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {LocationCard, Title} from '../../components';
 import {colors, fonts} from '../../utils';
-import {Fire} from '../../config';
 
 const index = ({navigation, route}) => {
   const {title, subTitle, category} = route.params;
 
   const [location, setLocation] = useState([]);
 
+  const getLocation = async () => {
+    let url = 'http://api.mpdigital.id/kawanua360';
+    const response = await Axios.get(url);
+    let filteredData = response.data.filter((el) => {
+      return el.category === category;
+    });
+    return filteredData;
+  };
+
   useEffect(() => {
-    Fire.database()
-      .ref('kawanua360/')
-      .once('value')
-      .then((res) => {
-        if (res.val()) {
-          const data = res.val().filter((el) => {
-            return el.category === category;
-          });
-          setLocation(data);
-        }
-      });
+    getLocation().then((res) => {
+      setLocation(res);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

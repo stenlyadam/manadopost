@@ -2,33 +2,47 @@ import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {WebView} from 'react-native-webview';
 import {ILGoogleMap} from '../../assets';
-import {Gap, Title} from '../../components';
-import {colors, fonts} from '../../utils';
+import {Gap, Header} from '../../components';
+import {colors, fonts, showError} from '../../utils';
+import Share from 'react-native-share';
 
-const Explore360 = ({route}) => {
-  const {title, data, category} = route.params;
-  let location = data;
-  if (category === 'Aerial') {
-    location = data[0];
-  }
+const Explore360 = ({route, navigation}) => {
+  const {title, data} = route.params;
+
+  const shareLocation = () => {
+    const shareOptions = {
+      title: `${title} (${data.site_name})`,
+      message: `${title} (${data.site_name})`,
+      url: data.link_360,
+    };
+
+    Share.open(shareOptions).catch((error) =>
+      showError('Share lokasi dibatalkan'),
+    );
+  };
+
   return (
     <View style={styles.screen}>
-      <Title title={title} />
+      <Header
+        type="article"
+        onPressBack={() => navigation.goBack()}
+        onPressShare={shareLocation}
+      />
       <View style={styles.webViewWrapper}>
         <WebView
           source={{
-            uri: location.link,
+            uri: data.link_360,
           }}
         />
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <View style={styles.desc}>
-            <Text style={styles.text}>{location.description}</Text>
+            <Text style={styles.text}>{data.description}</Text>
             <Gap height={10} />
             <View style={styles.address}>
               <Image source={ILGoogleMap} style={styles.imageAddress} />
-              <Text style={styles.text}>{location.address}</Text>
+              <Text style={styles.text}>{data.address}</Text>
             </View>
           </View>
         </View>

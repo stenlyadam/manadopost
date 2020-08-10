@@ -15,7 +15,7 @@ const Article = ({route, navigation}) => {
     };
 
     Share.open(shareOptions).catch((error) =>
-      showError('Oops, sepertinya anda tidak membagikan artikel ini'),
+      showError('Share artikel dibatalkan'),
     );
   };
 

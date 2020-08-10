@@ -9,7 +9,7 @@ import Share from 'react-native-share';
 const Explore360 = ({route, navigation}) => {
   const {title, data} = route.params;
   const linkMP =
-    'https://play.google.com/store/apps/details?id=com.manadopost.manadopost';
+    'https://play.google.com/store/apps/details?id=com.mp.manadopost';
   const shareLocation = () => {
     const shareOptions = {
       title: `${title} (${data.site_name})`,

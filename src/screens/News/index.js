@@ -3,7 +3,6 @@ import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {Ads, Header, Menu, NewsItem, Title} from '../../components';
-import Fire from '../../config/Fire';
 import {colors, fonts, formatDate, getData, storeData} from '../../utils';
 
 const News = ({navigation, route}) => {
@@ -11,7 +10,7 @@ const News = ({navigation, route}) => {
   const [articleAds, setArticleAds] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
 
-  const {category, title = 'Berita Terbaru'} = route.params;
+  const {category, title = 'Beranda'} = route.params;
 
   const mergeNewsWithAds = (newsArray, adsArray) => {
     let count = 0;
@@ -36,25 +35,31 @@ const News = ({navigation, route}) => {
   };
 
   const getAds = async () => {
-    const data = await Fire.database().ref('ads/').once('value');
-    if (data.val()) {
-      let filteredAds = data.val().filter((el) => {
-        return el.category === title && !el.article;
+    let url = 'http://api.mpdigital.id/ads';
+    const response = await Axios.get(url);
+    if (response.data) {
+      let filteredAds = response.data.filter((el) => {
+        if (el.isActive === '1') {
+          return el.category === title && el.article === '0';
+        }
       });
       return filteredAds;
     }
-    return data.val();
+    return response.data;
   };
 
   const getArticleAds = async () => {
-    const data = await Fire.database().ref('ads/').once('value');
-    if (data.val()) {
-      let article = data.val().filter((el) => {
-        return el.category === title && el.article;
+    let url = 'http://api.mpdigital.id/ads';
+    const response = await Axios.get(url);
+    if (response.data) {
+      let filteredAds = response.data.filter((el) => {
+        if (el.isActive === '1') {
+          return el.category === title && el.article === '1';
+        }
       });
-      return article;
+      return filteredAds;
     }
-    return data.val();
+    return response.data;
   };
 
   const getAllFilteredData = async () => {

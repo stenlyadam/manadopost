@@ -12,7 +12,6 @@ import {
   NewsItem,
   Title,
 } from '../../components';
-import Fire from '../../config/Fire';
 import {colors, fonts, formatDate} from '../../utils';
 
 const Homepage = ({navigation, route}) => {
@@ -58,25 +57,31 @@ const Homepage = ({navigation, route}) => {
   };
 
   const getAds = async () => {
-    const data = await Fire.database().ref('ads/').once('value');
-    if (data.val()) {
-      let filteredAds = data.val().filter((el) => {
-        return el.category === title && !el.article;
+    let url = 'http://api.mpdigital.id/ads';
+    const response = await Axios.get(url);
+    if (response.data) {
+      let filteredAds = response.data.filter((el) => {
+        if (el.isActive === '1') {
+          return el.category === title && el.article === '0';
+        }
       });
       return filteredAds;
     }
-    return data.val();
+    return response.data;
   };
 
   const getArticleAds = async () => {
-    const data = await Fire.database().ref('ads/').once('value');
-    if (data.val()) {
-      let article = data.val().filter((el) => {
-        return el.category === title && el.article;
+    let url = 'http://api.mpdigital.id/ads';
+    const response = await Axios.get(url);
+    if (response.data) {
+      let filteredAds = response.data.filter((el) => {
+        if (el.isActive === '1') {
+          return el.category === title && el.article === '1';
+        }
       });
-      return article;
+      return filteredAds;
     }
-    return data.val();
+    return response.data;
   };
 
   const getAllFilteredData = async () => {

@@ -20,8 +20,11 @@ export const getCategoryName = (categoryId) => {
     case 51:
       categoryName = 'Minahasa Selatan';
       break;
-    case 53:
+    case 52:
       categoryName = 'Minahasa Tengara';
+      break;
+    case 53:
+      categoryName = 'Tomohon';
       break;
     case 54:
       categoryName = 'Bolmong Raya';
@@ -29,7 +32,7 @@ export const getCategoryName = (categoryId) => {
     case 55:
       categoryName = 'Bolmong';
       break;
-    case 56:
+    case 1396:
       categoryName = 'Bolmut';
       break;
     case 57:
@@ -40,9 +43,6 @@ export const getCategoryName = (categoryId) => {
       break;
     case 59:
       categoryName = 'Kotamobagu';
-      break;
-    case 53:
-      categoryName = 'Minahasa Tengara';
       break;
     case 60:
       categoryName = 'Nusa Utara';

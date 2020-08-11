@@ -110,12 +110,10 @@ const Login = ({navigation}) => {
       .then((user) => {
         //If Not Exist then add new user
         if (!user.val()) {
-          console.log('user not exist');
           Fire.database().ref(`users/${newUser.uid}/`).set(newUser);
           //Store in async storage
           storeData('user', newUser);
         } else {
-          console.log('user exist');
           //Update token in case token is changed
           Fire.database()
             .ref(`users/${newUser.uid}/`)

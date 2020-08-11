@@ -177,7 +177,7 @@ const DrawerRoutes = () => {
       <Drawer.Screen
         name="Bolmut"
         component={News}
-        initialParams={{category: 56, title: 'Bolmut'}}
+        initialParams={{category: 1396, title: 'Bolmut'}}
       />
       <Drawer.Screen
         name="Boltim"

@@ -53,7 +53,11 @@ const Homepage = ({navigation, route}) => {
   const getNews = async () => {
     let url = 'https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=100';
     const response = await Axios.get(url);
-    return response.data;
+    let filteredNews = response.data.filter((el) => {
+      //Berita utama tidak ditampilkan di berita terbaru
+      return el.categories[0] !== 129;
+    });
+    return filteredNews;
   };
 
   const getAds = async () => {

@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary.normal,
     fontSize: 14,
     color: colors.text.secondary,
+    maxWidth: 200,
   },
   desc: {
     fontFamily: fonts.primary.normal,

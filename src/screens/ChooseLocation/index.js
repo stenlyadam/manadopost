@@ -6,7 +6,7 @@ import {LocationCard, Title} from '../../components';
 import {colors, fonts} from '../../utils';
 
 const index = ({navigation, route}) => {
-  const {title, subTitle, category} = route.params;
+  const {title, subTitle, category, city} = route.params;
 
   const [location, setLocation] = useState([]);
 
@@ -14,7 +14,7 @@ const index = ({navigation, route}) => {
     let url = 'http://api.mpdigital.id/kawanua360';
     const response = await Axios.get(url);
     let filteredData = response.data.filter((el) => {
-      return el.category === category;
+      return el.category === category && el.kota_kabupaten === city;
     });
     return filteredData;
   };
@@ -29,7 +29,7 @@ const index = ({navigation, route}) => {
   return (
     <View style={styles.screen}>
       <Title title={title} />
-      <Text style={styles.subTitle}> {subTitle}</Text>
+      <Text style={styles.subTitle}> {`${subTitle} ${city}`}</Text>
       <View style={styles.content}>
         {location.map((item) => {
           return (

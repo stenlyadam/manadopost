@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {CategoryCard, Header, Title, Notification} from '../../components';
 import {colors} from '../../utils';
 import {useSelector} from 'react-redux';
+import {Picker} from '@react-native-community/picker';
 
 const Kawanua360 = ({route, navigation}) => {
   const {title} = route.params;
+  const [city, setCity] = useState('Manado');
 
   const login = useSelector((state) => state.login);
 
@@ -32,6 +34,22 @@ const Kawanua360 = ({route, navigation}) => {
       />
       <Title title={title} />
 
+      <Picker
+        selectedValue={city}
+        style={styles.picker}
+        onValueChange={(itemValue) => setCity(itemValue)}>
+        <Picker.Item label="Manado" value="Manado" />
+        <Picker.Item label="Tomohon" value="Tomohon" />
+        <Picker.Item label="Bitung" value="Bitung" />
+        <Picker.Item label="Minahasa" value="Minahasa" />
+        <Picker.Item label="Minahasa Selatan" value="Minasaha Selatan" />
+        <Picker.Item label="Minahasa Utara" value="Minasaha Utara" />
+        <Picker.Item label="Minahasa Tenggara" value="Minasaha Tenggara" />
+        <Picker.Item label="Bolmong" value="Bolmong" />
+        <Picker.Item label="Kotamobagu" value="Kotamobagu" />
+        <Picker.Item label="Talaud" value="Talaud" />
+      </Picker>
+
       <View style={styles.content}>
         <CategoryCard
           title="Tampilan Udara"
@@ -41,6 +59,7 @@ const Kawanua360 = ({route, navigation}) => {
               title: title,
               subTitle: 'Aerial',
               category: 'Aerial',
+              city: city,
             })
           }
         />
@@ -52,6 +71,7 @@ const Kawanua360 = ({route, navigation}) => {
               title: title,
               subTitle: 'Hotel & Resort',
               category: 'Hotel',
+              city: city,
             })
           }
         />
@@ -63,6 +83,7 @@ const Kawanua360 = ({route, navigation}) => {
               title: title,
               subTitle: 'Rekreasi',
               category: 'Rekreasi',
+              city: city,
             })
           }
         />
@@ -74,6 +95,7 @@ const Kawanua360 = ({route, navigation}) => {
               title: title,
               subTitle: 'Olahraga & Dive',
               category: 'Dive',
+              city: city,
             })
           }
         />
@@ -85,6 +107,7 @@ const Kawanua360 = ({route, navigation}) => {
               title: title,
               subTitle: 'Budaya',
               category: 'Budaya',
+              city: city,
             })
           }
         />
@@ -96,6 +119,7 @@ const Kawanua360 = ({route, navigation}) => {
               title: title,
               subTitle: 'Belanja',
               category: 'Belanja',
+              city: city,
             })
           }
         />

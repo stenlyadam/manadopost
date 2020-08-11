@@ -1,6 +1,6 @@
 {
   "name": "manadopost",
-  "version": "0.0.1",
+  "version": "10.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -14,6 +14,7 @@
     "@react-native-community/datetimepicker": "^2.6.1",
     "@react-native-community/google-signin": "^4.0.3",
     "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-community/picker": "^1.6.6",
     "@react-native-community/push-notification-ios": "^1.4.0",
     "@react-native-firebase/app": "^8.2.0",
     "@react-native-firebase/auth": "^8.2.0",

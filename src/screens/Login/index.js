@@ -99,6 +99,13 @@ const Login = ({navigation}) => {
       email: res.user.email,
       photo: res.user.photoURL,
       token: userToken,
+      subscription: {
+        isSubscribed: true,
+        orderId: '',
+        productId: '3 hari percobaan',
+        purchaseDate: Moment().format('LLL'),
+        expireDate: Moment().add(3, 'days').format('LLL'),
+      },
     };
 
     //Check if user exists
@@ -121,14 +128,15 @@ const Login = ({navigation}) => {
 
           //Get user data and Convert object to array
           const oldUser = Object.values(user.val());
-          //Check if subscribed user or not
-          if (oldUser[0].subscription) {
-            //Check expire date
-            checkExpireDate(oldUser[0]);
-          } else {
-            //Store data user in async storage
-            storeData('user', oldUser[0]);
-          }
+          checkExpireDate(oldUser[0]);
+          // //Check if subscribed user or not
+          // if (oldUser[0].subscription) {
+          //   //Check expire date
+          //   checkExpireDate(oldUser[0]);
+          // } else {
+          //   //Store data user in async storage
+          //   storeData('user', oldUser[0]);
+          // }
         }
         dispatch({type: 'SET_LOGIN', value: true});
         setLoading(false);

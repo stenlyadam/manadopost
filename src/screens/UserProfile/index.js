@@ -28,13 +28,13 @@ const UserProfile = ({navigation}) => {
   let purchaseErrorSubscription;
 
   useEffect(() => {
-    // (async function intialize() {
-    //   try {
-    //     await IAP.initConnection();
-    //     //Make all products consumable
-    //     await IAP.consumeAllItemsAndroid();
-    //   } catch (err) {}
-    // })();
+    (async function intialize() {
+      try {
+        await IAP.initConnection();
+        //Make all products consumable
+        await IAP.consumeAllItemsAndroid();
+      } catch (err) {}
+    })();
 
     // IAP.getProducts(productIds).then((resProduct) => {
     //   setProducts(resProduct);

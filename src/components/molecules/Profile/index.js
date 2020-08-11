@@ -9,6 +9,7 @@ const index = ({onPress, viewOnly}) => {
     fullName: '',
     email: '',
     photo: ILNullPhotoPNG,
+    subscription: {},
   });
 
   useEffect(() => {
@@ -24,10 +25,11 @@ const index = ({onPress, viewOnly}) => {
       <View style={styles.profileWrapper}>
         <Image source={profile.photo} style={styles.avatar} />
         <View style={styles.profile}>
-          <Text style={styles.name}>{profile.fullName}</Text>
-          <Text style={styles.email}>{profile.email}</Text>
-          {profile.subscription && (
+          {profile.subscription.isSubscribed && (
             <>
+              <Text style={styles.name}>{profile.fullName}</Text>
+              <Text style={styles.email}>{profile.email}</Text>
+              <Text style={styles.premium}>PREMIUM MEMBER</Text>
               <Text style={styles.desc}>
                 Paket berlangganan :{' '}
                 {getProductTitle(profile.subscription.productId)}
@@ -37,9 +39,10 @@ const index = ({onPress, viewOnly}) => {
               </Text>
             </>
           )}
-          {!profile.subscription && (
+          {!profile.subscription.isSubscribed && (
             <>
-              <Text style={styles.desc}>Paket berlangganan: TIDAK AKTIF</Text>
+              <Text style={styles.email}>{profile.email}</Text>
+              <Text style={styles.desc}>Paket berlangganan: BELUM AKTIF</Text>
             </>
           )}
         </View>
@@ -90,6 +93,11 @@ const styles = StyleSheet.create({
   },
   desc: {
     fontFamily: fonts.primary.normal,
+    fontSize: 14,
+    color: colors.primary,
+  },
+  premium: {
+    fontFamily: fonts.primary[600],
     fontSize: 14,
     color: colors.primary,
   },

@@ -5,10 +5,11 @@ import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {Header, MagazineCard, Notification, Title} from '../../components';
-import {colors} from '../../utils';
+import {colors, getData} from '../../utils';
 
 const EPaper = ({route, navigation}) => {
   const [epaper, setEpaper] = useState([]);
+  const [isSubscribed, setIsSubscribed] = useState(true);
   const [show, setShow] = useState(false);
   const {title} = route.params;
   const [refreshing, setRefreshing] = useState(false);
@@ -23,7 +24,7 @@ const EPaper = ({route, navigation}) => {
     return filteredData;
   };
 
-  const onChangeDate = async (event, selectedDate) => {
+  const onChangeDate = async (selectedDate) => {
     getEPaper().then((res) => {
       let data = res.filter((el) => {
         return (
@@ -71,10 +72,13 @@ const EPaper = ({route, navigation}) => {
     getEPaper().then((res) => {
       res.reverse();
       setEpaper(res);
+      getData('user').then((resUser) => {
+        setIsSubscribed(resUser.subscription.isSubscribed);
+      });
     });
   }, []);
 
-  if (!login) {
+  if (!login || !isSubscribed) {
     return (
       <View style={styles.screen}>
         <Header
@@ -83,7 +87,7 @@ const EPaper = ({route, navigation}) => {
         />
         <Title title={title} />
         <Notification
-          title={`Silahkan login terlebih dahulu untuk dapat mengakses menu ${title}`}
+          title={`Silahkan login dan berlangganan terlebih dahulu untuk dapat mengakses menu ${title}`}
         />
       </View>
     );

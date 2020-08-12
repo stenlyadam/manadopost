@@ -2,8 +2,7 @@ import {createStore} from 'redux';
 
 const initialState = {
   login: false,
-  location: [],
-  subscription: {},
+  subscription: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,18 +12,13 @@ const reducer = (state = initialState, action) => {
       login: action.value,
     };
   }
-  if (action.type === 'SET_LOCATION') {
-    return {
-      ...state,
-      location: action.value,
-    };
-  }
   if (action.type === 'SET_SUBSCRIPTION') {
     return {
       ...state,
       subscription: action.value,
     };
   }
+
   return state;
 };
 

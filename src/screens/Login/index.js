@@ -139,6 +139,7 @@ const Login = ({navigation}) => {
           // }
         }
         dispatch({type: 'SET_LOGIN', value: true});
+        dispatch({type: 'SET_SUBSCRIPTION', value: true});
         setLoading(false);
         navigation.replace('MainApp');
       })

@@ -25,6 +25,7 @@ const mainColors = {
   purple2: '#7C0A94',
   brown1: '#FFEBCF',
   brown2: '#583B13',
+  yellow1: '#EDC700',
 };
 
 export const colors = {
@@ -83,5 +84,10 @@ export const colors = {
       background: mainColors.brown1,
       text: mainColors.brown2,
     },
+  },
+  covid: {
+    positif: mainColors.yellow1,
+    sembuh: mainColors.green1,
+    meninggal: mainColors.red2,
   },
 };

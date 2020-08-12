@@ -11,6 +11,7 @@ import Loading from './Loading';
 import CategoryCard from './CategoryCard';
 import LocationCard from './LocationCard';
 import Menu from './Menu';
+import CovidCard from './CovidCard';
 
 export {
   Header,
@@ -26,4 +27,5 @@ export {
   CategoryCard,
   LocationCard,
   Menu,
+  CovidCard,
 };

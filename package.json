@@ -46,6 +46,7 @@
     "react-native-swiper": "^1.6.0-rc.3",
     "react-native-vector-icons": "^7.0.0",
     "react-native-webview": "^10.3.2",
+    "react-number-format": "^4.4.1",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5"
   },

@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Axios from 'axios';
+import Moment from 'moment';
 import React, {useEffect, useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Swiper from 'react-native-swiper';
 import {
   Ads,
+  CovidCard,
   Header,
   Headline,
   Loading,
@@ -16,6 +18,13 @@ import {colors, fonts} from '../../utils';
 
 const Homepage = ({navigation, route}) => {
   const [news, setNews] = useState([]);
+  const [confirmed, setConfirmed] = useState(0);
+  const [recovered, setRecovered] = useState(0);
+  const [deaths, setDeaths] = useState(0);
+  const [confirmedSulut, setConfirmedSulut] = useState(0);
+  const [recoveredSulut, setRecoveredSulut] = useState(0);
+  const [deathsSulut, setDeathsSulut] = useState(0);
+  const [lastUpdateCovid, setLastUpdateCovid] = useState('');
   const [headlines, setHeadlines] = useState([]);
   const [articleAds, setArticleAds] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -42,6 +51,21 @@ const Homepage = ({navigation, route}) => {
     });
 
     return filteredData;
+  };
+
+  const getCovidDataSulut = async () => {
+    let url = 'https://indonesia-covid-19.mathdro.id/api/provinsi';
+    const response = await Axios.get(url);
+    let filteredData = response.data.data.filter((el) => {
+      return el.provinsi === 'Sulawesi Utara';
+    });
+    return filteredData;
+  };
+
+  const getCovidDataID = async () => {
+    let url = 'https://covid19.mathdro.id/api/countries/ID';
+    const response = await Axios.get(url);
+    return response.data;
   };
 
   const getHeadlines = async (newsCategory) => {
@@ -100,6 +124,17 @@ const Homepage = ({navigation, route}) => {
   useEffect(() => {
     let mounted = true;
     setRefreshing(true);
+    getCovidDataID().then((res) => {
+      setConfirmed(res.confirmed.value);
+      setRecovered(res.recovered.value);
+      setDeaths(res.deaths.value);
+      setLastUpdateCovid(res.lastUpdate);
+    });
+    getCovidDataSulut().then((res) => {
+      setConfirmedSulut(res[0].kasusPosi);
+      setRecoveredSulut(res[0].kasusSemb);
+      setDeathsSulut(res[0].kasusMeni);
+    });
     getAllFilteredData().then(([newsData, articlesData, headlinesData]) => {
       if (mounted) {
         setNews(newsData);
@@ -168,9 +203,54 @@ const Homepage = ({navigation, route}) => {
             );
           })}
         </Swiper>
-
+        {!refreshing && (
+          <View style={styles.containerCovid}>
+            <View style={styles.headerCovid}>
+              <Text style={styles.titleCovid}>
+                Update Data COVID-19 di Indonesia
+              </Text>
+              <Text style={styles.titleCovid}>
+                {Moment(lastUpdateCovid).format('LL')}
+              </Text>
+            </View>
+            <View style={styles.contentCovid}>
+              <CovidCard
+                category="Positif"
+                value={confirmed}
+                textColor={colors.covid.positif}
+              />
+              <CovidCard
+                category="Sembuh"
+                value={recovered}
+                textColor={colors.covid.sembuh}
+              />
+              <CovidCard
+                category="Meninggal"
+                value={deaths}
+                textColor={colors.covid.meninggal}
+              />
+            </View>
+            <Text style={styles.titleCovid}>Update Data COVID-19 di Sulut</Text>
+            <View style={styles.contentCovid}>
+              <CovidCard
+                value={confirmedSulut}
+                category="Positif"
+                textColor={colors.covid.positif}
+              />
+              <CovidCard
+                value={recoveredSulut}
+                category="Sembuh"
+                textColor={colors.covid.sembuh}
+              />
+              <CovidCard
+                value={deathsSulut}
+                category="Meninggal"
+                textColor={colors.covid.meninggal}
+              />
+            </View>
+          </View>
+        )}
         {!refreshing && <Title title="Berita Terbaru" secondary />}
-
         <View>
           {news.map((item, index) => {
             //Kondisi jika akan menampilkan iklan
@@ -243,5 +323,24 @@ const styles = StyleSheet.create({
   },
   headline: {
     flexDirection: 'row',
+  },
+  containerCovid: {
+    backgroundColor: colors.white,
+    paddingHorizontal: 10,
+    marginBottom: 15,
+  },
+  headerCovid: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  contentCovid: {
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'space-around',
+  },
+  titleCovid: {
+    paddingVertical: 10,
+    fontFamily: fonts.primary[600],
+    fontSize: 12,
   },
 });

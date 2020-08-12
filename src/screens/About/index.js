@@ -1,106 +1,109 @@
 import React from 'react';
 import {
+  Image,
   Linking,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Image,
 } from 'react-native';
 import {
   IconFacebookRounded,
   IconInstagramRounded,
   IconWebsiteRounded,
   IconWhatsappRounded,
-  ILLogoBluePNG,
 } from '../../assets';
-import {Gap} from '../../components';
+import {Gap, Header} from '../../components';
 import {colors, fonts} from '../../utils';
+import {useSelector} from 'react-redux';
 
 const About = ({navigation}) => {
+  const isSubscribe = useSelector((state) => state.subscription);
   return (
-    <View style={styles.screen}>
-      <Image source={ILLogoBluePNG} style={styles.logo} />
-      <View style={styles.content}>
-        <View style={styles.addressWrapper}>
-          <Text style={styles.building}>Gedung Graha Pena</Text>
-          <Text style={styles.address}>
-            Jl. Babe Palar No. 62 Wanea - Manado
-          </Text>
-          <Text style={styles.address}>Tlp : (0431) 855-558, 855-559</Text>
-          <Text style={styles.address}>Hp/WA : 081340747101</Text>
-          <Text style={styles.address}>
-            Email : redaksimanadopost@gmail.com
-          </Text>
-        </View>
-        <TouchableOpacity
-          onPress={() => {
-            Linking.openURL('https://manadopost.jawapos.com/redaksi/');
-          }}>
-          <Text style={styles.information}>Redaksi </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => {
-            Linking.openURL('https://manadopost.jawapos.com/tentang-kami/');
-          }}>
-          <Text style={styles.information}>Tentang Kami </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            Linking.openURL(
-              'https://manadopost.jawapos.com/pedoman-media-siber/',
-            );
-          }}>
-          <Text style={styles.information}>Pedoman Media Siber</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            Linking.openURL('https://manadopost.jawapos.com/privacy-policy/');
-          }}>
-          <Text style={styles.information}>Privacy Policy </Text>
-        </TouchableOpacity>
-        <Gap height={40} />
-        <View style={styles.contact}>
+    <>
+      <Header type="back-only" onPressBack={() => navigation.goBack()} />
+      <View style={styles.screen}>
+        <View style={styles.content}>
+          <View style={styles.addressWrapper}>
+            <Text style={styles.building}>Gedung Graha Pena</Text>
+            <Text style={styles.address}>
+              Jl. Babe Palar No. 62 Wanea - Manado
+            </Text>
+            <Text style={styles.address}>Tlp : (0431) 855-558, 855-559</Text>
+            <Text style={styles.address}>Hp/WA : 081340747101</Text>
+            <Text style={styles.address}>
+              Email : redaksimanadopost@gmail.com
+            </Text>
+          </View>
           <TouchableOpacity
             onPress={() => {
-              Linking.openURL('https://manadopost.jawapos.com/');
+              Linking.openURL('https://manadopost.jawapos.com/redaksi/');
             }}>
-            <IconWebsiteRounded />
+            <Text style={styles.information}>Redaksi </Text>
           </TouchableOpacity>
 
-          <Gap width={20} />
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL('https://manadopost.jawapos.com/tentang-kami/');
+            }}>
+            <Text style={styles.information}>Tentang Kami </Text>
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               Linking.openURL(
-                'https://api.whatsapp.com/send?phone=6281340747101&text=Haloo%20Admin%20Saya%20menghubungi%20dari%20App%20&source=&data=&app_absent=',
+                'https://manadopost.jawapos.com/pedoman-media-siber/',
               );
             }}>
-            <IconWhatsappRounded />
+            <Text style={styles.information}>Pedoman Media Siber</Text>
           </TouchableOpacity>
-          <Gap width={20} />
           <TouchableOpacity
             onPress={() => {
-              Linking.openURL('https://www.instagram.com/manado.post.id/');
+              Linking.openURL('https://manadopost.jawapos.com/privacy-policy/');
             }}>
-            <Image source={IconInstagramRounded} style={styles.icon} />
+            <Text style={styles.information}>Privacy Policy </Text>
           </TouchableOpacity>
-          <Gap width={20} />
-          <TouchableOpacity
-            onPress={() => {
-              Linking.openURL('https://www.facebook.com/Manadopostgrup');
-            }}>
-            <IconFacebookRounded />
-          </TouchableOpacity>
+          <Gap height={40} />
+          <View style={styles.contact}>
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL('https://manadopost.jawapos.com/');
+              }}>
+              <IconWebsiteRounded />
+            </TouchableOpacity>
+
+            <Gap width={20} />
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL(
+                  'https://api.whatsapp.com/send?phone=6281340747101&text=Haloo%20Admin%20Saya%20menghubungi%20dari%20App%20&source=&data=&app_absent=',
+                );
+              }}>
+              <IconWhatsappRounded />
+            </TouchableOpacity>
+            <Gap width={20} />
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL('https://www.instagram.com/manado.post.id/');
+              }}>
+              <Image source={IconInstagramRounded} style={styles.icon} />
+            </TouchableOpacity>
+            <Gap width={20} />
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL('https://www.facebook.com/Manadopostgrup');
+              }}>
+              <IconFacebookRounded />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.footer(isSubscribe)}>
+          <Text style={styles.footerText}>
+            Dapatkan berita gratis terupdate setiap hari di MP News
+          </Text>
         </View>
       </View>
-
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>
-          Dapatkan berita gratis terupdate setiap hari di MP News
-        </Text>
-      </View>
-    </View>
+    </>
   );
 };
 
@@ -147,13 +150,13 @@ const styles = StyleSheet.create({
     width: 225,
     height: 25,
   },
-  footer: {
+  footer: (isSubscribe) => ({
     marginHorizontal: -30,
-    backgroundColor: colors.primary,
+    backgroundColor: isSubscribe ? colors.black : colors.primary,
     height: 100,
     justifyContent: 'center',
     paddingHorizontal: 50,
-  },
+  }),
   footerText: {
     color: colors.white,
     textAlign: 'center',

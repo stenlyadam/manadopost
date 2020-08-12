@@ -3,7 +3,7 @@ import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {Searchbar} from 'react-native-paper';
-import {Loading, NewsItem, Title} from '../../components';
+import {Loading, NewsItem, Title, Header} from '../../components';
 import {colors} from '../../utils';
 
 const index = ({navigation, route}) => {
@@ -40,6 +40,7 @@ const index = ({navigation, route}) => {
 
   return (
     <>
+      <Header type="back-only" onPressBack={() => navigation.goBack()} />
       <View style={styles.screen}>
         <Title title={`Pencarian ${title}`} />
         <Searchbar

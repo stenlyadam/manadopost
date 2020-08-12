@@ -2,7 +2,7 @@
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {LocationCard, Title} from '../../components';
+import {LocationCard, Title, Header} from '../../components';
 import {colors, fonts} from '../../utils';
 
 const index = ({navigation, route}) => {
@@ -27,24 +27,27 @@ const index = ({navigation, route}) => {
   }, []);
 
   return (
-    <View style={styles.screen}>
-      <Title title={title} />
-      <Text style={styles.subTitle}> {`${subTitle} ${city}`}</Text>
-      <View style={styles.content}>
-        {location.map((item) => {
-          return (
-            <LocationCard
-              key={item.id}
-              title={item.site_name}
-              thumbnail={item.thumbnail}
-              onPress={() =>
-                navigation.navigate('Explore360', {title: title, data: item})
-              }
-            />
-          );
-        })}
+    <>
+      <Header type="back-only" onPressBack={() => navigation.goBack()} />
+      <View style={styles.screen}>
+        <Title title={title} />
+        <Text style={styles.subTitle}> {`${subTitle} ${city}`}</Text>
+        <View style={styles.content}>
+          {location.map((item) => {
+            return (
+              <LocationCard
+                key={item.id}
+                title={item.site_name}
+                thumbnail={item.thumbnail}
+                onPress={() =>
+                  navigation.navigate('Explore360', {title: title, data: item})
+                }
+              />
+            );
+          })}
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 

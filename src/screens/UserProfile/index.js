@@ -6,7 +6,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import IAP from 'react-native-iap';
 import {useDispatch} from 'react-redux';
 import {ILPaper} from '../../assets';
-import {Button, Loading, Profile} from '../../components';
+import {Button, Loading, Profile, Header} from '../../components';
 import {Fire} from '../../config';
 import {
   colors,
@@ -108,6 +108,7 @@ const UserProfile = ({navigation}) => {
       .then(() => {
         setLoading(false);
         dispatch({type: 'SET_LOGIN', value: false});
+        dispatch({type: 'SET_SUBSCRIPTION', value: false});
         navigation.replace('MainApp');
       })
       .catch((err) => {
@@ -118,6 +119,7 @@ const UserProfile = ({navigation}) => {
 
   return (
     <>
+      <Header type="back-only" onPressBack={() => navigation.goBack()} />
       <View style={styles.screen}>
         <Profile viewOnly />
         <Button

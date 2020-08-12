@@ -27,6 +27,11 @@ import IconInstagramRounded from './ic-instagram-rounded.png';
 import IconWhatsappRounded from './ic-whatsapp-rounded.svg';
 import IconWebsiteRounded from './ic-website-rounded.svg';
 import IconRefresh from './ic-refresh.svg';
+import IconNewsGrey from './ic-mp-news-grey.svg';
+import IconDigitalGrey from './ic-mp-digital-grey.svg';
+import IconKawanuaGrey from './ic-mp-kawanua-grey.svg';
+import IconVideoGrey from './ic-mp-video-grey.svg';
+import IconKoranGrey from './ic-mp-koran-grey.svg';
 
 export {
   IconMenu,
@@ -58,4 +63,9 @@ export {
   IconWhatsappRounded,
   IconWebsiteRounded,
   IconRefresh,
+  IconNewsGrey,
+  IconDigitalGrey,
+  IconKawanuaGrey,
+  IconVideoGrey,
+  IconKoranGrey,
 };

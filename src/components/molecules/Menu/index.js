@@ -2,10 +2,13 @@ import React from 'react';
 import {StyleSheet, ScrollView, View} from 'react-native';
 import {Button} from '../../atoms';
 import {colors} from '../../../utils';
+import {useSelector} from 'react-redux';
 
-const index = ({navigation}) => {
+const Menu = ({navigation}) => {
+  const isSubscribe = useSelector((state) => state.subscription);
+
   return (
-    <View style={styles.menu}>
+    <View style={styles.menu(isSubscribe)}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <Button
           title="Beranda"
@@ -26,14 +29,14 @@ const index = ({navigation}) => {
   );
 };
 
-export default index;
+export default Menu;
 
 const styles = StyleSheet.create({
-  menu: {
-    backgroundColor: colors.primary,
+  menu: (isSubscribe) => ({
+    backgroundColor: isSubscribe ? colors.black : colors.primary,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 51,
-  },
+  }),
 });

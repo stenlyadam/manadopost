@@ -1,35 +1,36 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {
-  IconDigital,
-  IconKawanua,
-  IconNews,
-  IconVideo,
-  IconNewsActive,
   IconDigitalActive,
+  IconDigitalGrey,
   IconKawanuaActive,
-  IconVideoActive,
+  IconKawanuaGrey,
   IconKoranActive,
-  IconKoran,
+  IconKoranGrey,
+  IconNews,
+  IconNewsActive,
+  IconNewsGrey,
+  IconVideoActive,
+  IconVideoGrey,
 } from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
 const TabItem = ({label, active, onPress, onLongPress}) => {
   const Icon = () => {
     if (label === 'MP News') {
-      return active ? <IconNewsActive /> : <IconNews />;
+      return active ? <IconNewsActive /> : <IconNewsGrey />;
     }
     if (label === 'MP Digital') {
-      return active ? <IconDigitalActive /> : <IconDigital />;
+      return active ? <IconDigitalActive /> : <IconDigitalGrey />;
     }
     if (label === 'MP 360') {
-      return active ? <IconKawanuaActive /> : <IconKawanua />;
+      return active ? <IconKawanuaActive /> : <IconKawanuaGrey />;
     }
     if (label === 'MP Video') {
-      return active ? <IconVideoActive /> : <IconVideo />;
+      return active ? <IconVideoActive /> : <IconVideoGrey />;
     }
     if (label === 'MP Koran') {
-      return active ? <IconKoranActive /> : <IconKoran />;
+      return active ? <IconKoranActive /> : <IconKoranGrey />;
     }
     return <IconNews />;
   };
@@ -54,6 +55,6 @@ const styles = StyleSheet.create({
   text: (active) => ({
     fontFamily: fonts.primary[600],
     fontSize: 12,
-    color: active ? colors.white : colors.text.tertiary,
+    color: active ? colors.white : colors.tertiary,
   }),
 });

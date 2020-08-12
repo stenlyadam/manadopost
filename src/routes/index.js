@@ -293,24 +293,28 @@ const Routes = () => {
       <Stack.Screen
         name="UserProfile"
         component={UserProfile}
-        options={headerConf}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="EditProfile"
         component={EditProfile}
-        options={headerConf}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="ReadMagazine"
         component={ReadMagazine}
-        options={headerConf}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="TermAndCondition"
         component={TermAndCondition}
         options={{headerShown: false}}
       />
-      <Stack.Screen name="Search" component={Search} options={headerConf} />
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="Explore360"
         component={Explore360}
@@ -319,9 +323,13 @@ const Routes = () => {
       <Stack.Screen
         name="ChooseLocation"
         component={ChooseLocation}
-        options={headerConf}
+        options={{headerShown: false}}
       />
-      <Stack.Screen name="About" component={About} options={headerConf} />
+      <Stack.Screen
+        name="About"
+        component={About}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import {ILNullPhotoPNG} from '../../assets';
-import {Button, Input} from '../../components';
+import {Button, Input, Header} from '../../components';
 import {colors, getData, storeData} from '../../utils';
 import {Fire} from '../../config';
 
@@ -46,24 +46,27 @@ const EditProfile = ({navigation}) => {
   };
 
   return (
-    <View style={styles.screen}>
-      <View style={styles.avatarWrapper}>
-        <Image source={profile.photoURI} style={styles.avatar} />
+    <>
+      <Header type="back-only" onPressBack={() => navigation.goBack()} />
+      <View style={styles.screen}>
+        <View style={styles.avatarWrapper}>
+          <Image source={profile.photoURI} style={styles.avatar} />
+        </View>
+        <Input
+          icon="account"
+          value={fullName}
+          onChangeText={(value) => setFullName(value)}
+        />
+        <Input
+          icon="handphone"
+          placeholder="08xxxxxxxx"
+          value={phoneNumber}
+          onChangeText={(value) => setPhoneNumber(value)}
+          keyboardType="phone-pad"
+        />
+        <Button title="Ubah" onPress={updateProfile} />
       </View>
-      <Input
-        icon="account"
-        value={fullName}
-        onChangeText={(value) => setFullName(value)}
-      />
-      <Input
-        icon="handphone"
-        placeholder="08xxxxxxxx"
-        value={phoneNumber}
-        onChangeText={(value) => setPhoneNumber(value)}
-        keyboardType="phone-pad"
-      />
-      <Button title="Ubah" onPress={updateProfile} />
-    </View>
+    </>
   );
 };
 

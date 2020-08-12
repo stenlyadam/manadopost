@@ -15,6 +15,7 @@ const Header = ({
   type,
 }) => {
   const login = useSelector((state) => state.login);
+  const isSubscribe = useSelector((state) => state.subscription);
   const [profile, setProfile] = useState({
     fullName: '',
     email: '',
@@ -48,8 +49,8 @@ const Header = ({
   }, []);
   if (type === 'logo-only') {
     return (
-      <View style={styles.container}>
-        <View style={styles.logoOnly}>
+      <View style={styles.container(isSubscribe)}>
+        <View style={styles.logoOnly(isSubscribe)}>
           <View style={styles.logoWrapper}>
             <Image source={ILLogoPNG} />
           </View>
@@ -59,8 +60,8 @@ const Header = ({
   }
   if (type === 'logo-profile') {
     return (
-      <View style={styles.container}>
-        <View style={styles.logoOnly}>
+      <View style={styles.container(isSubscribe)}>
+        <View style={styles.logoOnly(isSubscribe)}>
           <View style={styles.logoWrapper}>
             <Image source={ILLogoPNG} />
           </View>
@@ -71,8 +72,8 @@ const Header = ({
   }
   if (type === 'article') {
     return (
-      <View style={styles.container}>
-        <View style={styles.logo}>
+      <View style={styles.container(isSubscribe)}>
+        <View style={styles.logo(isSubscribe)}>
           <Button type="icon-only" icon="arrow-back" onPress={onPressBack} />
           <View style={styles.logoWrapper}>
             <Image source={ILLogoPNG} />
@@ -83,9 +84,25 @@ const Header = ({
       </View>
     );
   }
+
+  if (type === 'back-only') {
+    return (
+      <View style={styles.container(isSubscribe)}>
+        <View style={styles.logo(isSubscribe)}>
+          <Button type="icon-only" icon="arrow-back" onPress={onPressBack} />
+          <View style={styles.logoWrapper}>
+            <Image source={ILLogoPNG} />
+          </View>
+          <Button />
+        </View>
+        <Gap height={2} />
+      </View>
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <View style={styles.logo}>
+    <View style={styles.container(isSubscribe)}>
+      <View style={styles.logo(isSubscribe)}>
         <Button type="icon-only" icon="menu" onPress={onPressMenu} />
         <View style={styles.logoWrapper}>
           <Image source={ILLogoPNG} />
@@ -100,26 +117,26 @@ const Header = ({
 export default Header;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.secondary,
-  },
-  logo: {
-    backgroundColor: colors.primary,
+  container: (isSubscribe) => ({
+    backgroundColor: isSubscribe ? colors.tertiary : colors.secondary,
+  }),
+  logo: (isSubscribe) => ({
+    backgroundColor: isSubscribe ? colors.black : colors.primary,
     height: 60,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 5,
-  },
-  logoOnly: {
-    backgroundColor: colors.primary,
+  }),
+  logoOnly: (isSubscribe) => ({
+    backgroundColor: isSubscribe ? colors.black : colors.primary,
     height: 60,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 10,
     paddingLeft: 22,
-  },
+  }),
   nullPhoto: {
     height: 32,
     width: 32,

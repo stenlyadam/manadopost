@@ -2,10 +2,12 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {colors} from '../../../utils';
 import {TabItem} from '../../atoms';
+import {useSelector} from 'react-redux';
 
 const BottomNavigator = ({state, descriptors, navigation}) => {
+  const isSubscribe = useSelector((state2) => state2.subscription);
   return (
-    <View style={styles.container}>
+    <View style={styles.container(isSubscribe)}>
       {state.routes.map((route, index) => {
         const {options} = descriptors[route.key];
         const label =
@@ -53,11 +55,11 @@ const BottomNavigator = ({state, descriptors, navigation}) => {
 export default BottomNavigator;
 
 const styles = StyleSheet.create({
-  container: {
+  container: (isSubscribe) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 15,
     paddingVertical: 15,
-    backgroundColor: colors.secondary,
-  },
+    backgroundColor: isSubscribe ? colors.black : colors.secondary,
+  }),
 });

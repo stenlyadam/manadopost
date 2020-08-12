@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {fonts} from '../../../utils';
+import {fonts, colors} from '../../../utils';
 
 const index = ({category, value, textColor}) => {
   return (
@@ -18,15 +18,18 @@ export default index;
 const styles = StyleSheet.create({
   container: {
     borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: colors.border,
+    borderWidth: 1,
+    backgroundColor: colors.cardBackground,
     shadowColor: 'black',
     shadowOpacity: 0.26,
-    shadowRadius: 15,
+    shadowRadius: 10,
     elevation: 3,
     shadowOffset: {width: 0, height: 2},
     width: 110,
-    height: 80,
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: 60,
   },
   text: {
     fontFamily: fonts.primary[600],

@@ -4,8 +4,10 @@ import {colors, fonts} from '../../../utils';
 import ButtonIcon from './ButtonIcon';
 import ButtonIconText from './ButtonIconText';
 import IconOnly from './IconOnly';
+import {useSelector} from 'react-redux';
 
 const Button = ({title, type, icon, onPress, price}) => {
+  const isSubscribe = useSelector((state) => state.subscription);
   if (type === 'button-icon') {
     return <ButtonIcon icon={icon} onPress={onPress} />;
   }
@@ -26,7 +28,7 @@ const Button = ({title, type, icon, onPress, price}) => {
   }
 
   return (
-    <TouchableOpacity onPress={onPress} style={styles.button}>
+    <TouchableOpacity onPress={onPress} style={styles.button(isSubscribe)}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
@@ -42,15 +44,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     textAlign: 'center',
   },
-  button: {
-    backgroundColor: colors.button.primary.background,
+  button: (isSubscribe) => ({
+    backgroundColor: isSubscribe
+      ? colors.black
+      : colors.button.primary.background,
     color: colors.button.primary.text,
     paddingHorizontal: 7,
     paddingVertical: 6,
     borderRadius: 10,
     height: 40,
     justifyContent: 'center',
-  },
+  }),
   subscribe: {
     backgroundColor: colors.button.tertiary.background,
     width: 115,

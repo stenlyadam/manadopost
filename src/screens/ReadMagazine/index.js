@@ -1,15 +1,18 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Title, WebView} from '../../components';
+import {Title, WebView, Header} from '../../components';
 import {colors} from '../../utils';
 
-const index = ({route}) => {
+const index = ({route, navigation}) => {
   const {uri, title} = route.params;
   return (
-    <View style={styles.screen}>
-      <Title title={title} />
-      <WebView type="uri" uri={uri} />
-    </View>
+    <>
+      <Header type="back-only" onPressBack={() => navigation.goBack()} />
+      <View style={styles.screen}>
+        <Title title={title} />
+        <WebView type="uri" uri={uri} />
+      </View>
+    </>
   );
 };
 

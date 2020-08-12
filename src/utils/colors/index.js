@@ -26,12 +26,14 @@ const mainColors = {
   brown1: '#FFEBCF',
   brown2: '#583B13',
   yellow1: '#EDC700',
+  black: '#000000',
 };
 
 export const colors = {
   primary: mainColors.blue1,
   secondary: mainColors.blue2,
   tertiary: mainColors.grey1,
+  black: mainColors.black,
   text: {
     primary: mainColors.dark1,
     secondary: mainColors.dark2,

@@ -1,11 +1,13 @@
 import auth from '@react-native-firebase/auth';
 import React, {useEffect} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {ILLogo} from '../../assets';
 import {colors} from '../../utils';
+import {Fire} from '../../config';
 
 const Splash = ({navigation}) => {
+  const isSubscribe = useSelector((state) => state.subscription);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -13,6 +15,15 @@ const Splash = ({navigation}) => {
       auth().onAuthStateChanged((user) => {
         if (user) {
           dispatch({type: 'SET_LOGIN', value: true});
+          Fire.database()
+            .ref(`users/${user.uid}`)
+            .once('value')
+            .then((res) => {
+              const data = res.val();
+              if (data.subscription.isSubscribed) {
+                dispatch({type: 'SET_SUBSCRIPTION', value: true});
+              }
+            });
         }
         navigation.replace('MainApp');
       });
@@ -21,7 +32,7 @@ const Splash = ({navigation}) => {
   }, []);
 
   return (
-    <View style={styles.page}>
+    <View style={styles.page(isSubscribe)}>
       <ILLogo />
     </View>
   );
@@ -30,10 +41,10 @@ const Splash = ({navigation}) => {
 export default Splash;
 
 const styles = StyleSheet.create({
-  page: {
+  page: (isSubscribe) => ({
     flex: 1,
-    backgroundColor: colors.primary,
+    backgroundColor: isSubscribe ? colors.black : colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
-  },
+  }),
 });

@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: fonts.primary[600],
-    fontSize: 22,
+    fontSize: 24,
     color: colors.text.primary,
   },
   date: {

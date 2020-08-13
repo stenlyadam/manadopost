@@ -23,7 +23,7 @@ const WebView = ({content, type, uri}) => {
       viewportContent={'width=device-width, user-scalable=no'}
       customStyle={`
       p {
-        font-size: 14px;
+        font-size: 16px;
       }
     `}
     />

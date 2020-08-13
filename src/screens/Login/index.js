@@ -183,19 +183,21 @@ const Login = ({navigation}) => {
           <Image source={ILLogoBluePNG} style={styles.logo} />
         </View>
         <View style={styles.content}>
-          <Text style={styles.text}>
-            Login praktis dengan akun media sosial
-          </Text>
-          <View style={styles.term}>
-            <Text style={styles.text}>I accept terms and agreement</Text>
-            <RadioButton
-              value="agree"
-              status={checked}
-              onPress={() => {
-                navigation.navigate('TermAndCondition');
-              }}
-              color={colors.primary}
-            />
+          <View>
+            <Text style={styles.text}>
+              Login praktis dengan akun media sosial
+            </Text>
+            <View style={styles.term}>
+              <Text style={styles.text}>I accept terms and agreement</Text>
+              <RadioButton
+                value="agree"
+                status={checked}
+                onPress={() => {
+                  navigation.navigate('TermAndCondition');
+                }}
+                color={colors.primary}
+              />
+            </View>
           </View>
 
           <View style={styles.socialLogin}>
@@ -248,7 +250,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   content: {
-    flex: 1,
+    flex: 2,
   },
   socialLogin: {
     borderTopColor: colors.border2,
@@ -278,7 +280,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    marginVertical: 30,
     width: 225,
     height: 25,
   },

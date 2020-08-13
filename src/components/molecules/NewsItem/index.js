@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     marginLeft: 15,
+    justifyContent: 'center',
   },
   title: {
     fontSize: 16,

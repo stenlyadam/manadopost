@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import {CategoryCard, Header, Title, Notification} from '../../components';
 import {colors} from '../../utils';
 import {useSelector} from 'react-redux';
@@ -50,80 +50,82 @@ const Kawanua360 = ({route, navigation}) => {
         <Picker.Item label="Talaud" value="Talaud" />
       </Picker>
 
-      <View style={styles.content}>
-        <CategoryCard
-          title="Tampilan Udara"
-          type="aerial"
-          onPress={() =>
-            navigation.navigate('ChooseLocation', {
-              title: title,
-              subTitle: 'Aerial',
-              category: 'Aerial',
-              city: city,
-            })
-          }
-        />
-        <CategoryCard
-          title="Hotel & Resort"
-          type="hotel"
-          onPress={() =>
-            navigation.navigate('ChooseLocation', {
-              title: title,
-              subTitle: 'Hotel & Resort',
-              category: 'Hotel',
-              city: city,
-            })
-          }
-        />
-        <CategoryCard
-          title="Rekreasi"
-          type="rekreasi"
-          onPress={() =>
-            navigation.navigate('ChooseLocation', {
-              title: title,
-              subTitle: 'Rekreasi',
-              category: 'Rekreasi',
-              city: city,
-            })
-          }
-        />
-        <CategoryCard
-          title="Olahraga & Dive"
-          type="sport"
-          onPress={() =>
-            navigation.navigate('ChooseLocation', {
-              title: title,
-              subTitle: 'Olahraga & Dive',
-              category: 'Dive',
-              city: city,
-            })
-          }
-        />
-        <CategoryCard
-          title="Budaya"
-          type="budaya"
-          onPress={() =>
-            navigation.navigate('ChooseLocation', {
-              title: title,
-              subTitle: 'Budaya',
-              category: 'Budaya',
-              city: city,
-            })
-          }
-        />
-        <CategoryCard
-          title="Belanja"
-          type="shop"
-          onPress={() =>
-            navigation.navigate('ChooseLocation', {
-              title: title,
-              subTitle: 'Belanja',
-              category: 'Belanja',
-              city: city,
-            })
-          }
-        />
-      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.content}>
+          <CategoryCard
+            title="Tampilan Udara"
+            type="aerial"
+            onPress={() =>
+              navigation.navigate('ChooseLocation', {
+                title: title,
+                subTitle: 'Aerial',
+                category: 'Aerial',
+                city: city,
+              })
+            }
+          />
+          <CategoryCard
+            title="Hotel & Resort"
+            type="hotel"
+            onPress={() =>
+              navigation.navigate('ChooseLocation', {
+                title: title,
+                subTitle: 'Hotel & Resort',
+                category: 'Hotel',
+                city: city,
+              })
+            }
+          />
+          <CategoryCard
+            title="Rekreasi"
+            type="rekreasi"
+            onPress={() =>
+              navigation.navigate('ChooseLocation', {
+                title: title,
+                subTitle: 'Rekreasi',
+                category: 'Rekreasi',
+                city: city,
+              })
+            }
+          />
+          <CategoryCard
+            title="Olahraga & Dive"
+            type="sport"
+            onPress={() =>
+              navigation.navigate('ChooseLocation', {
+                title: title,
+                subTitle: 'Olahraga & Dive',
+                category: 'Dive',
+                city: city,
+              })
+            }
+          />
+          <CategoryCard
+            title="Budaya"
+            type="budaya"
+            onPress={() =>
+              navigation.navigate('ChooseLocation', {
+                title: title,
+                subTitle: 'Budaya',
+                category: 'Budaya',
+                city: city,
+              })
+            }
+          />
+          <CategoryCard
+            title="Belanja"
+            type="shop"
+            onPress={() =>
+              navigation.navigate('ChooseLocation', {
+                title: title,
+                subTitle: 'Belanja',
+                category: 'Belanja',
+                city: city,
+              })
+            }
+          />
+        </View>
+      </ScrollView>
     </View>
   );
 };

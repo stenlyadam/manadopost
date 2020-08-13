@@ -6,7 +6,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import IAP from 'react-native-iap';
 import {useDispatch} from 'react-redux';
 import {ILPaper} from '../../assets';
-import {Button, Loading, Profile, Header} from '../../components';
+import {Button, Loading, Profile, Header, Gap} from '../../components';
 import {Fire} from '../../config';
 import {
   colors,
@@ -140,28 +140,31 @@ const UserProfile = ({navigation}) => {
               - Berhak mendapatkan Undian yang di Undi setiap bulan{' '}
             </Text>
             <Text style={styles.contentText}> - Mendapatkan promo khusus </Text>
+            <View style={styles.image}>
+              <Image source={ILPaper} />
+            </View>
           </View>
-          <View style={styles.image}>
-            <Image source={ILPaper} />
+          <View>
+            <View style={styles.subscribe}>
+              {products.map((item) => {
+                return (
+                  <Button
+                    key={item.productId}
+                    type="button-subscribe"
+                    title={getProductTitle(item.productId)}
+                    price={item.localizedPrice}
+                    onPress={() => {
+                      IAP.requestPurchase(item.productId).catch((error) =>
+                        showError(error.message),
+                      );
+                    }}
+                  />
+                );
+              })}
+            </View>
+            <Gap height={10} />
+            <Button title="Logout" onPress={signOut} />
           </View>
-          <View style={styles.subscribe}>
-            {products.map((item) => {
-              return (
-                <Button
-                  key={item.productId}
-                  type="button-subscribe"
-                  title={getProductTitle(item.productId)}
-                  price={item.localizedPrice}
-                  onPress={() => {
-                    IAP.requestPurchase(item.productId).catch((error) =>
-                      showError(error.message),
-                    );
-                  }}
-                />
-              );
-            })}
-          </View>
-          <Button title="Logout" onPress={signOut} />
         </View>
       </View>
       {loading && <Loading />}
@@ -178,6 +181,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
+  content: {
+    flex: 1,
+    marginTop: 5,
+    justifyContent: 'space-around',
+  },
   wrapperProfile: {
     flexDirection: 'row',
     marginTop: 30,
@@ -191,7 +199,6 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   subscribe: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
   },
@@ -214,11 +221,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 15,
   },
-  content: {
-    flex: 1,
-    justifyContent: 'space-around',
-    marginTop: 5,
-  },
+
   contentText: {
     fontFamily: fonts.primary.normal,
     fontSize: 14,

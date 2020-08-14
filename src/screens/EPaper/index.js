@@ -24,7 +24,7 @@ const EPaper = ({route, navigation}) => {
     return filteredData;
   };
 
-  const onChangeDate = async (selectedDate) => {
+  const onChangeDate = async (event, selectedDate) => {
     getEPaper().then((res) => {
       let data = res.filter((el) => {
         return (

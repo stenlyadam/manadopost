@@ -25,10 +25,8 @@ import {
   Splash,
   TermAndCondition,
   UserProfile,
-  Video,
 } from '../screens';
 import {colors, navigate} from '../utils';
-
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
@@ -232,11 +230,11 @@ const MainApp = () => {
         component={Kawanua360}
         initialParams={{title: 'Kawanua 360'}}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name="MP Video"
         component={Video}
         initialParams={{title: 'MP Video'}}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };

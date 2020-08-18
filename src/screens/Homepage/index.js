@@ -63,7 +63,7 @@ const Homepage = ({navigation, route}) => {
   };
 
   const getCovidDataID = async () => {
-    let url = 'https://covid19.mathdro.id/api/countries/ID';
+    let url = 'https://covid19.mathdro.id/api/countries/id';
     const response = await Axios.get(url);
     return response.data;
   };

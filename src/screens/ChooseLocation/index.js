@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import {LocationCard, Title, Header} from '../../components';
 import {colors, fonts} from '../../utils';
 
@@ -14,7 +14,11 @@ const index = ({navigation, route}) => {
     let url = 'http://api.mpdigital.id/kawanua360';
     const response = await Axios.get(url);
     let filteredData = response.data.filter((el) => {
-      return el.category === category && el.kota_kabupaten === city;
+      if (city === 'All') {
+        return el.category === category;
+      } else {
+        return el.category === category && el.kota_kabupaten === city;
+      }
     });
     return filteredData;
   };
@@ -32,20 +36,25 @@ const index = ({navigation, route}) => {
       <View style={styles.screen}>
         <Title title={title} />
         <Text style={styles.subTitle}> {`${subTitle} ${city}`}</Text>
-        <View style={styles.content}>
-          {location.map((item) => {
-            return (
-              <LocationCard
-                key={item.id}
-                title={item.site_name}
-                thumbnail={item.thumbnail}
-                onPress={() =>
-                  navigation.navigate('Explore360', {title: title, data: item})
-                }
-              />
-            );
-          })}
-        </View>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.content}>
+            {location.map((item) => {
+              return (
+                <LocationCard
+                  key={item.id}
+                  title={item.site_name}
+                  thumbnail={item.thumbnail}
+                  onPress={() =>
+                    navigation.navigate('Explore360', {
+                      title: title,
+                      data: item,
+                    })
+                  }
+                />
+              );
+            })}
+          </View>
+        </ScrollView>
       </View>
     </>
   );
@@ -84,5 +93,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     flexDirection: 'row',
     flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

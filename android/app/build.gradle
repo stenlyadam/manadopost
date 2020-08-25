@@ -133,8 +133,8 @@ android {
         applicationId "com.mp.manadopost"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 12
-        versionName "10.3"
+        versionCode 14
+        versionName "10.4"
         multiDexEnabled true 
     }
     signingConfigs {

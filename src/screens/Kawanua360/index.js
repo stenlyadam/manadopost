@@ -38,13 +38,14 @@ const Kawanua360 = ({route, navigation}) => {
         selectedValue={city}
         style={styles.picker}
         onValueChange={(itemValue) => setCity(itemValue)}>
+        <Picker.Item label="All" value="All" />
         <Picker.Item label="Manado" value="Manado" />
         <Picker.Item label="Tomohon" value="Tomohon" />
         <Picker.Item label="Bitung" value="Bitung" />
         <Picker.Item label="Minahasa" value="Minahasa" />
-        <Picker.Item label="Minahasa Selatan" value="Minasaha Selatan" />
-        <Picker.Item label="Minahasa Utara" value="Minasaha Utara" />
-        <Picker.Item label="Minahasa Tenggara" value="Minasaha Tenggara" />
+        <Picker.Item label="Minahasa Selatan" value="Minahasa Selatan" />
+        <Picker.Item label="Minahasa Utara" value="Minahasa Utara" />
+        <Picker.Item label="Minahasa Tenggara" value="Minahasa Tenggara" />
         <Picker.Item label="Bolmong" value="Bolmong" />
         <Picker.Item label="Kotamobagu" value="Kotamobagu" />
         <Picker.Item label="Talaud" value="Talaud" />
@@ -135,6 +136,7 @@ export default Kawanua360;
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: colors.white,
   },
   content: {
     flexDirection: 'row',

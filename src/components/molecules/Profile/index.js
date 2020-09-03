@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {ILNullPhotoPNG} from '../../../assets';
-import {fonts, colors, getData, getProductTitle} from '../../../utils';
+import {colors, fonts, getData, getProductTitle} from '../../../utils';
+import Moment from 'moment';
 
 const index = ({onPress, viewOnly}) => {
   const [profile, setProfile] = useState({
@@ -35,7 +36,8 @@ const index = ({onPress, viewOnly}) => {
                 {getProductTitle(profile.subscription.productId)}
               </Text>
               <Text style={styles.desc}>
-                Aktif Hingga {profile.subscription.expireDate}
+                Aktif Hingga{' '}
+                {Moment(profile.subscription.expireDate).format('LLL')}
               </Text>
             </>
           )}

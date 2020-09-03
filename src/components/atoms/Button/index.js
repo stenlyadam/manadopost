@@ -57,15 +57,15 @@ const styles = StyleSheet.create({
   }),
   subscribe: {
     backgroundColor: colors.button.tertiary.background,
-    width: 115,
-    height: 85,
+    width: 90,
+    height: 75,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
   },
   textSubcribe: {
     fontFamily: fonts.primary.normal,
-    fontSize: 14,
+    fontSize: 12,
     color: colors.button.tertiary.text,
   },
 });

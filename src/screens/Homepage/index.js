@@ -14,9 +14,13 @@ import {
   NewsItem,
   Title,
 } from '../../components';
-import {colors, fonts} from '../../utils';
+import {colors, fonts, getData, checkExpireDate} from '../../utils';
+import {Fire} from '../../config';
+import {useDispatch, useSelector} from 'react-redux';
 
 const Homepage = ({navigation, route}) => {
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.login);
   const [news, setNews] = useState([]);
   const [confirmed, setConfirmed] = useState(0);
   const [recovered, setRecovered] = useState(0);
@@ -123,7 +127,38 @@ const Homepage = ({navigation, route}) => {
 
   useEffect(() => {
     let mounted = true;
+
+    if (mounted) {
+      onRefresh();
+    }
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  const onRefresh = () => {
     setRefreshing(true);
+    //Check Expire Date
+    getData('user').then((res) => {
+      Fire.database()
+        .ref('users/')
+        .orderByChild('uid')
+        .equalTo(res.uid)
+        .once('value')
+        .then((user) => {
+          //Get user data and Convert object to array
+          const userArr = Object.values(user.val());
+          const isExpire = checkExpireDate(userArr[0]);
+          if (isExpire) {
+            dispatch({type: 'SET_SUBSCRIPTION', value: false});
+          } else {
+            if (isLogin) {
+              dispatch({type: 'SET_SUBSCRIPTION', value: true});
+            }
+          }
+        });
+    });
     getCovidDataID().then((res) => {
       setConfirmed(res.confirmed.value);
       setRecovered(res.recovered.value);
@@ -135,22 +170,6 @@ const Homepage = ({navigation, route}) => {
       setRecoveredSulut(res[0].kasusSemb);
       setDeathsSulut(res[0].kasusMeni);
     });
-    getAllFilteredData().then(([newsData, articlesData, headlinesData]) => {
-      if (mounted) {
-        setNews(newsData);
-        setArticleAds(articlesData);
-        setHeadlines(headlinesData);
-        setRefreshing(false);
-      }
-    });
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  const onRefresh = () => {
-    setRefreshing(true);
     getAllFilteredData().then(([newsData, articlesData, headlinesData]) => {
       setNews(newsData);
       setArticleAds(articlesData);

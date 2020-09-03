@@ -5,15 +5,15 @@ import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import {Header, MagazineCard, Notification, Title} from '../../components';
-import {colors, getData} from '../../utils';
+import {colors} from '../../utils';
 
 const EPaper = ({route, navigation}) => {
   const [epaper, setEpaper] = useState([]);
-  const [isSubscribed, setIsSubscribed] = useState(true);
   const [show, setShow] = useState(false);
   const {title} = route.params;
   const [refreshing, setRefreshing] = useState(false);
   const login = useSelector((state) => state.login);
+  const isSubscribed = useSelector((state) => state.subscription);
 
   const getEPaper = async () => {
     let url = 'http://api.mpdigital.id/mp';
@@ -72,9 +72,6 @@ const EPaper = ({route, navigation}) => {
     getEPaper().then((res) => {
       res.reverse();
       setEpaper(res);
-      getData('user').then((resUser) => {
-        setIsSubscribed(resUser.subscription.isSubscribed);
-      });
     });
   }, []);
 

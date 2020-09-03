@@ -53,18 +53,18 @@ const UserProfile = ({navigation}) => {
         let expirationDate = dateReceipt;
 
         if (receiptJSON.productId === '1_bulan') {
-          expirationDate = expirationDate.add(1, 'M').format('LLL');
+          expirationDate = expirationDate.add(1, 'M').format();
         } else if (receiptJSON.productId === '6_bulan') {
-          expirationDate = expirationDate.add(6, 'M').format('LLL');
+          expirationDate = expirationDate.add(6, 'M').format();
         } else {
-          expirationDate = expirationDate.add(12, 'M').format('LLL');
+          expirationDate = expirationDate.add(12, 'M').format();
         }
 
         const data = {
           isSubscribed: true,
           orderId: receiptJSON.orderId,
           productId: receiptJSON.productId,
-          purchaseDate: Moment(receiptJSON.purchaseTime).format('LLL'),
+          purchaseDate: Moment(receiptJSON.purchaseTime).format(),
           expireDate: expirationDate,
         };
 
@@ -79,6 +79,7 @@ const UserProfile = ({navigation}) => {
             dataUser.subscription = data;
             //Store data with subscription in local storage
             storeData('user', dataUser);
+            dispatch({type: 'SET_SUBSCRIPTION', value: true});
           });
         });
       }

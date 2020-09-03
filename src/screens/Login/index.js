@@ -9,7 +9,13 @@ import {useDispatch} from 'react-redux';
 import {ILLogoBluePNG} from '../../assets';
 import {Button, Gap, Loading} from '../../components';
 import {Fire, Google} from '../../config';
-import {colors, fonts, getData, showError, storeData} from '../../utils';
+import {
+  checkExpireDate,
+  colors,
+  fonts,
+  showError,
+  storeData,
+} from '../../utils';
 
 const Login = ({navigation}) => {
   const dispatch = useDispatch();
@@ -128,52 +134,22 @@ const Login = ({navigation}) => {
 
           //Get user data and Convert object to array
           const oldUser = Object.values(user.val());
-          checkExpireDate(oldUser[0]);
-          // //Check if subscribed user or not
-          // if (oldUser[0].subscription) {
-          //   //Check expire date
-          //   checkExpireDate(oldUser[0]);
-          // } else {
-          //   //Store data user in async storage
-          //   storeData('user', oldUser[0]);
-          // }
+          const isExpire = checkExpireDate(oldUser[0]);
+          if (isExpire) {
+            dispatch({type: 'SET_SUBSCRIPTION', value: false});
+          } else {
+            dispatch({type: 'SET_SUBSCRIPTION', value: true});
+          }
         }
         dispatch({type: 'SET_LOGIN', value: true});
-        dispatch({type: 'SET_SUBSCRIPTION', value: true});
+
         setLoading(false);
         navigation.replace('MainApp');
       })
       .catch((error) => {
         setLoading(false);
-        console.log('error, ', error);
         showError('Error');
       });
-  };
-
-  const checkExpireDate = (user) => {
-    const expireDate = user.subscription.expireDate;
-    const now = Moment().format('LLL');
-
-    const data = {
-      isSubscribed: false,
-      orderId: '',
-      productId: '',
-      purchaseDate: '',
-      expireDate: '',
-    };
-
-    if (now > expireDate) {
-      getData('user').then((resUser) => {
-        const dataUser = resUser;
-        dataUser.subscription = data;
-        //Save to firebase
-        Fire.database()
-          .ref(`users/${resUser.uid}`)
-          .update({subscription: data});
-        //Store data with subscription in local storage
-        storeData('user', dataUser);
-      });
-    }
   };
 
   return (

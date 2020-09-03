@@ -3,9 +3,20 @@ import Axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 import {Ads, Header, Menu, NewsItem, Title} from '../../components';
-import {colors, fonts, formatDate, getData, storeData} from '../../utils';
+import {
+  colors,
+  fonts,
+  formatDate,
+  getData,
+  storeData,
+  checkExpireDate,
+} from '../../utils';
+import {Fire} from '../../config';
+import {useDispatch, useSelector} from 'react-redux';
 
 const News = ({navigation, route}) => {
+  const dispatch = useDispatch();
+  const isLogin = useSelector((state) => state.login);
   const [news, setNews] = useState([]);
   const [articleAds, setArticleAds] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -74,17 +85,9 @@ const News = ({navigation, route}) => {
   useEffect(() => {
     let mounted = true;
 
-    setRefreshing(true);
-    getAllFilteredData().then(([newsData, articlesData]) => {
-      if (mounted) {
-        getData(`news ${title}`).then((localStorage) => {
-          setNews(localStorage);
-          setArticleAds(articlesData);
-          setRefreshing(false);
-        });
-      }
-    });
-
+    if (mounted) {
+      onRefresh();
+    }
     return () => {
       mounted = false;
     };
@@ -128,6 +131,26 @@ const News = ({navigation, route}) => {
 
   const onRefresh = () => {
     setRefreshing(true);
+    //Check Expire Date
+    getData('user').then((res) => {
+      Fire.database()
+        .ref('users/')
+        .orderByChild('uid')
+        .equalTo(res.uid)
+        .once('value')
+        .then((user) => {
+          //Get user data and Convert object to array
+          const userArr = Object.values(user.val());
+          const isExpire = checkExpireDate(userArr[0]);
+          if (isExpire) {
+            dispatch({type: 'SET_SUBSCRIPTION', value: false});
+          } else {
+            if (isLogin) {
+              dispatch({type: 'SET_SUBSCRIPTION', value: true});
+            }
+          }
+        });
+    });
     getAllFilteredData().then(([newsData, articlesData]) => {
       getData(`news ${title}`).then((localStorage) => {
         setNews(localStorage);

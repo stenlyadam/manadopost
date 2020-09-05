@@ -15,6 +15,7 @@ import ILShop from './ILShop.png';
 import ILSport from './ILSport.png';
 import ILBudaya from './ILBudaya.png';
 import ILGoogleMap from './ILGoogleMap.png';
+import ILGoogleMaps from './ILGoogleMaps.png';
 
 export {
   ILLogo,
@@ -34,4 +35,5 @@ export {
   ILBudaya,
   ILGoogleMap,
   ILLogoBluePNG,
+  ILGoogleMaps,
 };

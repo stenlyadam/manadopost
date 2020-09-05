@@ -109,8 +109,8 @@ const Login = ({navigation}) => {
         isSubscribed: true,
         orderId: '',
         productId: '3 hari percobaan',
-        purchaseDate: Moment().format('LLL'),
-        expireDate: Moment().add(3, 'days').format('LLL'),
+        purchaseDate: Moment().format(),
+        expireDate: Moment().add(3, 'days').format(),
       },
     };
 

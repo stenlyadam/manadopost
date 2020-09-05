@@ -1,7 +1,21 @@
 import React from 'react';
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
 import {WebView} from 'react-native-webview';
-import {ILGoogleMap} from '../../assets';
+import {
+  ILGoogleMaps,
+  IconWebsiteRounded,
+  IconWhatsappRounded,
+  IconInstagramRounded,
+  IconFacebookRounded,
+} from '../../assets';
 import {Gap, Header} from '../../components';
 import {colors, fonts, showError} from '../../utils';
 import Share from 'react-native-share';
@@ -42,9 +56,66 @@ const Explore360 = ({route, navigation}) => {
             <Text style={styles.text}>{data.description}</Text>
             <Gap height={10} />
             <View style={styles.address}>
-              <Image source={ILGoogleMap} style={styles.imageAddress} />
+              <Image source={ILGoogleMaps} style={styles.imageAddress} />
               <Text style={styles.text}>{data.address}</Text>
             </View>
+            {data.status_sosmed === '1' && (
+              <View style={styles.contact}>
+                <Text style={styles.text}>
+                  Info lebih lanjut tentang lokasi ini
+                </Text>
+                <Gap height={5} />
+                <View style={styles.socialMedia}>
+                  {data.website !== '' && (
+                    <TouchableOpacity
+                      onPress={() => {
+                        Linking.openURL(data.website);
+                      }}>
+                      <IconWebsiteRounded />
+                    </TouchableOpacity>
+                  )}
+                  {data.wa !== '' && (
+                    <>
+                      <Gap width={20} />
+                      <TouchableOpacity
+                        onPress={() => {
+                          Linking.openURL(data.wa);
+                        }}>
+                        <IconWhatsappRounded />
+                      </TouchableOpacity>
+                    </>
+                  )}
+
+                  {data.instagram !== '' && (
+                    <>
+                      <Gap width={20} />
+                      <TouchableOpacity
+                        onPress={() => {
+                          Linking.openURL(data.instagram);
+                        }}>
+                        <Image
+                          source={IconInstagramRounded}
+                          style={styles.icon}
+                        />
+                      </TouchableOpacity>
+                    </>
+                  )}
+
+                  {data.fb !== '' && (
+                    <>
+                      <Gap width={20} />
+                      <TouchableOpacity
+                        onPress={() => {
+                          Linking.openURL(data.fb);
+                        }}>
+                        <IconFacebookRounded />
+                      </TouchableOpacity>
+                    </>
+                  )}
+                  <Gap width={20} />
+                </View>
+              </View>
+            )}
           </View>
         </View>
       </ScrollView>
@@ -86,5 +157,15 @@ const styles = StyleSheet.create({
   },
   imageAddress: {
     marginRight: 10,
+  },
+  contact: {
+    marginVertical: 5,
+  },
+  socialMedia: {
+    flexDirection: 'row',
+  },
+  icon: {
+    height: 31,
+    width: 31,
   },
 });

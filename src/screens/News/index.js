@@ -115,6 +115,7 @@ const News = ({navigation, route}) => {
         link: item.link,
         category: item.categories[0],
         ads: articleAds,
+        featuredMedia: item.featured_media,
       };
       return (
         <NewsItem
@@ -152,11 +153,14 @@ const News = ({navigation, route}) => {
         });
     });
     getAllFilteredData().then(([newsData, articlesData]) => {
-      getData(`news ${title}`).then((localStorage) => {
-        setNews(localStorage);
-        setArticleAds(articlesData);
-        setRefreshing(false);
-      });
+      // getData(`news ${title}`).then((localStorage) => {
+      //   setNews(localStorage);
+      //   setArticleAds(articlesData);
+      //   setRefreshing(false);
+      // });
+      setNews(newsData);
+      setArticleAds(articlesData);
+      setRefreshing(false);
     });
   };
 

@@ -209,6 +209,7 @@ const Homepage = ({navigation, route}) => {
               category: item.categories[0],
               link: item.link,
               ads: articleAds,
+              featuredMedia: item.featured_media,
             };
             return (
               <View key={item.id}>
@@ -294,6 +295,7 @@ const Homepage = ({navigation, route}) => {
                 link: item.link,
                 category: item.categories[0],
                 ads: articleAds,
+                featuredMedia: item.featured_media,
               };
               return (
                 <NewsItem

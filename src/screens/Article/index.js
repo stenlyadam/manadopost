@@ -1,12 +1,37 @@
 import Moment from 'moment';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import Share from 'react-native-share';
 import {Ads, Header, WebView} from '../../components';
-import {colors, fonts, showError, getCategoryName} from '../../utils';
+import {
+  colors,
+  fonts,
+  getCategoryName,
+  showError,
+  formatText,
+} from '../../utils';
+import Axios from 'axios';
 
 const Article = ({route, navigation}) => {
-  const {image, title, date, content, link, ads, category} = route.params;
+  const {
+    image,
+    title,
+    date,
+    content,
+    link,
+    ads,
+    category,
+    featuredMedia,
+  } = route.params;
+
+  const [caption, setCaption] = useState('');
+
+  useEffect(() => {
+    let url = `https://manadopost.jawapos.com/wp-json/wp/v2/media/${featuredMedia}`;
+    Axios.get(url).then((res) => setCaption(res.data.caption.rendered));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const shareArticle = () => {
     const linkMP =
       'https://play.google.com/store/apps/details?id=com.mp.manadopost';
@@ -49,6 +74,8 @@ const Article = ({route, navigation}) => {
           <Text style={styles.rubrik}>{getCategoryName(category)}</Text>
           <Text style={styles.date}>{Moment(date).format('LLLL')}</Text>
           <Image source={{uri: image}} style={styles.image} />
+          <Text style={styles.date}>{formatText(caption)}</Text>
+
           <WebView content={content} />
           <View style={styles.adsWrapper}>
             {ads &&
@@ -98,6 +125,7 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
     paddingBottom: 5,
   },
+
   image: {
     width: '100%',
     height: 260,

@@ -8,3 +8,4 @@ export * from './getProductTitle';
 export * from './getCategoryName';
 export * from './rootNavigation';
 export * from './checkExpireDate';
+export * from './formatText';

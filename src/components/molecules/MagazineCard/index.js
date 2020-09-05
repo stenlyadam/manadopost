@@ -4,7 +4,7 @@ import {colors, fonts} from '../../../utils';
 
 const MagazineCard = ({image, date, onPress}) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Text style={styles.dateText}>{date}</Text>
       <View style={styles.imageWrapper}>
         <Image source={image} style={styles.image} />
@@ -12,7 +12,7 @@ const MagazineCard = ({image, date, onPress}) => {
       <TouchableOpacity style={styles.button} onPress={onPress}>
         <Text style={styles.textButton}>Buka</Text>
       </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 };
 

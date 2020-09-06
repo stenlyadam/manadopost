@@ -43,6 +43,7 @@ const index = ({onPress, viewOnly}) => {
           )}
           {!profile.subscription.isSubscribed && (
             <>
+              <Text style={styles.name}>{profile.fullName}</Text>
               <Text style={styles.email}>{profile.email}</Text>
               <Text style={styles.desc}>Paket berlangganan: BELUM AKTIF</Text>
             </>

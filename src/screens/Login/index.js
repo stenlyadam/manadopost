@@ -114,6 +114,14 @@ const Login = ({navigation}) => {
       },
     };
 
+    const oldUser = {
+      uid: res.user.uid,
+      fullName: res.user.displayName,
+      email: res.user.email,
+      photo: res.user.photoURL,
+      token: userToken,
+    };
+
     //Check if user exists
     Fire.database()
       .ref('users/')
@@ -131,10 +139,11 @@ const Login = ({navigation}) => {
           Fire.database()
             .ref(`users/${newUser.uid}/`)
             .update({token: userToken});
-
+          //Store in async storage
+          storeData('user', oldUser);
           //Get user data and Convert object to array
-          const oldUser = Object.values(user.val());
-          const isExpire = checkExpireDate(oldUser[0]);
+          const userArr = Object.values(user.val());
+          const isExpire = checkExpireDate(userArr[0]);
           if (isExpire) {
             dispatch({type: 'SET_SUBSCRIPTION', value: false});
           } else {

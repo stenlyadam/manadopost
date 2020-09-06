@@ -4,6 +4,7 @@ import Moment from 'moment';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Swiper from 'react-native-swiper';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   Ads,
   CovidCard,
@@ -14,9 +15,8 @@ import {
   NewsItem,
   Title,
 } from '../../components';
-import {colors, fonts, getData, checkExpireDate} from '../../utils';
 import {Fire} from '../../config';
-import {useDispatch, useSelector} from 'react-redux';
+import {checkExpireDate, colors, fonts, getData} from '../../utils';
 
 const Homepage = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -149,6 +149,7 @@ const Homepage = ({navigation, route}) => {
         .then((user) => {
           //Get user data and Convert object to array
           const userArr = Object.values(user.val());
+
           const isExpire = checkExpireDate(userArr[0]);
           if (isExpire) {
             dispatch({type: 'SET_SUBSCRIPTION', value: false});

@@ -23,5 +23,6 @@ export const checkExpireDate = (user) => {
     storeData('user', dataUser);
     return true;
   }
+  storeData('user', user);
   return false;
 };

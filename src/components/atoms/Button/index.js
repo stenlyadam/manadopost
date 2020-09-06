@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   }),
   subscribe: {
     backgroundColor: colors.button.tertiary.background,
-    width: 90,
+    width: 110,
     height: 75,
     justifyContent: 'center',
     alignItems: 'center',
@@ -66,6 +66,6 @@ const styles = StyleSheet.create({
   textSubcribe: {
     fontFamily: fonts.primary.normal,
     fontSize: 12,
-    color: colors.button.tertiary.text,
+    color: colors.black,
   },
 });

@@ -142,6 +142,7 @@ const News = ({navigation, route}) => {
         .then((user) => {
           //Get user data and Convert object to array
           const userArr = Object.values(user.val());
+
           const isExpire = checkExpireDate(userArr[0]);
           if (isExpire) {
             dispatch({type: 'SET_SUBSCRIPTION', value: false});

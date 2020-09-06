@@ -37,7 +37,7 @@ const index = ({onPress, viewOnly}) => {
               </Text>
               <Text style={styles.desc}>
                 Aktif Hingga{' '}
-                {Moment(profile.subscription.expireDate).format('LLL')}
+                {Moment(profile.subscription.expireDate).format('LL')}
               </Text>
             </>
           )}
@@ -83,21 +83,22 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: fonts.primary[700],
-    fontSize: 18,
+    fontSize: 14,
     color: colors.primary,
     textTransform: 'capitalize',
     maxWidth: 200,
   },
   email: {
     fontFamily: fonts.primary.normal,
-    fontSize: 14,
+    fontSize: 12,
     color: colors.text.secondary,
-    maxWidth: 200,
+    maxWidth: 180,
   },
   desc: {
     fontFamily: fonts.primary.normal,
     fontSize: 14,
     color: colors.primary,
+    maxWidth: 250,
   },
   premium: {
     fontFamily: fonts.primary[600],

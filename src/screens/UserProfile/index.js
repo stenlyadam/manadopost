@@ -2,11 +2,10 @@
 import auth from '@react-native-firebase/auth';
 import Moment from 'moment';
 import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import IAP from 'react-native-iap';
 import {useDispatch} from 'react-redux';
-import {ILPaper} from '../../assets';
-import {Button, Loading, Profile, Header, Gap} from '../../components';
+import {Button, Gap, Header, Loading, Profile} from '../../components';
 import {Fire} from '../../config';
 import {
   colors,
@@ -121,53 +120,64 @@ const UserProfile = ({navigation}) => {
   return (
     <>
       <Header type="back-only" onPressBack={() => navigation.goBack()} />
-      <View style={styles.screen}>
-        <Profile viewOnly />
-        <Button
-          title="Edit akun"
-          onPress={() => navigation.navigate('EditProfile')}
-        />
-        <View style={styles.content}>
-          <View>
-            <Text style={styles.contentText}>
-              Berlangganan Manado Post Digital Premium:
-            </Text>
-            <Text style={styles.contentText}>
-              {' '}
-              - Akses e-Koran terupdate setiap hari
-            </Text>
-            <Text style={styles.contentText}>
-              {' '}
-              - Berhak mendapatkan Undian yang di Undi setiap bulan{' '}
-            </Text>
-            <Text style={styles.contentText}> - Mendapatkan promo khusus </Text>
-            <View style={styles.image}>
-              <Image source={ILPaper} />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.screen}>
+          <Profile viewOnly />
+          <Button
+            title="Edit akun"
+            onPress={() => navigation.navigate('EditProfile')}
+          />
+          <View style={styles.content}>
+            <View>
+              <Text style={styles.contentText}>
+                Berlangganan Manado Post Digital Premium:
+              </Text>
+              <Text style={styles.contentText}>
+                {' '}
+                - Akses e-Koran terupdate setiap hari
+              </Text>
+              <Text style={styles.contentText}>
+                {' '}
+                - Berhak mendapatkan Undian yang di Undi setiap bulan{' '}
+              </Text>
+              <Text style={styles.contentText}>
+                {' '}
+                - Mendapatkan promo khusus{' '}
+              </Text>
+              <View style={styles.imageWrapper}>
+                <Image
+                  style={styles.image}
+                  source={{
+                    uri:
+                      'https://mpdigital.id/wp-content/uploads/2020/09/ILPaper.png',
+                  }}
+                />
+              </View>
             </View>
-          </View>
-          <View>
-            <View style={styles.subscribe}>
-              {products.map((item) => {
-                return (
-                  <Button
-                    key={item.productId}
-                    type="button-subscribe"
-                    title={getProductTitle(item.productId)}
-                    price={item.localizedPrice}
-                    onPress={() => {
-                      IAP.requestPurchase(item.productId).catch((error) =>
-                        showError(error.message),
-                      );
-                    }}
-                  />
-                );
-              })}
+            <View>
+              <View style={styles.subscribe}>
+                {products.map((item) => {
+                  return (
+                    <Button
+                      key={item.productId}
+                      type="button-subscribe"
+                      title={getProductTitle(item.productId)}
+                      price={item.localizedPrice}
+                      onPress={() => {
+                        IAP.requestPurchase(item.productId).catch((error) =>
+                          showError(error.message),
+                        );
+                      }}
+                    />
+                  );
+                })}
+              </View>
+              <Gap height={10} />
+              <Button title="Logout" onPress={signOut} />
             </View>
-            <Gap height={10} />
-            <Button title="Logout" onPress={signOut} />
           </View>
         </View>
-      </View>
+      </ScrollView>
       {loading && <Loading />}
     </>
   );
@@ -218,9 +228,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.primary,
   },
-  image: {
+  imageWrapper: {
     alignItems: 'center',
     marginBottom: 15,
+  },
+  image: {
+    width: '100%',
+    height: 280,
   },
 
   contentText: {

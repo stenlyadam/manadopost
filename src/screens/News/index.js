@@ -42,7 +42,16 @@ const News = ({navigation, route}) => {
   const getNews = async (newsCategory) => {
     let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=100&categories=${newsCategory}`;
     const response = await Axios.get(url);
-    return response.data;
+
+    let promise = response.data.map(async (el) => {
+      let mediaLink = el._links['wp:featuredmedia'][0].href;
+      let res = await Axios.get(mediaLink);
+      el.thumbnail = res.data.source_url;
+      return el;
+    });
+    const newsAll = await Promise.all(promise);
+
+    return newsAll;
   };
 
   const getAds = async () => {
@@ -106,7 +115,7 @@ const News = ({navigation, route}) => {
     } else {
       //Kondisi jika akan menampilkan berita
       const data = {
-        image: item.jetpack_featured_media_url,
+        image: item.thumbnail,
         title: item.title.rendered,
         date: item.date,
         desc: item.excerpt.rendered,
@@ -120,7 +129,7 @@ const News = ({navigation, route}) => {
       return (
         <NewsItem
           key={item.id}
-          image={{uri: item.jetpack_featured_media_url}}
+          image={{uri: item.thumbnail}}
           title={item.title.rendered}
           date={formatDate(item.date)}
           ads={data.ads}

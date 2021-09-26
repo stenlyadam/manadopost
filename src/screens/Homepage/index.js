@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Axios from 'axios';
-import Moment from 'moment';
+// import Moment from 'moment';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -22,13 +22,13 @@ const Homepage = ({navigation, route}) => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.login);
   const [news, setNews] = useState([]);
-  const [confirmed, setConfirmed] = useState(0);
-  const [recovered, setRecovered] = useState(0);
-  const [deaths, setDeaths] = useState(0);
+  // const [confirmed, setConfirmed] = useState(0);
+  // const [recovered, setRecovered] = useState(0);
+  // const [deaths, setDeaths] = useState(0);
   const [confirmedSulut, setConfirmedSulut] = useState(0);
   const [recoveredSulut, setRecoveredSulut] = useState(0);
   const [deathsSulut, setDeathsSulut] = useState(0);
-  const [lastUpdateCovid, setLastUpdateCovid] = useState('');
+  // const [lastUpdateCovid, setLastUpdateCovid] = useState('');
   const [headlines, setHeadlines] = useState([]);
   const [articleAds, setArticleAds] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -57,6 +57,12 @@ const Homepage = ({navigation, route}) => {
     return filteredData;
   };
 
+  // const getCovidDataID = async () => {
+  //   let url = 'https://covid19.mathdro.id/api/countries/id';
+  //   const response = await Axios.get(url);
+  //   return response.data;
+  // };
+
   const getCovidDataSulut = async () => {
     let url = 'https://indonesia-covid-19.mathdro.id/api/provinsi';
     const response = await Axios.get(url);
@@ -66,31 +72,45 @@ const Homepage = ({navigation, route}) => {
     return filteredData;
   };
 
-  const getCovidDataID = async () => {
-    let url = 'https://covid19.mathdro.id/api/countries/id';
-    const response = await Axios.get(url);
-    return response.data;
-  };
-
   const getHeadlines = async (newsCategory) => {
     let url = `https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=7&categories=${newsCategory}`;
     const response = await Axios.get(url);
-    return response.data;
+
+    let promise = response.data.map(async (el) => {
+      let mediaLink = el._links['wp:featuredmedia'][0].href;
+      // let link = `https://manadopost.jawapos.com/wp-json/wp/v2/media/${el.featured_media}`;
+      let res = await Axios.get(mediaLink);
+      el.thumbnail = res.data.source_url;
+      return el;
+    });
+    const headlineAll = await Promise.all(promise);
+    return headlineAll;
   };
 
   const getNews = async () => {
     let url = 'https://manadopost.jawapos.com/wp-json/wp/v2/posts?per_page=100';
-    const response = await Axios.get(url);
-    let filteredNews = response.data.filter((el) => {
+    let response = await Axios.get(url);
+
+    let promise = response.data.map(async (el) => {
+      let mediaLink = el._links['wp:featuredmedia'][0].href;
+      let res = await Axios.get(mediaLink);
+      el.thumbnail = res.data.source_url;
+      return el;
+    });
+    const newsAll = await Promise.all(promise);
+
+    let filteredNews = newsAll.filter((el) => {
       //Berita utama tidak ditampilkan di berita terbaru
       return el.categories[0] !== 129;
     });
+
     return filteredNews;
   };
 
   const getAds = async () => {
     let url = 'http://api.mpdigital.id/ads';
     const response = await Axios.get(url);
+
     if (response.data) {
       let filteredAds = response.data.filter((el) => {
         if (el.isActive === '1') {
@@ -135,6 +155,7 @@ const Homepage = ({navigation, route}) => {
     return () => {
       mounted = false;
     };
+    // onRefresh();
   }, []);
 
   const onRefresh = () => {
@@ -160,17 +181,18 @@ const Homepage = ({navigation, route}) => {
           }
         });
     });
-    getCovidDataID().then((res) => {
-      setConfirmed(res.confirmed.value);
-      setRecovered(res.recovered.value);
-      setDeaths(res.deaths.value);
-      setLastUpdateCovid(res.lastUpdate);
-    });
+    // getCovidDataID().then((res) => {
+    //   setConfirmed(res.confirmed.value);
+    //   setRecovered(res.recovered.value);
+    //   setDeaths(res.deaths.value);
+    //   setLastUpdateCovid(res.lastUpdate);
+    // });
     getCovidDataSulut().then((res) => {
       setConfirmedSulut(res[0].kasusPosi);
       setRecoveredSulut(res[0].kasusSemb);
       setDeathsSulut(res[0].kasusMeni);
     });
+
     getAllFilteredData().then(([newsData, articlesData, headlinesData]) => {
       setNews(newsData);
       setArticleAds(articlesData);
@@ -178,7 +200,6 @@ const Homepage = ({navigation, route}) => {
       setRefreshing(false);
     });
   };
-
   return (
     <View style={styles.screens}>
       <View style={styles.headerWrapper}>
@@ -190,7 +211,6 @@ const Homepage = ({navigation, route}) => {
         />
         <Menu navigation={navigation} />
       </View>
-
       <ScrollView showsVerticalScrollIndicator={false}>
         {!refreshing && (
           <Title title="Berita Utama" refresh onPress={onRefresh} />
@@ -201,7 +221,7 @@ const Homepage = ({navigation, route}) => {
           showsButtons={true}>
           {headlines.map((item) => {
             const data = {
-              image: item.jetpack_featured_media_url,
+              image: item.thumbnail,
               title: item.title.rendered,
               date: item.date,
               desc: item.excerpt.rendered,
@@ -226,7 +246,7 @@ const Homepage = ({navigation, route}) => {
         </Swiper>
         {!refreshing && (
           <View style={styles.containerCovid}>
-            <View style={styles.headerCovid}>
+            {/* <View style={styles.headerCovid}>
               <Text style={styles.titleCovid}>
                 Update Data COVID-19 di Indonesia
               </Text>
@@ -250,8 +270,12 @@ const Homepage = ({navigation, route}) => {
                 value={deaths}
                 textColor={colors.covid.meninggal}
               />
+            </View> */}
+            <View style={styles.headerCovid}>
+              <Text style={styles.titleCovid}>
+                Update Data COVID-19 di Sulut
+              </Text>
             </View>
-            <Text style={styles.titleCovid}>Update Data COVID-19 di Sulut</Text>
             <View style={styles.contentCovid}>
               <CovidCard
                 value={confirmedSulut}
@@ -272,8 +296,9 @@ const Homepage = ({navigation, route}) => {
           </View>
         )}
         {!refreshing && <Title title="Berita Terbaru" secondary />}
+
         <View>
-          {news.map((item, index) => {
+          {news.map((item) => {
             //Kondisi jika akan menampilkan iklan
             if (item.category) {
               return (
@@ -287,7 +312,6 @@ const Homepage = ({navigation, route}) => {
             } else {
               //Kondisi jika akan menampilkan berita
               const data = {
-                image: item.jetpack_featured_media_url,
                 title: item.title.rendered,
                 date: item.date,
                 desc: item.excerpt.rendered,
@@ -297,11 +321,13 @@ const Homepage = ({navigation, route}) => {
                 category: item.categories[0],
                 ads: articleAds,
                 featuredMedia: item.featured_media,
+                image: item.thumbnail,
               };
+
               return (
                 <NewsItem
                   key={item.id}
-                  image={{uri: item.jetpack_featured_media_url}}
+                  image={{uri: item.thumbnail}}
                   title={item.title.rendered}
                   // date={formatDate(item.date)}
                   ads={data.ads}
@@ -311,6 +337,33 @@ const Homepage = ({navigation, route}) => {
               );
             }
           })}
+
+          {/* {news.map((item) => {
+            //Kondisi jika akan menampilkan berita
+            const data = {
+              title: item.title.rendered,
+              date: item.date,
+              desc: item.excerpt.rendered,
+              content: item.content.rendered,
+              link: item.link,
+              category: item.categories[0],
+              ads: articleAds,
+              featuredMedia: item.featured_media,
+              image: item.thumbnail,
+            };
+
+            return (
+              <NewsItem
+                key={item.id}
+                image={{uri: data.image}}
+                title={item.title.rendered}
+                // date={formatDate(item.date)}
+                ads={data.ads}
+                category={item.categories[0]}
+                onPress={() => navigation.navigate('Article', data)}
+              />
+            );
+          })} */}
         </View>
       </ScrollView>
       {refreshing && <Loading />}
